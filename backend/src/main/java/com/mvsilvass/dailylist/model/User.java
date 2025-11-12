@@ -27,7 +27,10 @@ public class User {
     @Setter
     @Column(nullable = false)
     private String password;
-
+    
+    @Setter
+    private boolean enabled = true;
+    
     @Column(name = "created_at")
     @CreationTimestamp
     private Date createdAt;
