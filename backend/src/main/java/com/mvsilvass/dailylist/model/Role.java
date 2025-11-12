@@ -1,4 +1,4 @@
-package com.mvsilvass.dailylist.models;
+package com.mvsilvass.dailylist.model;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
