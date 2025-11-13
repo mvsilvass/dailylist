@@ -1,8 +1,8 @@
 package com.mvsilvass.dailylist.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -11,7 +11,7 @@ import java.util.List;
 
 @Entity
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "users")
 public class User {
 

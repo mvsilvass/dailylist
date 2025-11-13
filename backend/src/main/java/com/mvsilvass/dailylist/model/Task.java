@@ -1,8 +1,8 @@
 package com.mvsilvass.dailylist.model;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
@@ -10,7 +10,7 @@ import java.util.Date;
 
 @Entity
 @Getter
-@AllArgsConstructor
+@NoArgsConstructor
 @Table(name = "tasks")
 public class Task {
 
@@ -32,9 +32,9 @@ public class Task {
 
     @Setter
     private String link;
-
+    
     @ManyToOne
-    @Column(nullable = false)
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
     @Column(name = "created_at")
