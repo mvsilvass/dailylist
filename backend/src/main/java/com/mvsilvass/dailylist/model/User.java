@@ -1,5 +1,6 @@
 package com.mvsilvass.dailylist.model;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -25,6 +26,7 @@ public class User {
     private String email;
 
     @Setter
+    @JsonIgnore
     @Column(nullable = false)
     private String password;
     
