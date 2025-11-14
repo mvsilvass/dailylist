@@ -54,11 +54,10 @@ public class AuthService {
         String scope = authentication
             .getAuthorities().stream()
             .map(GrantedAuthority::getAuthority)
-            .collect(Collectors
-                .joining(" "));
+            .collect(Collectors.joining(" "));
         
         JwtClaimsSet claims = JwtClaimsSet.builder()
-            .issuer("spring-security-jwt")
+            .issuer("dailylist")
             .issuedAt(now)
             .expiresAt(now.plusSeconds(expiresIn))
             .subject(authentication.getName())
