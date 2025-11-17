@@ -1,5 +1,6 @@
 package com.mvsilvass.dailylist.security;
 
+import com.mvsilvass.dailylist.excepiton.UserNotFoundException;
 import com.mvsilvass.dailylist.repository.UserRepository;
 
 import org.springframework.security.core.userdetails.UserDetails;
@@ -17,10 +18,10 @@ public class UserDetailsServiceImpl implements UserDetailsService {
     }
     
     @Override
-    public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
-        return userRepository.findByEmail(username)
+    public UserDetails loadUserByUsername(String email) throws UsernameNotFoundException {
+        return userRepository.findByEmail(email)
             .map(UserAuthenticated::new)
             .orElseThrow(
-                () -> new UsernameNotFoundException("User Not Found!"));
+                () -> new UsernameNotFoundException("Usuário não encontrado"));
     }
 }

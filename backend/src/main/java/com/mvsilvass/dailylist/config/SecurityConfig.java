@@ -1,5 +1,8 @@
 package com.mvsilvass.dailylist.config;
 
+import com.mvsilvass.dailylist.security.CustomBasicAuthenticationEntryPoint;
+import com.mvsilvass.dailylist.security.CustomBearerTokenAccessDeniedHandler;
+import com.mvsilvass.dailylist.security.CustomBearerTokenAuthenticationEntryPoint;
 import com.nimbusds.jose.jwk.JWK;
 import com.nimbusds.jose.jwk.JWKSet;
 import com.nimbusds.jose.jwk.RSAKey;
@@ -30,14 +33,26 @@ import java.security.interfaces.RSAPublicKey;
 @Configuration
 @EnableWebSecurity
 @EnableMethodSecurity
-public class SecurityConfig {
+public class    SecurityConfig {
     
     @Value("${jwt.private-key}")
     private RSAPrivateKey privateKey;
 
     @Value("${jwt.public-key}")
     private RSAPublicKey publicKey;
-
+    
+    private final CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint;
+    private final CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint;
+    private final CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler;
+    
+    public SecurityConfig(CustomBasicAuthenticationEntryPoint customBasicAuthenticationEntryPoint,
+                          CustomBearerTokenAuthenticationEntryPoint customBearerTokenAuthenticationEntryPoint,
+                          CustomBearerTokenAccessDeniedHandler customBearerTokenAccessDeniedHandler) {
+        this.customBasicAuthenticationEntryPoint = customBasicAuthenticationEntryPoint;
+        this.customBearerTokenAuthenticationEntryPoint = customBearerTokenAuthenticationEntryPoint;
+        this.customBearerTokenAccessDeniedHandler = customBearerTokenAccessDeniedHandler;
+    }
+    
     @Bean
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception{
         http
@@ -46,8 +61,13 @@ public class SecurityConfig {
                 .requestMatchers(HttpMethod.POST, "/auth/register").permitAll()
                 .anyRequest().authenticated())
             .csrf(csrf -> csrf.disable())
-            .cors(cors -> cors.configure(http))
-            .oauth2ResourceServer(oauth2 -> oauth2.jwt(Customizer.withDefaults()))
+            .cors(Customizer.withDefaults())
+            .httpBasic(httpBasic -> httpBasic.authenticationEntryPoint(this.customBasicAuthenticationEntryPoint))
+            .oauth2ResourceServer(oauth2 -> oauth2
+                .jwt(Customizer.withDefaults())
+                .authenticationEntryPoint(this.customBearerTokenAuthenticationEntryPoint)
+                .accessDeniedHandler(this.customBearerTokenAccessDeniedHandler)
+            )
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS));
         return http.build();
     }
@@ -63,7 +83,7 @@ public class SecurityConfig {
         JWKSource<SecurityContext> jwks = new ImmutableJWKSet<>(new JWKSet(jwk));
         return new NimbusJwtEncoder(jwks);
     }
-
+    
     @Bean
     public JwtDecoder jwtDecoder(){
         return NimbusJwtDecoder.withPublicKey(this.publicKey).build();

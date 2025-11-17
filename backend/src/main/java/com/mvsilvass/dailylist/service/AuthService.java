@@ -4,6 +4,8 @@ import com.mvsilvass.dailylist.dto.request.LoginRequest;
 import com.mvsilvass.dailylist.dto.request.RegisterRequest;
 import com.mvsilvass.dailylist.dto.response.LoginResponse;
 import com.mvsilvass.dailylist.dto.response.RegisterResponse;
+import com.mvsilvass.dailylist.excepiton.RoleNotFoundException;
+import com.mvsilvass.dailylist.excepiton.UserAlreadyExistsException;
 import com.mvsilvass.dailylist.model.Role;
 import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.RoleRepository;
@@ -73,7 +75,7 @@ public class AuthService {
         Optional<User> userFromDb = userRepository.findByEmail(registerRequest.email());
         
         if(userFromDb.isPresent()){
-            return new RegisterResponse("User already exists");
+            throw new UserAlreadyExistsException("Email já cadrastrado");
         }
         
         Optional<Role> basicRole = roleRepository.findByName(Role.Values.BASIC.name());
@@ -81,7 +83,8 @@ public class AuthService {
         newUser.setEmail( registerRequest.email());
         newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
         newUser.setRoles(Set.of(
-            basicRole.orElseThrow(() -> new RuntimeException("Role não encontrada"))
+            basicRole.orElseThrow(() ->
+                new RoleNotFoundException("Role: " + Role.Values.BASIC.name() + " não foi encontrada!"))
         ));
         
         userRepository.save(newUser);
