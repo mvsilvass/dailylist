@@ -6,13 +6,36 @@ import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import org.springframework.web.bind.annotation.RestControllerAdvice;
 
 import java.time.Instant;
+import java.util.List;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 @RestControllerAdvice
 public class RestExceptionHandler {
+    
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    private ResponseEntity<ValidationErrorMessage> validationErrorsHandler(MethodArgumentNotValidException ex) {
+        Map<String, List<String>> errors = ex.getBindingResult().getFieldErrors()
+            .stream()
+            .collect(Collectors.groupingBy(
+                FieldError::getField,
+                Collectors.mapping(FieldError::getDefaultMessage, Collectors.toList())
+            ));
+        
+        ValidationErrorMessage error = new ValidationErrorMessage(
+            HttpStatus.BAD_REQUEST,
+            "Erro de validação",
+            errors
+        );
+        
+        return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(error);
+    }
     
     @ExceptionHandler(UserNotFoundException.class)
     private ResponseEntity<RestErrorMessage> userNotFoundHandler(UserNotFoundException ex){
