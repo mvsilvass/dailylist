@@ -5,6 +5,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 
@@ -33,6 +34,7 @@ public class Task {
     @Setter
     private String link;
     
+    @Setter
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
@@ -40,5 +42,9 @@ public class Task {
     @Column(name = "created_at")
     @CreationTimestamp
     private Date createdAt;
-
+    
+    @Column(name = "updated_at")
+    @UpdateTimestamp
+    private Date UpdateAt;
+    
 }
