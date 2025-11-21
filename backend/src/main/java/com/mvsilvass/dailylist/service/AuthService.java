@@ -84,12 +84,12 @@ public class AuthService {
         newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
         newUser.setRoles(Set.of(
             basicRole.orElseThrow(() ->
-                new RoleNotFoundException("Role: " + Role.Values.BASIC.name() + " não foi encontrada!"))
+                new RoleNotFoundException("Role: " + Role.Values.BASIC.name() + " não foi encontrada"))
         ));
         
         userRepository.save(newUser);
         
-        return new RegisterResponse("User registered successfully");
+        return new RegisterResponse("Usuário cadastrado com sucesso");
     
     }
 }
