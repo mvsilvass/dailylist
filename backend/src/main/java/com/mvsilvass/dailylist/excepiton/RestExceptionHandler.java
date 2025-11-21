@@ -120,4 +120,16 @@ public class RestExceptionHandler {
         
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
+    
+    @ExceptionHandler(TaskNotFoundException.class)
+    private ResponseEntity<RestErrorMessage> taskNotFoundHandler(TaskNotFoundException ex){
+        RestErrorMessage error = new RestErrorMessage       (
+            HttpStatus.NOT_FOUND,
+            Instant.now(),
+            "Tarefa não encontrada",
+            ex.getMessage()
+        );
+        
+        return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
 }
