@@ -3,7 +3,6 @@ package com.mvsilvass.dailylist.service;
 import com.mvsilvass.dailylist.excepiton.UserNotFoundException;
 import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.UserRepository;
-import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
