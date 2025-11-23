@@ -15,7 +15,7 @@ public class TaskService {
         this.taskRepository = taskRepository;
     }
     
-    public Task create(User user, TaskRequest taskRequest){
+    public Task createTask(User user, TaskRequest taskRequest){
         Task task = new Task();
         task.setTitle(taskRequest.title());
         task.setDescription(taskRequest.description());

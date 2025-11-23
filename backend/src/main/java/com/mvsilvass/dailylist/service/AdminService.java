@@ -25,7 +25,7 @@ public class AdminService {
     }
     
     public void deleteUserById(Long userId) {
-        User user = userRepository.findById(userId)
+        userRepository.findById(userId)
             .orElseThrow(() -> new UserNotFoundException("Usuário com id " + userId + " não encontrado"));
         
         userRepository.deleteById(userId);

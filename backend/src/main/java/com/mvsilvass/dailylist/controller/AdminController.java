@@ -25,12 +25,12 @@ public class AdminController {
     }
     
     @GetMapping("/{id}")
-    public ResponseEntity<User> getById(@PathVariable Long id){
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
         return ResponseEntity.ok(adminService.getUserById(id));
     }
     
     @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteById(@PathVariable Long id){
+    public ResponseEntity<String> deleteUserById(@PathVariable Long id){
         adminService.deleteUserById(id);
         return ResponseEntity.ok("Usuário deletado com sucesso");
     }

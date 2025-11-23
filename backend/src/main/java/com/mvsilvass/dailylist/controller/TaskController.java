@@ -29,11 +29,11 @@ public class TaskController {
     }
     
     @PostMapping()
-    public ResponseEntity<TaskResponse> create(@Valid @RequestBody TaskRequest taskRequest, JwtAuthenticationToken token){
+    public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest taskRequest, JwtAuthenticationToken token){
         User user = userRepository.findByEmail(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
-        Task task = taskService.create(user, taskRequest);
+        Task task = taskService.createTask(user, taskRequest);
         return ResponseEntity.status(HttpStatus.CREATED).body(TaskResponse.from(task));
     }
     
