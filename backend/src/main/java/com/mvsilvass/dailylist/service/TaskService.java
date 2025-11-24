@@ -1,6 +1,8 @@
 package com.mvsilvass.dailylist.service;
 
 import com.mvsilvass.dailylist.dto.request.TaskRequest;
+import com.mvsilvass.dailylist.excepiton.ForbiddenException;
+import com.mvsilvass.dailylist.excepiton.TaskNotFoundException;
 import com.mvsilvass.dailylist.model.Task;
 import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.TaskRepository;
@@ -24,5 +26,16 @@ public class TaskService {
         task.setUser(user);
         
         return taskRepository.save(task);
+    }
+    
+    public Task getTaskById(Long taskId, User user){
+        Task task = taskRepository.findById(taskId)
+            .orElseThrow(() -> new TaskNotFoundException("Tarefa com id "+ taskId + " não encontrada"));
+        
+        if(!task.getUser().getUserId().equals(user.getUserId())){
+            throw new ForbiddenException("Você não tem permissão para acessar essa tarefa");
+        }
+        
+        return task;
     }
 }

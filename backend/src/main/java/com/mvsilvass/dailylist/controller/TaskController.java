@@ -11,10 +11,7 @@ import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("users/tasks")
@@ -37,6 +34,13 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(TaskResponse.from(task));
     }
     
-    
+    @GetMapping("/{id}")
+    public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id, JwtAuthenticationToken token){
+        User user = userRepository.findByEmail(token.getName())
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        Task task = taskService.getTaskById(id, user);
+        return ResponseEntity.status(HttpStatus.OK).body(TaskResponse.from(task));
+    }
     
 }

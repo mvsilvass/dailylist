@@ -115,7 +115,7 @@ public class RestExceptionHandler {
             HttpStatus.UNAUTHORIZED,
             Instant.now(),
             "Acesso negado",
-            "Token de acesso inválido ou expirado."
+            "Token de acesso inválido ou expirado"
         );
         
         return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
@@ -131,5 +131,17 @@ public class RestExceptionHandler {
         );
         
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+    
+    @ExceptionHandler(ForbiddenException.class)
+    private ResponseEntity<RestErrorMessage> forbiddenHandler(ForbiddenException ex){
+        RestErrorMessage error = new RestErrorMessage       (
+            HttpStatus.FORBIDDEN,
+            Instant.now(),
+            "Acesso negado",
+            ex.getMessage()
+        );
+        
+        return ResponseEntity.status(HttpStatus.FORBIDDEN).body(error);
     }
 }
