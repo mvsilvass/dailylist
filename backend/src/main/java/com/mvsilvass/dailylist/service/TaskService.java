@@ -8,6 +8,8 @@ import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @Service
 public class TaskService {
     
@@ -15,6 +17,10 @@ public class TaskService {
     
     public TaskService(TaskRepository taskRepository) {
         this.taskRepository = taskRepository;
+    }
+    
+    public List<Task> getAllTasks(Long userId){
+        return taskRepository.findAllByUser_UserId(userId);
     }
     
     public Task createTask(User user, TaskRequest taskRequest){

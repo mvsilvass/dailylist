@@ -13,6 +13,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationToken;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("users/tasks")
 public class TaskController {
@@ -23,6 +25,17 @@ public class TaskController {
     public TaskController(TaskService taskService, UserRepository userRepository) {
         this.taskService = taskService;
         this.userRepository = userRepository;
+    }
+    
+        User user = userRepository.findByEmail(token.getName())
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        List<Task> tasks = taskService.getAllTasks(user.getUserId());
+        List<TaskResponse> response = tasks.stream()
+            .map(TaskResponse::from)
+            .toList();
+        
+        return ResponseEntity.status(HttpStatus.OK).body(response);
     }
     
     @PostMapping()
