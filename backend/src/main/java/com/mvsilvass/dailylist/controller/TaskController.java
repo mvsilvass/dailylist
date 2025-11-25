@@ -27,6 +27,8 @@ public class TaskController {
         this.userRepository = userRepository;
     }
     
+    @GetMapping()
+    public ResponseEntity<List<TaskResponse>> getAllTasks(JwtAuthenticationToken token){
         User user = userRepository.findByEmail(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
