@@ -29,9 +29,13 @@ public class AdminController {
         return ResponseEntity.ok(adminService.getUserById(id));
     }
     
-    @DeleteMapping("/{id}")
-    public ResponseEntity<String> deleteUserById(@PathVariable Long id){
-        adminService.deleteUserById(id);
-        return ResponseEntity.ok("Usuário deletado com sucesso");
+    @PatchMapping("/{id}/deactivate")
+    public ResponseEntity<User> deactivateUser(@PathVariable Long id){
+        return ResponseEntity.ok(adminService.deactivateUser(id));
+    }
+    
+    @PatchMapping("/{id}/activate")
+    public ResponseEntity<User> activateUser(@PathVariable Long id){
+        return ResponseEntity.ok(adminService.activateUser(id));
     }
 }

@@ -4,6 +4,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.access.AccessDeniedException;
 import org.springframework.security.authentication.BadCredentialsException;
+import org.springframework.security.authentication.DisabledException;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.security.oauth2.server.resource.InvalidBearerTokenException;
 import org.springframework.validation.FieldError;
@@ -131,6 +132,18 @@ public class RestExceptionHandler {
         );
         
         return ResponseEntity.status(HttpStatus.NOT_FOUND).body(error);
+    }
+    
+    @ExceptionHandler(DisabledException.class)
+    private ResponseEntity<RestErrorMessage> disabledHandler(DisabledException ex){
+        RestErrorMessage error = new RestErrorMessage       (
+            HttpStatus.UNAUTHORIZED,
+            Instant.now(),
+            "Usuário desativado",
+            "Esta conta foi desativada"
+        );
+        
+        return ResponseEntity.status(HttpStatus.UNAUTHORIZED).body(error);
     }
     
     @ExceptionHandler(ForbiddenException.class)
