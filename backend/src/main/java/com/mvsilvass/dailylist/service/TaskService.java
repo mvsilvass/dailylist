@@ -44,4 +44,21 @@ public class TaskService {
         
         return task;
     }
+    
+    public Task updateTaskById(Long taskId, TaskRequest updatedTask, User user){
+        Task task = taskRepository.findById(taskId)
+            .orElseThrow(() -> new TaskNotFoundException("Tarefa com id "+ taskId + " não encontrada"));
+        
+        if(!task.getUser().getUserId().equals(user.getUserId())){
+            throw new ForbiddenException("Você não tem permissão para acessar essa tarefa");
+        }
+        
+        task.setTitle(updatedTask.title());
+        task.setDescription(updatedTask.description());
+        task.setImage(updatedTask.image());
+        task.setLink(updatedTask.link());
+        taskRepository.save(task);
+        
+        return task;
+    }
 }

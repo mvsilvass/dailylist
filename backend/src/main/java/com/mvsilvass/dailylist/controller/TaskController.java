@@ -49,6 +49,17 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.CREATED).body(TaskResponse.from(task));
     }
     
+    @PutMapping("/{id}")
+    public ResponseEntity<TaskResponse> updateTaskById(@PathVariable Long id,
+                                                       @Valid @RequestBody TaskRequest taskRequest,
+                                                       JwtAuthenticationToken token){
+        User user = userRepository.findByEmail(token.getName())
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        Task task = taskService.updateTaskById(id, taskRequest, user);
+        return ResponseEntity.status(HttpStatus.OK).body(TaskResponse.from(task));
+    }
+    
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id, JwtAuthenticationToken token){
         User user = userRepository.findByEmail(token.getName())
