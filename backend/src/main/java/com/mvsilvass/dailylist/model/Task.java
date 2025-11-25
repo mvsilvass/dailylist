@@ -23,14 +23,12 @@ public class Task {
     @Setter
     @Column(nullable = false)
     private String title;
-
-    @Lob
+    
     @Setter
     private String description;
-
-    @Lob
+    
     @Setter
-    private byte[] image;
+    private String image;
 
     @Setter
     private String link;

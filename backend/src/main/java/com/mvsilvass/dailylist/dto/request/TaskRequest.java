@@ -7,7 +7,6 @@ import org.hibernate.validator.constraints.URL;
 
 public record TaskRequest(
     @NotBlank(message = "Título é obrigatória")
-    @NotEmpty(message = "Título é obrigatória")
     String title,
     
     @Size(max = 255, message = "Descrição deve ter no máximo 255 caracteres")
@@ -15,7 +14,8 @@ public record TaskRequest(
     
     @URL
     String link,
-
-    byte[] image
+    
+    @URL
+    String image
     ) {
 }

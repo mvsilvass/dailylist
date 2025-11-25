@@ -9,7 +9,7 @@ import java.util.Date;
 public record TaskResponse(
     String title,
     String description,
-    byte[] image,
+    String image,
     String link,
     Date createdAt,
     Date updateAt) {
