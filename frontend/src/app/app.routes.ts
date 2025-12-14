@@ -1,7 +1,7 @@
 import { Routes } from '@angular/router';
+import { Home } from './features/public/pages/home/home';
+import { Login } from './features/auth/pages/login/login';
 
-import { Login } from './authentication/login/login';
-import { Home } from './features/home/pages/home/home';
 
 export const routes: Routes = [
   {
