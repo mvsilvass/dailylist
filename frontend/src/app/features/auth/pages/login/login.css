@@ -12,7 +12,18 @@
   border-radius: 10px;
   display: flex;
   padding: 2em;
+  position: relative;
   flex-direction: column;
+  overflow: hidden;
+}
+
+.sunflower {
+  position: absolute;
+  top: -35px;
+  left: -35px;
+  width: 100px;
+  height: auto;
+  border-radius: 10px 0 0 0;
 }
 
 .title{
