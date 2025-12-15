@@ -13,7 +13,7 @@ section {
   display: flex;
   padding: 4em;
   height: 75%;
-  width: 50%;
+  width: 40%;
   position: relative;
   justify-content: space-between;
   flex-direction: column;
@@ -45,6 +45,8 @@ form {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
+  align-self: center;
+  width: 80%;
 }
 
 form input {
