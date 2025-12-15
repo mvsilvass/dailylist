@@ -1,10 +1,17 @@
 :root {
-  --primary-color: #FFF2CC;
-  --background-color: #EBD5AB;
+  --primary-color: #F6B61E;
+  --secundary-color: #FFF2CC;
+  --background-color: #FFCF71;
   --font-color: #443627;
 
   --black-color: #000;
   --white-color: #fff;
+  --gray-color: #ccc;
+
+  --button-color: var(--primary-color);
+  --button-hover-color:rgba(246, 182, 30, 0.9);
+
+  --input-border: #B6771D;
 }
 
 * {
