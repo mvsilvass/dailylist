@@ -8,9 +8,9 @@
       <h2>Bem-vindo de volta!</h2>
     </div>
 
-    <form>
-      <input type="email" placeholder="Email" required>
-      <input type="password" placeholder="Senha" required>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <input formControlName="email" type="email" placeholder="Email" required>
+      <input formControlName="password" type="password" placeholder="Senha" required>
       <button type="submit">Entrar</button>
     </form>
 
