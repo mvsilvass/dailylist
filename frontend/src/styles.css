@@ -9,7 +9,7 @@
   --gray-color: #ccc;
 
   --button-color: var(--primary-color);
-  --button-hover-color:rgba(246, 182, 30, 0.9);
+  --button-hover-color:rgba(246, 182, 30, 0.85);
 
   --input-border: #B6771D;
 }
