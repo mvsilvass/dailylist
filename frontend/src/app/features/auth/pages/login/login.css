@@ -31,7 +31,13 @@ img{
 h1 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
-  font-size: 4em;
+  font-size: 4.5em;
+  letter-spacing: 2px;
+  align-self: center;
+}
+
+h2 {
+  font-size: 1.2em;
   align-self: center;
 }
 
@@ -85,6 +91,7 @@ div {
 
 div a{
   color: var(--font-color);
+  font-size: 1em;
   text-decoration: none;
   align-self: center;
 }
