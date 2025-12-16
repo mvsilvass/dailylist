@@ -14,11 +14,14 @@
       <button type="submit">Entrar</button>
     </form>
 
+    <p class="error" NgIf="errorMessage">
+      {{ errorMessage }}
+    </p>
+
     <div>
       <p>
         Não tem uma conta? <a href="#">Cadastre-se</a>
       </p>
-
 
       <a href="#">
         Esqueci minha senha
