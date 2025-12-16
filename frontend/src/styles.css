@@ -1,17 +1,16 @@
 :root {
-  --primary-color: #F6B61E;
-  --secundary-color: #FFF2CC;
-  --background-color: #FFCF71;
-  --font-color: #443627;
+  --black-color: hsl(0, 0%, 0%);
+  --white-color: hsl(0, 0%, 100%);
+  --gray-color: hsl(0, 0%, 80%);
 
-  --black-color: #000;
-  --white-color: #fff;
-  --gray-color: #ccc;
+  --primary-color: hsl(42, 92%, 54%);
+  --secondary-color: hsl(from var(--primary-color) h s 70%);
+  --font-color: hsl(from var(--primary-color) h 30% 21%);
 
-  --button-color: var(--primary-color);
-  --button-hover-color:rgba(246, 182, 30, 0.85);
+  --background-color: var(--secondary-color);
 
-  --input-border: #B6771D;
+  --primary-color-opacity-50: hsl(from var(--primary-color) h s l / 0.5);
+  --black-color-opacity-50: hsl(from var(--black-color) h s l / 0.5);
 }
 
 * {
