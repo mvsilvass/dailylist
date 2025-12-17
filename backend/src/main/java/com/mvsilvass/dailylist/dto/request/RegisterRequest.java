@@ -5,6 +5,10 @@ import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.NotEmpty;
 
 public record RegisterRequest(
+    
+    @NotBlank(message = "Nome do usuário é obrigatório")
+    String username,
+    
     @NotEmpty(message = "Email é obrigatório")
     @Email(message = "O email deve ter um formato válido")
     String email,
