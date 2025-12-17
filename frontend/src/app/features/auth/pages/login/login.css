@@ -16,7 +16,7 @@ section {
   min-height: 80%;
   min-width: 50%;
   position: relative;
-  justify-content: space-around;
+  justify-content: space-evenly;
   flex-direction: column;
   overflow: hidden;
 }
@@ -29,31 +29,32 @@ img{
   height: auto;
 }
 
+div{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 h1 {
   font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   font-weight: bold;
   font-size: clamp(2rem, calc(5vw + 2.5rem), 5rem);
   letter-spacing: 2px;
-  align-self: center;
 }
 
 h2 {
   font-size: clamp(1rem, calc(2.25vw + 0.5rem), 1.10rem);
-  align-self: center;
 }
 
 p {
   font-size: clamp(0.5rem, calc(1vw + 0.5rem), 1rem);
-  align-self: center;
 }
 
 form {
-  min-height: 100%;
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
   align-self: center;
-  gap: 10px;  
+  gap: 10px;
   min-width: 75%;
 }
 
@@ -85,21 +86,21 @@ form button:hover {
   background-color: hsl(from var(--primary-color) h s l / 0.8);
 }
 
-div {
-  display: flex;
-  flex-direction: column;
-  gap: 5px;
-}
-
 div a{
   color: var(--font-color);
   font-size: clamp(0.5rem, calc(1vw + 0.5rem), 1rem);
   text-decoration: none;
-  align-self: center;
 }
 
 div a:hover{
   font-weight: bold;
   text-decoration: underline;
   cursor: pointer;
+}
+
+.error {
+  color: red;
+  font-weight: bold;
+  align-self: center;
+  font-size: clamp(0.5rem, calc(1vw + 0.5rem), 1rem);
 }
