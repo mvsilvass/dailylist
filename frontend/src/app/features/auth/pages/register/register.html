@@ -1,1 +1,28 @@
-<p>register works!</p>
+<app-auth-layout>
+  <div>
+    <h1>Dailylist</h1>
+    <h2>Crie sua conta e junte-se a nós!</h2>
+  </div>
+
+  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+    <input formControlName="username" type="text" placeholder="Username" required>
+    <input formControlName="email" type="email" placeholder="Email" required>
+    <input formControlName="password" type="password" placeholder="Senha" required>
+    <button type="submit">Registrar</button>
+
+    @if (errorMessage) {
+      <p class="message error">{{ errorMessage }}</p>
+    }
+
+    @if (successMessage) {
+      <p class="message success">{{ successMessage }}</p>
+    }
+
+  </form>
+
+  <div>
+    <p>
+      Já tem uma conta? <a href="auth/login">Entrar</a>
+    </p>
+  </div>
+</app-auth-layout>
