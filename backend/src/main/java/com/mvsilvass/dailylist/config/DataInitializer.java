@@ -45,6 +45,7 @@ public class DataInitializer implements CommandLineRunner {
         Set<Role> roles = Set.copyOf(roleRepository.findAll());
         if(userRepository.findByEmailIgnoreCase("admin@teste.com").isEmpty()){
             User admin = new User();
+            admin.setUsername("admin");
             admin.setEmail("admin@teste.com");
             admin.setPassword(passwordEncoder.encode(adminPassword));
             admin.setRoles(roles);
