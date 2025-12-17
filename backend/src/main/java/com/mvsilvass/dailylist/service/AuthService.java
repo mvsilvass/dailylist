@@ -72,7 +72,7 @@ public class AuthService {
     }
     
     public RegisterResponse register(RegisterRequest registerRequest) {
-        Optional<User> userFromDb = userRepository.findByEmail(registerRequest.email());
+        Optional<User> userFromDb = userRepository.findByEmailIgnoreCase(registerRequest.email());
         
         if(userFromDb.isPresent()){
             throw new UserAlreadyExistsException("Email já cadrastrado");
@@ -80,7 +80,7 @@ public class AuthService {
         
         Optional<Role> basicRole = roleRepository.findByName(Role.Values.BASIC.name());
         User newUser = new User();
-        newUser.setEmail( registerRequest.email());
+        newUser.setEmail(registerRequest.email().toLowerCase());
         newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
         newUser.setRoles(Set.of(
             basicRole.orElseThrow(() ->
