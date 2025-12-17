@@ -12,11 +12,9 @@
       <input formControlName="email" type="email" placeholder="Email" required>
       <input formControlName="password" type="password" placeholder="Senha" required>
       <button type="submit">Entrar</button>
+      <p class="error" NgIf="errorMessage">{{ errorMessage }}</p>
     </form>
 
-    <p class="error" NgIf="errorMessage">
-      {{ errorMessage }}
-    </p>
 
     <div>
       <p>
