@@ -14,3 +14,7 @@ spring:
 jwt:
   public-key: classpath:keys/app.pub
   private-key: classpath:keys/app.key
+
+admin:
+  default:
+    password: ${ADMIN_PASSWORD:1234}
