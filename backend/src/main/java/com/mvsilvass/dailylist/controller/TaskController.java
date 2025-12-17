@@ -24,12 +24,12 @@ public class TaskController {
     
     public TaskController(TaskService taskService, UserRepository userRepository) {
         this.taskService = taskService;
-        this.userRepository = userRepository;
+            this.userRepository = userRepository;
     }
     
     @GetMapping()
     public ResponseEntity<List<TaskResponse>> getAllTasks(JwtAuthenticationToken token){
-        User user = userRepository.findByEmail(token.getName())
+        User user = userRepository.findByEmailIgnoreCase(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         List<Task> tasks = taskService.getAllTasks(user.getUserId());
@@ -42,7 +42,7 @@ public class TaskController {
     
     @PostMapping()
     public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest taskRequest, JwtAuthenticationToken token){
-        User user = userRepository.findByEmail(token.getName())
+        User user = userRepository.findByEmailIgnoreCase(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.createTask(user, taskRequest);
@@ -53,7 +53,7 @@ public class TaskController {
     public ResponseEntity<TaskResponse> updateTaskById(@PathVariable Long id,
                                                        @Valid @RequestBody TaskRequest taskRequest,
                                                        JwtAuthenticationToken token){
-        User user = userRepository.findByEmail(token.getName())
+        User user = userRepository.findByEmailIgnoreCase(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.updateTaskById(id, taskRequest, user);
@@ -62,7 +62,7 @@ public class TaskController {
     
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id, JwtAuthenticationToken token){
-        User user = userRepository.findByEmail(token.getName())
+        User user = userRepository.findByEmailIgnoreCase(token.getName())
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.getTaskById(id, user);
