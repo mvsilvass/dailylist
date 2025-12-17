@@ -4,10 +4,11 @@ import { LoginRequest } from '../../models/login-request';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Router } from '@angular/router';
+import { AuthLayout } from 'src/app/shared/layouts/auth-layout/auth-layout';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AuthLayout],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
