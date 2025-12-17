@@ -25,7 +25,11 @@ public class User {
     @Setter
     @Column(unique = true, nullable = false)
     private String email;
-
+    
+    @Setter
+    @Column(nullable = false)
+    private String username;
+    
     @Setter
     @JsonIgnore
     @Column(nullable = false)
