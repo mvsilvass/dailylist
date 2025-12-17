@@ -80,6 +80,7 @@ public class AuthService {
         
         Optional<Role> basicRole = roleRepository.findByName(Role.Values.BASIC.name());
         User newUser = new User();
+        newUser.setUsername(registerRequest.username());
         newUser.setEmail(registerRequest.email().toLowerCase());
         newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
         newUser.setRoles(Set.of(
