@@ -50,10 +50,14 @@ export class Login {
     this.authenticationService.doLogin(request).subscribe({
       next: (loginResponse) => {
         this.storage.set('access-token', loginResponse.accessToken);
+        this.loginForm.reset();
+
         this.router.navigate(['/home']);
       },
       error: (loginResponse) => {
         this.storage.remove('access-token');
+        this.loginForm.reset();
+
         this.errorMessage = loginResponse.error.message;
       },
     });
