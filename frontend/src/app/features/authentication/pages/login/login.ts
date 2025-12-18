@@ -1,19 +1,23 @@
 import { Component } from '@angular/core';
-import { AuthService } from '../../services/auth.service';
 import { LoginRequest } from '../../models/login-request';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Router } from '@angular/router';
-import { AuthLayout } from 'src/app/shared/layouts/auth-layout/auth-layout';
+import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
+import { AuthenticationService } from '../../services/authentication.service';
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule, AuthLayout],
+  imports: [ReactiveFormsModule, AuthenticationLayout],
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
 export class Login {
-  constructor(private authService: AuthService, private storage: LocalStorageService, private router: Router) {}
+  constructor(
+    private authenticationService: AuthenticationService,
+    private storage: LocalStorageService,
+    private router: Router
+  ) {}
 
   errorMessage: string | null = null;
 
@@ -43,7 +47,7 @@ export class Login {
       password: formValue.password,
     };
 
-    this.authService.doLogin(request).subscribe({
+    this.authenticationService.doLogin(request).subscribe({
       next: (loginResponse) => {
         this.storage.set('access-token', loginResponse.accessToken);
         this.router.navigate(['/home']);

@@ -67,16 +67,9 @@ div a:hover {
   cursor: pointer;
 }
 
-.message{
+.error {
+  color: red;
   font-weight: bold;
   align-self: center;
   font-size: clamp(0.5rem, calc(1vw + 0.5rem), 1rem);
-}
-
-.error {
-  color: red;
-}
-
-.success {
-  color: green;
 }
