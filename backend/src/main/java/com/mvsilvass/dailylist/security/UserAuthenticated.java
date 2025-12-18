@@ -8,10 +8,7 @@ import org.springframework.security.core.userdetails.UserDetails;
 import java.util.Collection;
 import java.util.stream.Collectors;
 
-public class UserAuthenticated implements UserDetails {
-    
-    private final User user;
-    
+public record UserAuthenticated(User user) implements UserDetails {
     public UserAuthenticated(User user) {
         this.user = user;
     }
@@ -37,20 +34,4 @@ public class UserAuthenticated implements UserDetails {
             .map(role -> new SimpleGrantedAuthority(role.getName()))
             .collect(Collectors.toList());
     }
-    
-    @Override
-    public boolean isAccountNonExpired() {
-        return true;
-    }
-    
-    @Override
-    public boolean isAccountNonLocked() {
-        return true;
-    }
-    
-    @Override
-    public boolean isCredentialsNonExpired() {
-        return true;
-    }
-    
 }
