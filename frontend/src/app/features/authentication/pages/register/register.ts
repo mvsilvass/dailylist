@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
 import { Router } from '@angular/router';
-import { LoginRequest } from '../../models/login-request';
+
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
 import { AuthenticationService } from '../../services/authentication.service';
