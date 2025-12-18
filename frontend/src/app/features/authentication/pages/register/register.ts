@@ -25,6 +25,11 @@ export class Register {
     password: new FormControl('', [Validators.required]),
   });
 
+  private clearMessages() {
+    this.successMessage = null;
+    this.errorMessage = null;
+  }
+
   private validateForm(): boolean {
     if (this.registerForm.invalid) {
       this.errorMessage = 'Preencha todos os campos corretamente';
@@ -36,6 +41,7 @@ export class Register {
   }
 
   onSubmit() {
+    this.clearMessages();
     if (this.validateForm()) return;
     const formValue = this.registerForm.value;
 
@@ -47,16 +53,11 @@ export class Register {
 
     this.authenticationService.doRegister(request).subscribe({
       next: (RegisterResponse) => {
-        this.errorMessage = null;
-
+        this.registerForm.reset();
         this.successMessage = RegisterResponse.message;
-
-        setTimeout(() => {
-          this.router.navigate(['/auth/login']);
-        }, 3000);
       },
       error: (RegisterResponse) => {
-        this.successMessage = null;
+        this.registerForm.reset();
         this.errorMessage = RegisterResponse.error.message;
       },
     });
