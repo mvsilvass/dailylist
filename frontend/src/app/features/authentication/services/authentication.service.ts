@@ -31,4 +31,8 @@ export class AuthenticationService {
   doRegister(request: RegisterRequest): Observable<RegisterResponse> {
     return this.http.post<RegisterResponse>(`${environment.apiUrl}/auth/register`, request);
   }
+
+  doLogout(): void {
+    this.storage.remove('access-token');
+  }
 }
