@@ -10,6 +10,7 @@ import com.mvsilvass.dailylist.model.Role;
 import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.RoleRepository;
 import com.mvsilvass.dailylist.repository.UserRepository;
+import com.mvsilvass.dailylist.security.UserAuthenticated;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -50,6 +51,11 @@ public class AuthService {
             new UsernamePasswordAuthenticationToken(loginRequest.email(), loginRequest.password())
         );
         
+        UserAuthenticated userAuthenticated =
+            (UserAuthenticated) authentication.getPrincipal();
+        
+        User user = userAuthenticated.user();
+        
         Instant now = Instant.now();
         long expiresIn = 3000L;
         
@@ -62,7 +68,9 @@ public class AuthService {
             .issuer("dailylist")
             .issuedAt(now)
             .expiresAt(now.plusSeconds(expiresIn))
-            .subject(authentication.getName())
+            .subject(user.getUserId().toString())
+            .claim("email", user.getEmail())
+            .claim("username", user.getUsername())
             .claim("scope", scope)
             .build();
         
