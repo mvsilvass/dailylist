@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
 import { AuthenticationService } from '../../services/authentication.service';
+import { isValidDate } from 'rxjs/internal/util/isDate';
 
 @Component({
   selector: 'app-register',
@@ -22,6 +23,7 @@ export class Register {
     username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
+    confirmPassword: new FormControl('', [Validators.required]),
   });
 
   private clearMessages() {
@@ -30,18 +32,27 @@ export class Register {
   }
 
   private validateForm(): boolean {
+    const password = this.registerForm.get('password')?.value;
+    const confirmPassword = this.registerForm.get('confirmPassword')?.value;
+
     if (this.registerForm.invalid) {
       this.errorMessage = 'Preencha todos os campos corretamente';
       this.registerForm.markAllAsTouched();
-      return true;
+      return false;
     }
 
-    return false;
+    if (password !== confirmPassword) {
+      this.errorMessage = 'As senhas não coincidem';
+      this.registerForm.markAllAsTouched();
+      return false;
+    }
+    
+    return true;
   }
 
   onSubmit() {
     this.clearMessages();
-    if (this.validateForm()) return;
+    if (!this.validateForm()) return;
     const formValue = this.registerForm.value;
 
     const request: RegisterRequest = {
