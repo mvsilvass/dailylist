@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { LoginRequest } from '../../models/login-request';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { LocalStorageService } from 'src/app/core/services/local-storage.service';
-import { Router } from '@angular/router';
+
 import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
 import { AuthenticationService } from '../../services/authentication.service';
+
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -12,10 +13,10 @@ import { AuthenticationService } from '../../services/authentication.service';
   templateUrl: './login.html',
   styleUrl: './login.css',
 })
+
 export class Login {
   constructor(
     private authenticationService: AuthenticationService,
-    private storage: LocalStorageService,
     private router: Router
   ) {}
 
@@ -37,8 +38,6 @@ export class Login {
   }
 
   onSubmit() {
-    this.storage.remove('access-token');
-
     if (this.validateForm()) return;
     const formValue = this.loginForm.value;
 
@@ -48,16 +47,12 @@ export class Login {
     };
 
     this.authenticationService.doLogin(request).subscribe({
-      next: (loginResponse) => {
-        this.storage.set('access-token', loginResponse.accessToken);
+      next: () => {
         this.loginForm.reset();
-
         this.router.navigate(['/home']);
       },
       error: (loginResponse) => {
-        this.storage.remove('access-token');
         this.loginForm.reset();
-
         this.errorMessage = loginResponse.error.message;
       },
     });
