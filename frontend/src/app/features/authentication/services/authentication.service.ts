@@ -18,7 +18,7 @@ export class AuthenticationService {
     return this.http.post<LoginResponse>(`${environment.apiUrl}/auth/login`, request).pipe(
       tap((response) => {
         if (response.accessToken) {
-          this.storage.set('access-token', response.accessToken);
+          this.storage.set('access_token', response.accessToken);
         }
       }),
       catchError((error) => {
@@ -33,6 +33,6 @@ export class AuthenticationService {
   }
 
   doLogout(): void {
-    this.storage.remove('access-token');
+    this.storage.remove('access_token');
   }
 }
