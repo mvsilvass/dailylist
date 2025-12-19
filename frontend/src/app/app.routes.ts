@@ -7,9 +7,9 @@ import { loginGuard } from './core/guards/login-guard';
 
 export const routes: Routes = [
   {
-    title: 'DailyList - Home',
     path: '',
-    component: Home,
+    redirectTo: 'home',
+    pathMatch: 'full',
   },
   {
     title: 'DailyList - Home',
