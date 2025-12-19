@@ -1,16 +1,33 @@
 import { Injectable, inject } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
+import { JwtDecoderService } from './jwt-decoder.service';
+import { JwtPayload } from '../models/jwt-payload';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  constructor(private storage: LocalStorageService) {}
+  constructor(private storage: LocalStorageService, private jwtDecoderService: JwtDecoderService) {}
 
-  isAuthenticated(): boolean {
-    return !!this.storage.get('access-token');
+  private getPayload(): JwtPayload | null {
+    console.log('[AuthorizationService] Payload:', this.jwtDecoderService.decodeJwtPayload());
+    return this.jwtDecoderService.decodeJwtPayload();
   }
 
-  // to do hasRole()/isAuthorized
+  public isTokenExpired(): boolean {
+    const payload = this.getPayload();
+    if (!payload?.exp) return true;
 
+    return Date.now() > payload.exp * 1000;
+  }
+
+  isAuthenticated(): boolean {
+    return !!this.getPayload() && !this.isTokenExpired();
+  }
+
+  isAuthorized(role: string): boolean {
+    const payload = this.getPayload();
+
+    return !!payload && payload.roles?.includes(role);
+  }
 }
