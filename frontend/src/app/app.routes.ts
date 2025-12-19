@@ -26,10 +26,17 @@ export const routes: Routes = [
     component: Register,
   },
   {
-    title: 'DailyList',
+    title: 'TESTE',
     path: 'teste',
     component: Home,
     canActivate: [authorizationGuard],
+  },
+  {
+    title: 'ADMIN',
+    path: 'admin',
+    component: Home,
+    canActivate: [authorizationGuard],
+    data: { role: 'ADMIN' },
   },
 ];
 
