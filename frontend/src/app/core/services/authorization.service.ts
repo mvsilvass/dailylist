@@ -26,7 +26,8 @@ export class AuthorizationService {
 
   isAuthorized(role: string): boolean {
     const payload = this.getPayload();
+    if (!payload?.scope) return false;
 
-    return !!payload && payload.roles?.includes(role);
+    return payload.scope.split(' ').includes(role);
   }
 }
