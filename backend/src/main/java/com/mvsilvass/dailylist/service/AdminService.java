@@ -32,20 +32,11 @@ public class AdminService {
         
     }
     
-    public User deactivateUser(Long userId){
+    public User setUserEnabled(Long userId, boolean enabled){
         User user = userRepository.findById(userId)
             .orElseThrow(() -> new UserNotFoundException("Usuário com id " + userId + " não encontrado"));
         
-        user.setEnabled(false);
-        userRepository.save(user);
-        return user;
-    }
-    
-    public User activateUser(Long userId){
-        User user = userRepository.findById(userId)
-            .orElseThrow(() -> new UserNotFoundException("Usuário com id " + userId + " não encontrado"));
-        
-        user.setEnabled(true);
+        user.setEnabled(enabled);
         userRepository.save(user);
         return user;
     }
