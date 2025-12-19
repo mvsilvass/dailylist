@@ -10,7 +10,6 @@ export class AuthorizationService {
   constructor(private storage: LocalStorageService, private jwtDecoderService: JwtDecoderService) {}
 
   private getPayload(): JwtPayload | null {
-    console.log('[AuthorizationService] Payload:', this.jwtDecoderService.decodeJwtPayload());
     return this.jwtDecoderService.decodeJwtPayload();
   }
 
