@@ -24,7 +24,7 @@ export class AuthorizationService {
     return !!this.getPayload() && !this.isTokenExpired();
   }
 
-  isAuthorized(role: string): boolean {
+  hasRole(role: string): boolean {
     const payload = this.getPayload();
     if (!payload?.scope) return false;
 
