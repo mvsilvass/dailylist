@@ -3,9 +3,9 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { Router } from '@angular/router';
 
 import { RegisterRequest } from '../../models/register-request';
-import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
 import { AuthenticationService } from '../../services/authentication.service';
 import { isValidDate } from 'rxjs/internal/util/isDate';
+import { AuthenticationLayout } from '../../layout/authentication-layout/authentication-layout';
 
 @Component({
   selector: 'app-register',
@@ -46,7 +46,7 @@ export class Register {
       this.registerForm.markAllAsTouched();
       return false;
     }
-    
+
     return true;
   }
 

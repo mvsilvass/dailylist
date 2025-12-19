@@ -2,10 +2,10 @@ import { Component } from '@angular/core';
 import { LoginRequest } from '../../models/login-request';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 
-import { AuthenticationLayout } from 'src/app/shared/layouts/authentication-layout/authentication-layout';
 import { AuthenticationService } from '../../services/authentication.service';
 
 import { Router } from '@angular/router';
+import { AuthenticationLayout } from '../../layout/authentication-layout/authentication-layout';
 
 @Component({
   selector: 'app-login',
