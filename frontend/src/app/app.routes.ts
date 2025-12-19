@@ -3,6 +3,7 @@ import { Home } from './features/public/pages/home/home';
 import { Login } from './features/authentication/pages/login/login';
 import { Register } from './features/authentication/pages/register/register';
 import { authorizationGuard } from './core/guards/authorization-guard';
+import { loginGuard } from './core/guards/login-guard';
 
 export const routes: Routes = [
   {
@@ -19,6 +20,7 @@ export const routes: Routes = [
     title: 'DailyList - Login',
     path: 'auth/login',
     component: Login,
+    canActivate: [loginGuard],
   },
   {
     title: 'DailyList - Register',
