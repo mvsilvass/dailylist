@@ -24,24 +24,24 @@ public class AdminController {
         return ResponseEntity.ok(adminService.getAllUsers());
     }
     
+    @GetMapping("/{id}")
+    public ResponseEntity<User> getUserById(@PathVariable Long id){
+        return ResponseEntity.ok(adminService.getUserById(id));
+    }
+    
     @DeleteMapping("/{id}")
     public ResponseEntity<String> deleteUserById(@PathVariable Long id) {
         adminService.deleteUserById(id);
         return ResponseEntity.ok("Usuário deletado com sucesso");
     }
     
-    @GetMapping("/{id}")
-    public ResponseEntity<User> getUserById(@PathVariable Long id){
-        return ResponseEntity.ok(adminService.getUserById(id));
-    }
-    
     @PatchMapping("/{id}/deactivate")
     public ResponseEntity<User> deactivateUser(@PathVariable Long id){
-        return ResponseEntity.ok(adminService.deactivateUser(id));
+        return ResponseEntity.ok(adminService.setUserEnabled(id, false));
     }
     
     @PatchMapping("/{id}/activate")
     public ResponseEntity<User> activateUser(@PathVariable Long id){
-        return ResponseEntity.ok(adminService.activateUser(id));
+        return ResponseEntity.ok(adminService.setUserEnabled(id, true));
     }
 }
