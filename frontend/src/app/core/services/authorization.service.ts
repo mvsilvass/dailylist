@@ -21,7 +21,16 @@ export class AuthorizationService {
   }
 
   isAuthenticated(): boolean {
-    return !!this.getPayload() && !this.isTokenExpired();
+    const payload = this.getPayload();
+
+    if (!payload) return false;
+
+    if (this.isTokenExpired()) {
+      this.logout();
+      return false;
+    }
+
+    return true;
   }
 
   hasRole(role: string): boolean {
@@ -29,5 +38,9 @@ export class AuthorizationService {
     if (!payload?.scope) return false;
 
     return payload.scope.split(' ').includes(role);
+  }
+
+  logout(): void {
+    this.storage.remove('access_token');
   }
 }
