@@ -7,13 +7,13 @@ Funcionalidade: Cadastro
 
   Cenário: Cadastro realizado com sucesso
     Quando o usuário preenche o formulário de cadastro com um e-mail não registrado
-    E preenche o restante com dados válidos
+    E preenche os demais campos com dados válidos
     E envia o formulário de cadastro
     Então o sistema exibe uma mensagem de sucesso informando que o cadastro foi realizado
 
   Cenário: Cadastro não realizado com e-mail já cadastrado
     Quando o usuário preenche o formulário de cadastro com um e-mail já cadastrado
-    E preenche o restante com dados válidos
+    E preenche os demais campos com dados válidos
     E envia o formulário de cadastro
     Então o sistema bloqueia o cadastro e exibe uma mensagem informando que o e-mail já está cadastrado
 
@@ -25,7 +25,7 @@ Funcionalidade: Cadastro
 
   Cenário: Cadastro não realizado com e-mail inválido
     Quando o usuário preenche o formulário de cadastro com um e-mail inválido
-    E preenche o restante com dados válidos
+    E preenche os demais campos com dados válidos
     E envia o formulário de cadastro
     Então o sistema exibe uma mensagem de erro de validação
 
