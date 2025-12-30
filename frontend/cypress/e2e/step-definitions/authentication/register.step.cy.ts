@@ -20,19 +20,19 @@ Given('que o usuário está na página de cadastro', () => {
   RegisterPage.visit();
 });
 
-When('o usuário preenche o formulário de cadastro com um e-mail não registrado', () => {
+When('o usuário preenche o formulário com um e-mail não registrado', () => {
   RegisterPage.typeEmail(newUserEmail);
 });
 
-When('o usuário preenche o formulário de cadastro com um e-mail já cadastrado', () => {
+When('o usuário preenche o formulário com um e-mail já cadastrado', () => {
   RegisterPage.typeEmail(registeredEmail);
 });
 
-When('o usuário preenche o formulário de cadastro com um e-mail inválido', () => {
+When('o usuário preenche o formulário com um e-mail inválido', () => {
   RegisterPage.typeEmail(invalidEmail);
 });
 
-When('o usuário tenta enviar o formulário de cadastro sem preencher os campos obrigatórios', () => {
+When('o usuário tenta enviar o formulário sem preencher os campos obrigatórios', () => {
   RegisterPage.typeEmail('');
   RegisterPage.typeUsername('');
   RegisterPage.typePassword('');
