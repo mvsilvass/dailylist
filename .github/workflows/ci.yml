@@ -6,11 +6,13 @@ jobs:
     steps:
       - name: Checkout
         uses: actions/checkout@v4
-
+        
       - name: Install dependencies
+        working-directory: ./frontend
         run: npm install
 
       - name: Build Angular app
+        working-directory: ./frontend
         run: npm run build
 
       - name: Start Angular server
@@ -22,4 +24,5 @@ jobs:
       - name: Run Cypress tests
         uses: cypress-io/github-action@v6
         with:
+          working-directory: ./frontend
           browser: electron
