@@ -20,7 +20,7 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-### VisualStudioCode ### 
+### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
@@ -52,3 +52,7 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
+
+# Environment variables
+cypress.env.json
+.env
