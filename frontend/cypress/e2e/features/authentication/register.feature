@@ -27,9 +27,9 @@ Funcionalidade: Cadastro
     Quando o usuário preenche o formulário com um e-mail inválido
     E preenche os demais campos com dados válidos
     E envia o formulário de cadastro
-    Então o sistema exibe uma mensagem de erro de validação
+    Então o sistema exibe uma mensagem de erro de validação no cadastro
 
   Cenário: Cadastro não realizado com campos obrigatórios vazios
     Quando o usuário tenta enviar o formulário sem preencher os campos obrigatórios
     E envia o formulário de cadastro
-    Então o sistema exibe uma mensagem de erro de validação
+    Então o sistema exibe uma mensagem de erro de validação no cadastro
