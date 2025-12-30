@@ -16,6 +16,18 @@ async function setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginC
         module: {
           rules: [
             {
+              test: /\.ts$/,
+              exclude: /node_modules/,
+              use: [
+                { 
+                  loader: 'ts-loader',
+                  options: {
+                    transpileOnly: true,
+                  },
+                },
+              ],
+            },
+            {
               test: /\.feature$/,
               use: [
                 {
