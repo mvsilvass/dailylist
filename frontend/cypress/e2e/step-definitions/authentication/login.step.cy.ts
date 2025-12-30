@@ -7,59 +7,58 @@ const validEmail = Cypress.env('USER_EMAIL');
 const validPassword = Cypress.env('USER_PASSWORD');
 
 const unregisteredEmail = users.unregisteredUser.email;
+
 const invalidEmail = users.invalidUser.email;
+
 const defaultPassword = users.defaultPassword;
+const incorrectPassword = 'incorrectPassword123';
 
 beforeEach(() => {
   cy.clearCookies();
   cy.clearLocalStorage();
 });
 
-Given('the user is on the login page', () => {
+Given('que o usuário está na página de login', () => {
   LoginPage.visit();
 });
 
-// Scenario: Successful login with registered user account
-When('the user enters a registered email address and password', () => {
+When('o usuário preenche o formulário com um e-mail e senha cadastrados', () => {
   LoginPage.typeEmail(validEmail);
   LoginPage.typePassword(validPassword);
 });
 
-// Scenario: Unsuccessful login with unregistered user account
-When('the user enters an unregistered email address and password', () => {
+When('o usuário preenche o formulário com um e-mail e senha não cadastrados', () => {
   LoginPage.typeEmail(unregisteredEmail);
   LoginPage.typePassword(defaultPassword);
 });
 
-// Scenario: Unsuccessful login with wrong password
-When('the user enters a registered email address but the wrong password', () => {
+When('o usuário preenche o formulário com um e-mail cadastrado e senha incorreta', () => {
   LoginPage.typeEmail(validEmail);
+  LoginPage.typePassword(incorrectPassword);
+});
+
+When('o usuário preenche o formulário com um e-mail em formato inválido', () => {
+  LoginPage.typeEmail(invalidEmail);
   LoginPage.typePassword(defaultPassword);
 });
 
-// Scenario: Unsuccessful login with invalid email format
-When('the user enters an invalid email address format', () => {
-  LoginPage.typeEmail(invalidEmail);
-});
-
-// Scenario: Unsuccessful login with empty credentials
-When('the user does not enter any credentials', () => {
+When('o usuário não preenche os campos obrigatórios', () => {
   LoginPage.typeEmail('');
   LoginPage.typePassword('');
 });
 
-When('submits the login credentials', () => {
+When('envia o formulário de login', () => {
   LoginPage.clickLoginButton();
 });
 
-Then('the user should be redirected to the home page', () => {
+Then('o sistema redireciona o usuário para a página inicial', () => {
   cy.url({ timeout: 10000 }).should('include', '/home');
 });
 
-Then('an authentication error message should be displayed', () => {
+Then('o sistema exibe uma mensagem de erro de autenticação', () => {
   LoginPage.shouldDisplayErrorMessage('Usuário ou senha inválidos');
 });
 
-Then('a validation error message should be displayed', () => {
+Then('o sistema exibe uma mensagem de erro de validação no login', () => {
   LoginPage.shouldDisplayErrorMessage('Preencha todos os campos corretamente');
 });
