@@ -1,10 +1,11 @@
 {
+  "defaultPassword": "1234",
   "invalidUser": {
-    "email": "invalidteste.com",
-    "password": "4321"
+    "username": "invalido",
+    "email": "invalidoteste.com"
   },
   "unregisteredUser": {
-    "email": "unregistered@teste.com",
-    "password": "1234"
+    "username": "nao_registrado",
+    "email": "nao_registrado@teste.com"
   }
 }
