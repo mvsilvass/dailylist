@@ -1,30 +1,31 @@
-Feature: Login
+# language: pt
 
-  Background:
-    Given the user is on the login page
+Funcionalidade: Login
 
-  Scenario: Successful login with registered user account
-    When the user enters a registered email address and password
-    And submits the login credentials
-    Then the user should be redirected to the home page
+  Contexto:
+    Dado que o usuário está na página de login
 
-  Scenario: Unsuccessful login with unregistered user account
-    When the user enters an unregistered email address and password
-    And submits the login credentials
-    Then an authentication error message should be displayed
+  Cenário: Login realizado com sucesso
+    Quando o usuário preenche o formulário com um e-mail e senha cadastrados
+    E envia o formulário de login
+    Então o sistema redireciona o usuário para a página inicial
 
-  Scenario: Unsuccessful login with wrong password
-    When the user enters a registered email address but the wrong password
-    And submits the login credentials
-    Then an authentication error message should be displayed
+  Cenário: Login não realizado com usuário não cadastrado
+    Quando o usuário preenche o formulário com um e-mail e senha não cadastrados
+    E envia o formulário de login
+    Então o sistema exibe uma mensagem de erro de autenticação
 
-  Scenario: Unsuccessful login with invalid email format
-    When the user enters an invalid email address format
-    And submits the login credentials
-    Then a validation error message should be displayed
+  Cenário: Login não realizado com senha incorreta
+    Quando o usuário preenche o formulário com um e-mail cadastrado e senha incorreta
+    E envia o formulário de login
+    Então o sistema exibe uma mensagem de erro de autenticação
 
-  Scenario: Unsuccessful login with empty credentials
-    When the user does not enter any credentials
-    And submits the login credentials
-    Then a validation error message should be displayed
+  Cenário: Login não realizado com e-mail em formato inválido
+    Quando o usuário preenche o formulário com um e-mail em formato inválido
+    E envia o formulário de login
+    Então o sistema exibe uma mensagem de erro de validação no login
 
+  Cenário: Login não realizado com campos vazios
+    Quando o usuário não preenche os campos obrigatórios
+    E envia o formulário de login
+    Então o sistema exibe uma mensagem de erro de validação no login
