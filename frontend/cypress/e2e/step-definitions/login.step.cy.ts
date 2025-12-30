@@ -1,24 +1,56 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
+import LoginPage from './../../support/pages/authentication/login.page';
+
+import users from './../../fixtures/users.json';
+
+const validEmail = Cypress.env('USER_EMAIL');
+const validPassword = Cypress.env('USER_PASSWORD');
+
+const unregisteredEmail = users.unregisteredUser.email;
+const unregisteredPassword = users.unregisteredUser.password;
+
+const invalidEmail = users.invalidUser.email;
+const invalidPassword = users.invalidUser.password;
 
 beforeEach(() => {
   cy.clearCookies();
   cy.clearLocalStorage();
 });
 
-Given('I am on the login page', () => {
-  cy.visit('/auth/login');
+Given('the user is on the login page', () => {
+  LoginPage.visit();
 });
 
-When('I fill the form with valid credentials', () => {
-  cy.get('[data-cy="login-email"]').type('maria@teste.com');
-  cy.get('[data-cy="login-password"]').type('1234');
-  cy.get('[data-cy="login-submit"]').click();
+// Scenario: Successful login with registered user account
+When('the user enters a valid email address and password', () => {
+  LoginPage.typeEmail(validEmail);
+  LoginPage.typePassword(validPassword);
 });
 
-When('I click the button', () => {
-  cy.get('[data-cy="login-submit"]').click();
+// Scenario: Unsuccessful login with unregistered user account
+When('the user enters an unregistered email and password', () => {
+  LoginPage.typeEmail(unregisteredEmail);
+  LoginPage.typePassword(unregisteredPassword);
 });
 
-Then('I should be redirected to the home page', () => {
+// Scenario: Unsuccessful login with invalid credentials format
+When('the user enters invalid email address format', () => {
+  LoginPage.typeEmail(invalidEmail);
+  LoginPage.typePassword(invalidPassword);
+});
+
+When('he submits the login credentials', () => {
+  LoginPage.clickLoginButton();
+});
+
+Then('the user should be redirected to the home page', () => {
   cy.url({ timeout: 10000 }).should('include', '/home');
+});
+
+Then('an authentication error message should be displayed', () => {
+  LoginPage.shouldDisplayErrorMessage('Usuário ou senha inválidos');
+});
+
+Then('a validation error message should be displayed', () => {
+  LoginPage.shouldDisplayErrorMessage('Preencha todos os campos corretamente');
 });
