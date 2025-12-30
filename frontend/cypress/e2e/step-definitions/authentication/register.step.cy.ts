@@ -39,7 +39,7 @@ When('o usuário tenta enviar o formulário de cadastro sem preencher os campos 
   RegisterPage.typeConfirmPassword('');
 });
 
-When('preenche o restante com dados válidos', () => {
+When('preenche os demais campos com dados válidos', () => {
   RegisterPage.typeUsername(newUserUsername);
   RegisterPage.typePassword(defaultPassword);
   RegisterPage.typeConfirmPassword(defaultPassword);
