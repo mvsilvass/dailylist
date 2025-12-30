@@ -5,18 +5,18 @@
   </div>
 
   <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
-    <input formControlName="username" type="text" placeholder="Username" required>
-    <input formControlName="email" type="email" placeholder="Email" required>
-    <input formControlName="password" type="password" placeholder="Senha" required>
-    <input formControlName="confirmPassword" type="password" placeholder="Confirmar senha" required>
-    <button type="submit">Registrar</button>
+    <input data-cy="register-username" formControlName="username" type="text" placeholder="Username" required>
+    <input data-cy="register-email" formControlName="email" type="email" placeholder="Email" required>
+    <input data-cy="register-password" formControlName="password" type="password" placeholder="Senha" required>
+    <input data-cy="register-confirm-password" formControlName="confirmPassword" type="password" placeholder="Confirmar senha" required>
+    <button data-cy="register-submit" type="submit">Registrar</button>
 
     @if (errorMessage) {
-      <p class="message error">{{ errorMessage }}</p>
+      <p data-cy="register-error-message" class="message error">{{ errorMessage }}</p>
     }
 
     @if (successMessage) {
-      <p class="message success">{{ successMessage }}</p>
+      <p data-cy="register-success-message" class="message success">{{ successMessage }}</p>
     }
 
   </form>
