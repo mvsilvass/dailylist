@@ -22,24 +22,35 @@ Given('the user is on the login page', () => {
 });
 
 // Scenario: Successful login with registered user account
-When('the user enters a valid email address and password', () => {
+When('the user enters a registered email address and password', () => {
   LoginPage.typeEmail(validEmail);
   LoginPage.typePassword(validPassword);
 });
 
 // Scenario: Unsuccessful login with unregistered user account
-When('the user enters an unregistered email and password', () => {
+When('the user enters an unregistered email address and password', () => {
   LoginPage.typeEmail(unregisteredEmail);
   LoginPage.typePassword(unregisteredPassword);
 });
 
-// Scenario: Unsuccessful login with invalid credentials format
-When('the user enters invalid email address format', () => {
-  LoginPage.typeEmail(invalidEmail);
+// Scenario: Unsuccessful login with wrong password
+When('the user enters a registered email address but the wrong password', () => {
+  LoginPage.typeEmail(validEmail);
   LoginPage.typePassword(invalidPassword);
 });
 
-When('he submits the login credentials', () => {
+// Scenario: Unsuccessful login with invalid email format
+When('the user enters an invalid email address format', () => {
+  LoginPage.typeEmail(invalidEmail);
+});
+
+// Scenario: Unsuccessful login with empty credentials
+When('the user does not enter any credentials', () => {
+  LoginPage.typeEmail('');
+  LoginPage.typePassword('');
+});
+
+When('submits the login credentials', () => {
   LoginPage.clickLoginButton();
 });
 
