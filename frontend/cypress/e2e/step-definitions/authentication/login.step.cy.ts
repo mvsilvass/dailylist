@@ -1,16 +1,14 @@
 import { Given, When, Then } from '@badeball/cypress-cucumber-preprocessor';
-import LoginPage from './../../support/pages/authentication/login.page';
+import LoginPage from '../../../support/pages/authentication/login.page';
 
-import users from './../../fixtures/users.json';
+import users from '../../../fixtures/users.json';
 
 const validEmail = Cypress.env('USER_EMAIL');
 const validPassword = Cypress.env('USER_PASSWORD');
 
 const unregisteredEmail = users.unregisteredUser.email;
-const unregisteredPassword = users.unregisteredUser.password;
-
 const invalidEmail = users.invalidUser.email;
-const invalidPassword = users.invalidUser.password;
+const defaultPassword = users.defaultPassword;
 
 beforeEach(() => {
   cy.clearCookies();
@@ -30,13 +28,13 @@ When('the user enters a registered email address and password', () => {
 // Scenario: Unsuccessful login with unregistered user account
 When('the user enters an unregistered email address and password', () => {
   LoginPage.typeEmail(unregisteredEmail);
-  LoginPage.typePassword(unregisteredPassword);
+  LoginPage.typePassword(defaultPassword);
 });
 
 // Scenario: Unsuccessful login with wrong password
 When('the user enters a registered email address but the wrong password', () => {
   LoginPage.typeEmail(validEmail);
-  LoginPage.typePassword(invalidPassword);
+  LoginPage.typePassword(defaultPassword);
 });
 
 // Scenario: Unsuccessful login with invalid email format
