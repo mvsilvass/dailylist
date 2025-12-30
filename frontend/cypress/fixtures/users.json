@@ -1,5 +1,5 @@
 {
-  "defaultPassword": "1234",
+  "defaultPassword": "12345",
   "invalidUser": {
     "username": "invalido",
     "email": "invalidoteste.com"
