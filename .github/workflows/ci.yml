@@ -1,13 +1,19 @@
 name: End-to-end tests
-on: push
+on: [push]
+
 jobs:
   cypress-run:
-    runs-on: ubuntu-24.04
+    runs-on: ubuntu-latest
     steps:
       - name: Checkout
         uses: actions/checkout@v4
+
       - name: Cypress run
         uses: cypress-io/github-action@v6
         with:
+          record: false 
           build: npm run build
-          start: npm start
+          start: npm start 
+          wait-on: 'http://localhost:4200'
+          wait-on-timeout: 120
+          config: baseUrl=http://localhost:4200
