@@ -67,7 +67,7 @@ Then('o sistema bloqueia o cadastro e exibe uma mensagem informando que as senha
   RegisterPage.shouldDisplayErrorMessage('As senhas não coincidem');
 });
 
-Then('o sistema exibe uma mensagem de erro de validação', () => {
+Then('o sistema exibe uma mensagem de erro de validação no cadastro', () => {
   RegisterPage.shouldDisplayErrorMessage('Preencha todos os campos corretamente');
 });
 
