@@ -5,7 +5,6 @@
     "packageManager": "npm",
     "analytics": false,
     "schematicCollections": [
-      "@cypress/schematic",
       "@schematics/angular"
     ]
   },
