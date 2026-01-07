@@ -4,6 +4,7 @@ import { Login } from './features/authentication/pages/login/login';
 import { Register } from './features/authentication/pages/register/register';
 import { authorizationGuard } from './core/guards/authorization-guard';
 import { loginGuard } from './core/guards/login-guard';
+import { UserManagement } from './features/admin/pages/user-management/user-management';
 
 export const routes: Routes = [
   {
@@ -28,9 +29,9 @@ export const routes: Routes = [
     component: Register,
   },
   {
-    title: 'ADMIN',
+    title: 'DailyList - Admin',
     path: 'admin',
-    component: Home,
+    component: UserManagement,
     // canActivate: [authorizationGuard],
     // data: { role: 'ADMIN' },
   },
