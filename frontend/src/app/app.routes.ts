@@ -28,17 +28,11 @@ export const routes: Routes = [
     component: Register,
   },
   {
-    title: 'TESTE',
-    path: 'teste',
-    component: Home,
-    canActivate: [authorizationGuard],
-  },
-  {
     title: 'ADMIN',
     path: 'admin',
     component: Home,
-    canActivate: [authorizationGuard],
-    data: { role: 'ADMIN' },
+    // canActivate: [authorizationGuard],
+    // data: { role: 'ADMIN' },
   },
 ];
 
