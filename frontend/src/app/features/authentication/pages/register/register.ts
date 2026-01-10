@@ -11,7 +11,7 @@ import { AuthenticationLayout } from '../../layout/authentication-layout/authent
   selector: 'app-register',
   imports: [ReactiveFormsModule, AuthenticationLayout],
   templateUrl: './register.html',
-  styleUrl: './register.css',
+  styleUrl: './../../auth.css',
 })
 export class Register {
   constructor(private authenticationService: AuthenticationService, private router: Router) {}

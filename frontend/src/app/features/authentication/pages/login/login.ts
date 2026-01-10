@@ -11,7 +11,7 @@ import { AuthenticationLayout } from '../../layout/authentication-layout/authent
   selector: 'app-login',
   imports: [ReactiveFormsModule, AuthenticationLayout],
   templateUrl: './login.html',
-  styleUrl: './login.css',
+  styleUrl: './../../auth.css',
 })
 
 export class Login {
