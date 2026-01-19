@@ -4,7 +4,6 @@ import { Router } from '@angular/router';
 
 import { RegisterRequest } from '../../models/register-request';
 import { AuthenticationService } from '../../services/authentication.service';
-import { isValidDate } from 'rxjs/internal/util/isDate';
 import { AuthenticationLayout } from '../../layout/authentication-layout/authentication-layout';
 
 @Component({
