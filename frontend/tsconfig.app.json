@@ -6,7 +6,10 @@
     "baseUrl": "src",
     "paths": {
       "@env/*": [
-        "environments/*"
+        "environments/*",
+      ],
+      "@core/*": [
+        "app/core/*"
       ],
     },
     "outDir": "./out-tsc/app",
