@@ -11,14 +11,10 @@ import { AuthenticationLayout } from '../../layout/authentication-layout/authent
   selector: 'app-login',
   imports: [ReactiveFormsModule, AuthenticationLayout],
   templateUrl: './login.html',
-  styleUrl: './../../auth.css',
+  styleUrl: './../../authentication.css',
 })
-
 export class Login {
-  constructor(
-    private authenticationService: AuthenticationService,
-    private router: Router
-  ) {}
+  constructor(private authenticationService: AuthenticationService, private router: Router) {}
 
   errorMessage: string | null = null;
 
