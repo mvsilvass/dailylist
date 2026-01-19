@@ -20,24 +20,15 @@ yarn-error.log
 .settings/
 *.sublime-workspace
 
-### VisualStudioCode ###
+# Visual Studio Code
+.vscode
 .vscode/*
 !.vscode/settings.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
-!.vscode/*.code-snippets
-
-# Local History for Visual Studio Code
-.history/
-
-# Built Visual Studio Code Extensions
-*.vsix
-
-### VisualStudioCode Patch ###
-# Ignore all local history of files
-.history
-.ionide
+!.vscode/mcp.json
+.history/*
 
 # Miscellaneous
 /.angular/cache
@@ -52,7 +43,3 @@ __screenshots__/
 # System files
 .DS_Store
 Thumbs.db
-
-# Environment variables
-cypress.env.json
-.env
