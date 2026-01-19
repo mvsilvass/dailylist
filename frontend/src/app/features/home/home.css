@@ -1,4 +1,4 @@
-.home-page{
+.home-page {
   background-color: var(--secondary-color);
   min-height: 100dvh;
   width: 100%;
@@ -8,3 +8,6 @@
   align-items: center;
 }
 
+.home-page__title{
+  font-size: 5rem;
+}
