@@ -9,5 +9,6 @@
 }
 
 .home-page__title{
+  color: var(--font-color);
   font-size: 5rem;
 }
