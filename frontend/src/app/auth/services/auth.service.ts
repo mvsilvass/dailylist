@@ -5,6 +5,8 @@ import { catchError, Observable, tap, throwError } from 'rxjs';
 import { LoginResponse } from '../dtos/login/login-response';
 import { environment } from '@env/environment';
 import { LocalStorageService } from '@core/services/local-storage.service';
+import { RegisterResponse } from '../dtos/register/register-response';
+import { RegisterRequest } from '../dtos/register/register-request';
 
 @Injectable({
   providedIn: 'root',
@@ -27,5 +29,9 @@ export class AuthService {
         return throwError(() => error);
       }),
     );
+  }
+
+  doRegister(request: RegisterRequest): Observable<RegisterResponse> {
+    return this.http.post<RegisterResponse>(`${environment.apiUrl}/auth/register`, request);
   }
 }
