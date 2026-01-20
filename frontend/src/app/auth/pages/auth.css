@@ -14,7 +14,7 @@ section {
   box-shadow: 2px 2px 10px var(--black-color-opacity-50);
   border-radius: 20px;
   padding: max(2rem, 2.5%);
-  min-height: 80%;
+  min-height: 70%;
   min-width: 40%;
   position: relative;
   display: flex;
