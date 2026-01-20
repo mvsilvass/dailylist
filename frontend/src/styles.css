@@ -4,6 +4,9 @@
   --background-color: var(--secondary-color);
 
   --font-color: hsl(from var(--primary-color) h 30% 21%);
+
+  --primary-color-opacity-50: rgba(51, 153, 255, 0.5);
+  --black-color-opacity-50: rgba(0, 0, 0, 0.5);
 }
 
 * {
