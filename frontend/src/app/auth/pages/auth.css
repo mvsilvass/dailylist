@@ -38,6 +38,12 @@ img {
     left: -30px;
     width: 120px;
   }
+
+  section {
+    min-height: 65%;
+    min-width: 35%;
+  }
+
 }
 
 div {
