@@ -70,7 +70,6 @@ public class AuthService {
             .expiresAt(now.plusSeconds(expiresIn))
             .subject(user.getUserId().toString())
             .claim("email", user.getEmail())
-            .claim("username", user.getUsername())
             .claim("scope", scope)
             .build();
         
@@ -88,7 +87,6 @@ public class AuthService {
         
         Optional<Role> basicRole = roleRepository.findByName(Role.Values.BASIC.name());
         User newUser = new User();
-        newUser.setUsername(registerRequest.username());
         newUser.setEmail(registerRequest.email().toLowerCase());
         newUser.setPassword(passwordEncoder.encode(registerRequest.password()));
         newUser.setRoles(Set.of(
