@@ -17,6 +17,9 @@ public class DataInitializer implements CommandLineRunner {
     
     @Value("${admin.default.password}")
     private String adminPassword;
+    
+    @Value("${admin.default.email}")
+    private String adminEmail;
 
     private final RoleRepository roleRepository;
     private final UserRepository userRepository;
@@ -43,9 +46,9 @@ public class DataInitializer implements CommandLineRunner {
         }
 
         Set<Role> roles = Set.copyOf(roleRepository.findAll());
-        if(userRepository.findByEmailIgnoreCase("admin@teste.com").isEmpty()){
+        if(userRepository.findByEmailIgnoreCase(adminEmail).isEmpty()){
             User admin = new User();
-            admin.setEmail("admin@teste.com");
+            admin.setEmail(adminEmail);
             admin.setPassword(passwordEncoder.encode(adminPassword));
             admin.setRoles(roles);
 
