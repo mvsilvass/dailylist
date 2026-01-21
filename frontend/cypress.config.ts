@@ -51,6 +51,10 @@ export default defineConfig({
     baseUrl: 'http://localhost:4200',
     specPattern: ['**/e2e/**/*.feature'],
     excludeSpecPattern: '*.js',
+    env: {
+      USER_EMAIL: process.env.ADMIN_EMAIL || 'admin@teste.com',
+      USER_PASSWORD: process.env.ADMIN_PASSWORD || '1234',
+    },
     setupNodeEvents,
   },
 
