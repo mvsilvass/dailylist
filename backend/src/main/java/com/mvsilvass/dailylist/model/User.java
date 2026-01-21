@@ -27,10 +27,6 @@ public class User {
     private String email;
     
     @Setter
-    @Column(nullable = false)
-    private String username;
-    
-    @Setter
     @JsonIgnore
     @Column(nullable = false)
     private String password;
