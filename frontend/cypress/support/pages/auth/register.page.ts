@@ -1,8 +1,4 @@
 class RegisterPage {
-  private get usernameInput() {
-    return cy.get('[data-cy="register-username"]');
-  }
-
   private get emailInput() {
     return cy.get('[data-cy="register-email"]');
   }
@@ -29,12 +25,6 @@ class RegisterPage {
 
   public visit(): void {
     cy.visit('/auth/register');
-  }
-
-  public typeUsername(username: string): void {
-    if (username) {
-      this.usernameInput.type(username);
-    }
   }
 
   public typeEmail(email: string): void {

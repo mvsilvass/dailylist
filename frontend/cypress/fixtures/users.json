@@ -1,11 +1,9 @@
 {
   "defaultPassword": "12345",
   "invalidUser": {
-    "username": "invalido",
-    "email": "invalidoteste.com"
+    "email": "email_invalido.com"
   },
   "unregisteredUser": {
-    "username": "nao_registrado",
     "email": "nao_registrado@teste.com"
   }
 }

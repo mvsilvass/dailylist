@@ -3,7 +3,6 @@ import RegisterPage from '../../../support/pages/auth/register.page';
 import users from './../../../fixtures/users.json';
 
 const newUserEmail = `usuario_${Date.now()}@teste.com`;
-const newUserUsername = `novo_usuario_${Date.now()}`;
 
 const registeredEmail = Cypress.env('USER_EMAIL');
 const invalidEmail = users.invalidUser.email;
@@ -34,19 +33,16 @@ When('o usuário preenche o formulário com um e-mail inválido', () => {
 
 When('o usuário tenta enviar o formulário sem preencher os campos obrigatórios', () => {
   RegisterPage.typeEmail('');
-  RegisterPage.typeUsername('');
   RegisterPage.typePassword('');
   RegisterPage.typeConfirmPassword('');
 });
 
 When('preenche os demais campos com dados válidos', () => {
-  RegisterPage.typeUsername(newUserUsername);
   RegisterPage.typePassword(defaultPassword);
   RegisterPage.typeConfirmPassword(defaultPassword);
 });
 
 When('preenche o campo senha e confirmação com valores diferentes', () => {
-  RegisterPage.typeUsername(newUserUsername);
   RegisterPage.typePassword(defaultPassword);
   RegisterPage.typeConfirmPassword(mismatchedPassword);
 });
