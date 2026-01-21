@@ -22,6 +22,7 @@ section {
   align-items: center;
   flex-direction: column;
   overflow: hidden;
+  gap: 10px;
 }
 
 img {
@@ -30,20 +31,21 @@ img {
   left: -50px;
   width: 150px;
   height: auto;
+  opacity: 1;
+  transition:
+    transform 0.4s ease,
+    opacity 0.4s ease;
+}
+@media (max-height: 600px) and (max-width: 1100px), (max-width: 200px) and (min-height: 800px) {
+  img {
+    opacity: 0;
+  }
 }
 
-@media (max-width: 800px) {
+@media (max-height: 720px){
   img {
-    top: -30px;
-    left: -30px;
-    width: 120px;
+     transform: translate(-20px, -20px) scale(1);
   }
-
-  section {
-    min-height: 65%;
-    min-width: 35%;
-  }
-
 }
 
 div {
@@ -61,7 +63,7 @@ h1 {
 }
 
 h2 {
-  font-size: clamp(1rem, calc(2.25vw + 0.5rem), 1.10rem);
+  font-size: clamp(1rem, calc(2.25vw + 0.5rem), 1.1rem);
 }
 
 p {
