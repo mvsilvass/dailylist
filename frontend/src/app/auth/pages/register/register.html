@@ -1,0 +1,49 @@
+<main>
+  <section>
+    <img src="assets/icons/logo.png" alt="Girassol" />
+    <div>
+      <h1>Dailylist</h1>
+      <h2>Crie sua conta e junte-se a nós!</h2>
+    </div>
+
+    <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+      <input
+        data-cy="register-email"
+        formControlName="email"
+        type="email"
+        placeholder="Email"
+        required
+      />
+
+      <input
+        data-cy="register-password"
+        formControlName="password"
+        type="password"
+        placeholder="Senha"
+        required
+      />
+
+      <input
+        data-cy="register-confirm-password"
+        formControlName="confirmPassword"
+        type="password"
+        placeholder="Confirmar senha"
+        required
+      />
+
+      <button data-cy="register-submit" type="submit">Registrar</button>
+
+      @if (errorMessage) {
+        <p data-cy="register-error-message" class="message error">{{ errorMessage }}</p>
+      }
+
+      @if (successMessage) {
+        <p data-cy="register-success-message" class="message success">{{ successMessage }}</p>
+      }
+    </form>
+
+    <div>
+      <p>Já tem uma conta? <a href="auth/login">Entrar</a></p>
+    </div>
+  </section>
+</main>

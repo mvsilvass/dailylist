@@ -3,14 +3,13 @@ import { AuthorizationService } from '../services/authorization.service';
 import { inject } from '@angular/core';
 
 export const loginGuard: CanActivateFn = () => {
-  const authService = inject(AuthorizationService);
+  const authorizationService = inject(AuthorizationService);
   const router = inject(Router);
 
-  if (authService.isAuthenticated()) {
+  if (authorizationService.isAuthenticated()) {
     router.navigate(['/home']);
     return false;
   }
 
   return true;
 };
-

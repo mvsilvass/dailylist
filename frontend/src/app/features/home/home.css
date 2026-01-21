@@ -1,0 +1,15 @@
+.home-page {
+  background-color: var(--secondary-color);
+  height: 100dvh;
+  height: 100vh;
+  width: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.home-page__title{
+  color: var(--font-color);
+  font-size: 5rem;
+}

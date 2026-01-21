@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { jwtDecode } from 'jwt-decode';
 import { LocalStorageService } from './local-storage.service';
-import { JwtPayload } from '../models/jwt-payload';
+import { JwtPayload } from './../models/jwt-payload';
 
 @Injectable({
   providedIn: 'root',
@@ -16,7 +16,7 @@ export class JwtDecoderService {
   public decodeJwtPayload(): JwtPayload | null {
     const token = this.getToken();
 
-    if(!token) return null;
+    if (!token) return null;
 
     try {
       return jwtDecode<JwtPayload>(token);

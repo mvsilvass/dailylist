@@ -1,13 +1,16 @@
-import { Injectable, inject } from '@angular/core';
+import { Injectable } from '@angular/core';
 import { LocalStorageService } from './local-storage.service';
 import { JwtDecoderService } from './jwt-decoder.service';
-import { JwtPayload } from '../models/jwt-payload';
+import { JwtPayload } from './../models/jwt-payload';
 
 @Injectable({
   providedIn: 'root',
 })
 export class AuthorizationService {
-  constructor(private storage: LocalStorageService, private jwtDecoderService: JwtDecoderService) {}
+  constructor(
+    private storage: LocalStorageService,
+    private jwtDecoderService: JwtDecoderService,
+  ) {}
 
   private getPayload(): JwtPayload | null {
     return this.jwtDecoderService.decodeJwtPayload();

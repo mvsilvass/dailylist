@@ -1,10 +1,8 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/public/pages/home/home';
-import { Login } from './features/authentication/pages/login/login';
-import { Register } from './features/authentication/pages/register/register';
-import { authorizationGuard } from './core/guards/authorization-guard';
-import { loginGuard } from './core/guards/login-guard';
-import { UserManagement } from './features/admin/pages/user-management/user-management';
+import { Home } from './features/home/home';
+import { Login } from './auth/pages/login/login';
+import { Register } from './auth/pages/register/register';
+import { loginGuard } from '@core/guards/login-guard';
 
 export const routes: Routes = [
   {
@@ -28,12 +26,4 @@ export const routes: Routes = [
     path: 'auth/register',
     component: Register,
   },
-  {
-    title: 'DailyList - Admin',
-    path: 'admin',
-    component: UserManagement,
-    // canActivate: [authorizationGuard],
-    // data: { role: 'ADMIN' },
-  },
 ];
-
