@@ -8,8 +8,8 @@
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
     "e2e": "ng e2e",
-    "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:web": "cypress open",
+    "cypress:headless": "cypress run --browser electron"
   },
   "prettier": {
     "printWidth": 100,
@@ -50,5 +50,8 @@
     "ts-loader": "^9.5.4",
     "typescript": "~5.9.2",
     "vitest": "^4.0.8"
+  },
+  "cypress-cucumber-preprocessor": {
+    "stepDefinitions": "cypress/e2e/step-definitions/**/*.ts"
   }
 }
