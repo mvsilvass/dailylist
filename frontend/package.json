@@ -6,8 +6,6 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test",
-    "e2e": "ng e2e",
     "cypress:web": "cypress open",
     "cypress:headless": "cypress run --browser electron"
   },
