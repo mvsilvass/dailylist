@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Router } from '@angular/router';
 import { RegisterRequest } from 'app/auth/dtos/register/register-request';
 import { RegisterResponse } from 'app/auth/dtos/register/register-response';
 import { AuthService } from 'app/auth/services/auth.service';
@@ -14,14 +13,12 @@ import { AuthService } from 'app/auth/services/auth.service';
 export class Register {
   constructor(
     private authService: AuthService,
-    private router: Router,
   ) {}
 
   successMessage: string | null = null;
   errorMessage: string | null = null;
 
   registerForm: FormGroup = new FormGroup({
-    username: new FormControl('', [Validators.required]),
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
@@ -63,14 +60,15 @@ export class Register {
     };
 
     this.authService.doRegister(request).subscribe({
-      next: (RegisterResponse) => {
+      next: (response: RegisterResponse) => {
         this.registerForm.reset();
-        this.successMessage = RegisterResponse.message;
+        this.successMessage = response.message;
       },
-      error: (RegisterResponse) => {
+      error: (error) => {
         this.registerForm.reset();
-        this.errorMessage = RegisterResponse.error.message;
+        this.errorMessage = error.error.message;
       },
     });
+
   }
 }
