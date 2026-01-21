@@ -1,7 +1,7 @@
 import { defineConfig } from 'cypress';
 
-import webpack from '@cypress/webpack-preprocessor';
-import preprocessor from '@badeball/cypress-cucumber-preprocessor';
+const webpack = require('@cypress/webpack-preprocessor');
+const preprocessor = require('@badeball/cypress-cucumber-preprocessor');
 
 async function setupNodeEvents(on: Cypress.PluginEvents, config: Cypress.PluginConfigOptions) {
   await preprocessor.addCucumberPreprocessorPlugin(on, config);
