@@ -5,7 +5,7 @@
 
   --font-color: hsl(from var(--primary-color) h 30% 21%);
 
-  --primary-color-opacity-50: rgba(51, 153, 255, 0.5);
+  --primary-color-opacity-50: hsla(42, 92%, 54%, 0.5);
   --black-color-opacity-50: rgba(0, 0, 0, 0.5);
 }
 
