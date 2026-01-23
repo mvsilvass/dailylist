@@ -81,7 +81,7 @@ form {
 form input {
   padding: max(0.5rem, 2.5%) 1rem;
   font-size: 1em;
-  border: 2px solid rgb(204, 204, 204);
+  border: 2px solid var(--gray-color-200);
   border-radius: 5px;
   outline: none;
 }
