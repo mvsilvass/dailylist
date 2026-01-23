@@ -3,6 +3,10 @@
   --secondary-color: hsl(from var(--primary-color) h s 70%);
   --background-color: var(--secondary-color);
 
+  --gray-color-50: hsl(0, 0%, 97%);
+  --gray-color-200: hsl(0, 0%, 88%);
+  --gray-color-300: hsl(0, 0%, 80%);
+
   --font-color: hsl(from var(--primary-color) h 30% 21%);
 
   --primary-color-opacity-50: hsla(42, 92%, 54%, 0.5);
