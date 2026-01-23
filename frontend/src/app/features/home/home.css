@@ -1,15 +1,18 @@
 .home-page {
-  background-color: var(--secondary-color);
-  height: 100dvh;
-  height: 100vh;
-  width: 100%;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
 
+.home-page__main {
+  background-color: var(--gray-color-100);
   display: flex;
   justify-content: center;
   align-items: center;
+  flex: 1;
 }
 
-.home-page__title{
+.home-page__heading {
   color: var(--font-color);
   font-size: 5rem;
 }

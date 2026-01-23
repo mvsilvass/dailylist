@@ -1,0 +1,23 @@
+<header class="header">
+  <div class="header__brand">
+    <img class="header__brand-logo" src="assets/icons/logo.png" alt="Dailylist logo" />
+    <span class="header__brand-name">Dailylist</span>
+  </div>
+
+  <div class="header__content">
+    
+    <nav class="header__nav">
+      <ul class="header__nav-list">
+        <li class="header__nav-item">
+          @for (link of navLinks; track $index) {
+            <app-header-nav-link [label]="link.label" [href]="link.href" />
+          }
+        </li>
+      </ul>
+    </nav>
+
+    <div class="header__actions">
+      <app-button label="Entrar" type="button" (clicked)="navigateToLogin()"> </app-button>
+    </div>
+  </div>
+</header>
