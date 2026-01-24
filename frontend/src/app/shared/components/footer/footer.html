@@ -1,3 +1,11 @@
-<footer>
-  <img class="header__brand-logo" src="assets/icons/logo.png" alt="Dailylist logo" />
+<footer class="footer">
+  <img class="footer__brand-logo" src="assets/icons/logo.png" alt="Dailylist logo" />
+
+  <nav class="footer__socials" aria-label="Redes sociais">
+    @for (social of socials; track social.icon) {
+      <a [href]="social.href" >
+        <img [src]="'assets/icons/social/' + social.icon" [alt]="social.name" class="social-icon" />
+      </a>
+    }
+  </nav>
 </footer>

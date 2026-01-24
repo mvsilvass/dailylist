@@ -9,10 +9,15 @@ footer{
   height: 70px;
 }
 
-img{
+.footer__brand-logo{
   position: absolute;
   bottom: -40px;
   right: -40px;
   width: 110px;
   height: auto;
+}
+
+.social-icon{
+  width: 32px;
+  height: 32px;
 }
