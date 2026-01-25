@@ -3,7 +3,7 @@
   --secondary-color: hsl(from var(--primary-color) h s 70%);
   --background-color: var(--secondary-color);
 
-  --gray-color-50: hsl(0, 0%, 97%);
+  --gray-color-50: hsl(0, 0%, 98%);
   --gray-color-200: hsl(0, 0%, 88%);
   --gray-color-300: hsl(0, 0%, 80%);
 
