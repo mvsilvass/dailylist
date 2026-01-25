@@ -5,7 +5,7 @@
 }
 
 .home-page__main {
-  background-color: var(--gray-color-100);
+  background-color: var(--gray-color-50);
   display: flex;
   justify-content: center;
   align-items: center;
