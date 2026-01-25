@@ -1,7 +1,7 @@
 <footer class="footer">
   <div class="footer__credits">
     <p class="footer__author">
-      Feito com <3 por <a href={{githubUrl}}>mvsilvass</a>
+      Feito com <3 por <a target="_blank" href={{githubUrl}}>mvsilvass</a>
     </p>
     <p class="footer__rights">© DailyList {{ currentYear }}. Todos os direitos reservados.</p>
   </div>
@@ -9,7 +9,7 @@
   <div class="footer__info">
     <nav class="footer__socials" aria-label="Redes sociais">
       @for (social of socials; track social.icon) {
-        <a [href]="social.href">
+        <a target="_blank" [href]="social.href">
           <img
             [src]="'assets/icons/social/' + social.icon"
             [alt]="social.name"
