@@ -1,12 +1,11 @@
 import { Component, Input } from '@angular/core';
-import { required } from '@angular/forms/signals';
 
 @Component({
-  selector: 'app-info-card',
-  templateUrl: './info-card.html',
-  styleUrl: './info-card.css',
+  selector: 'app-feature-card',
+  templateUrl: './feature-card.html',
+  styleUrl: './feature-card.css',
 })
-export class InfoCard {
+export class FeatureCard {
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) alt!: string;
   @Input({ required: true }) title!: string;
