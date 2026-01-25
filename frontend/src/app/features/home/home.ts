@@ -1,11 +1,48 @@
 import { Component } from '@angular/core';
-import { Header } from "app/shared/components/header/header";
-import { Footer } from "app/shared/components/footer/footer";
+import { Header } from 'app/shared/components/header/header';
+import { Footer } from 'app/shared/components/footer/footer';
+import { FeatureCard } from './feature-card/feature-card';
+
+export interface Card {
+  icon: string;
+  title: string;
+  alt: string;
+  description: string;
+}
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Footer],
+  imports: [Header, Footer, FeatureCard],
   templateUrl: './home.html',
   styleUrl: './home.css',
 })
-export class Home {}
+export class Home {
+  cards = [
+    {
+      icon: 'task-management.png',
+      title: 'Planejamento de Tarefas',
+      alt: 'Ícone de checklist representando o planejamento de tarefas',
+      description:
+        'Crie listas de tarefas personalizadas para trabalho, estudos ou projetos pessoais.',
+    },
+    {
+      icon: 'task-planning.png',
+      title: 'Organização Inteligente',
+      alt: 'Ícone de tarefas organizadas por prioridade e categorias',
+      description: 'Classifique suas tarefas por prioridade, categorias e datas de vencimento.',
+    },
+    {
+      icon: 'task-progress.png',
+      title: 'Acompanhamento de Progresso',
+      alt: 'Ícone de gráfico indicando o progresso das tarefas',
+      description:
+        'Visualize seu progresso com indicadores simples e acompanhe o que já foi concluído.',
+    },
+    {
+      icon: 'task-reminders.png',
+      title: 'Lembretes Automáticos',
+      alt: 'Ícone de sino representando lembretes e notificações',
+      description: 'Receba notificações inteligentes para não perder prazos importantes.',
+    },
+  ];
+}

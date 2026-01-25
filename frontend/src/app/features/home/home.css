@@ -1,27 +1,24 @@
 .home {
+  color: var(--font-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .home__content {
-  background-color: var(--gray-color-50);
+  background-color: var(--background-color);
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: space-around;
+  padding: 32px;
   align-items: center;
   flex: 1;
-  padding: 2rem;
 }
 
-.home__title {
-  color: var(--font-color);
-  font-size: 5rem;
-  text-align: center;
-}
-
-.home__illustration {
-  border-radius: 100px;
-  max-width: 50%;
-  height: auto;
+.container-cards{
+  display: flex;
+  gap: 20px;
+  padding: 10px;
+  justify-content: space-between;
+  width: 100%;
 }
