@@ -3,6 +3,7 @@ import { Home } from './features/home/home';
 import { Login } from './auth/pages/login/login';
 import { Register } from './auth/pages/register/register';
 import { loginGuard } from '@core/guards/login-guard';
+import { TaskBoard } from './features/tasks/pages/task-board/task-board';
 
 export const routes: Routes = [
   {
@@ -25,5 +26,10 @@ export const routes: Routes = [
     title: 'DailyList - Register',
     path: 'auth/register',
     component: Register,
+  },
+  {
+    title: 'DailyList - My Calendar',
+    path: 'tasks',
+    component: TaskBoard,
   },
 ];
