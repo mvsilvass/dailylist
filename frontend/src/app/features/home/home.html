@@ -1,22 +1,23 @@
 <section class="home">
   <app-header></app-header>
 
-  <main class="home__content">
-    <div class="main-banner">
-      <div class="main-banner__text-container">
-        <h1 class="main-banner__title">Sua rotina, sob controle.</h1>
-        <p class="main-banner__subtitle">
-          A maneira mais fácil de gerenciar suas listas de tarefas e manter a produtividade em dia,
-          todos os dias.
-        </p>
+  <main class="home__main">
+    <section class="hero">
+      <div class="hero__content">
+        <h1 class="hero__title">Organize sua rotina com facilidade</h1>
       </div>
-    </div>
+    </section>
 
-    <div class="container-cards">
+    <section class="features">
       @for (card of cards; track $index) {
-        <app-feature-card [icon]="card.icon"  [alt]="card.alt" [title]="card.title" [description]="card.description"></app-feature-card>
+        <app-feature-card
+          [icon]="card.icon"
+          [alt]="card.alt"
+          [title]="card.title"
+          [description]="card.description"
+        />
       }
-    </div>
+    </section>
   </main>
 
   <app-footer></app-footer>

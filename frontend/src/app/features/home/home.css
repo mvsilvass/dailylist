@@ -5,17 +5,29 @@
   flex-direction: column;
 }
 
-.home__content {
+.home__main {
   background-color: var(--background-color);
-  display: flex;
-  flex-direction: column;
   justify-content: space-around;
-  padding: 32px;
+  flex-direction: column;
   align-items: center;
+  display: flex;
+  padding: 32px;
   flex: 1;
 }
 
-.container-cards{
+.hero__content{
+  text-align: center;
+}
+
+.hero__title{
+  font-size: 5rem;
+}
+
+.hero__subtitle{
+  font-size: 2.5rem;
+}
+
+.features{
   display: flex;
   gap: 20px;
   padding: 10px;
