@@ -4,13 +4,25 @@
 
     <div class="toolbar">
       <button type="button" (click)="previousWeek()">
-        <span class="material-symbols-outlined">arrow_back_ios </span>
+        <span class="material-icons">arrow_back_ios </span>
       </button>
 
-      {{currentDate}}
+      {{ currentDate }}
 
       <button type="button" (click)="nextWeek()">
-        <span class="material-symbols-outlined"> arrow_forward_ios </span>
+        <span class="material-icons"> arrow_forward_ios </span>
+      </button>
+
+      <button type="button">
+        <span class="material-icons"> person </span>
+      </button>
+
+      <button type="button">
+        <span class="material-icons"> logout </span>
+      </button>
+
+      <button type="button">
+        <span class="material-icons"> menu </span>
       </button>
     </div>
   </header>
