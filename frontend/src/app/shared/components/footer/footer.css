@@ -19,6 +19,10 @@
   gap: 4px;
 }
 
+.footer__author{
+  margin-left: 2px;
+}
+
 .footer__author a {
   position: relative;
   color: var(--font-color);
