@@ -1,19 +1,19 @@
 import { inject } from '@angular/core';
 import { CanActivateFn, Router } from '@angular/router';
-import { AuthorizationService } from '../services/authorization.service';
+import { SessionService } from '@core/services/session.service';
 
 export const authGuard: CanActivateFn = (route, state) => {
-  const authorizationService = inject(AuthorizationService);
+  const sessionService = inject(SessionService);
   const router = inject(Router);
 
-  if (!authorizationService.isAuthenticated()) {
+  if (!sessionService.isAuthenticated()) {
     router.navigate(['/auth/login']);
     return false;
   }
 
   const requiredRole = route.data?.['role'] as string | undefined;
 
-  if (requiredRole && !authorizationService.hasRole(requiredRole)) {
+  if (requiredRole && !sessionService.hasRole(requiredRole)) {
     router.navigate(['/auth/login']);
     return false;
   }

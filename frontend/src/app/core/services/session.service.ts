@@ -6,7 +6,7 @@ import { JwtPayload } from './../models/jwt-payload';
 @Injectable({
   providedIn: 'root',
 })
-export class AuthorizationService {
+export class SessionService {
   constructor(
     private storage: LocalStorageService,
     private jwtDecoderService: JwtDecoderService,
