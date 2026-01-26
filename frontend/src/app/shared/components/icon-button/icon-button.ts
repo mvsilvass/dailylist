@@ -7,6 +7,7 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 })
 export class IconButton {
   @Input({ required: true }) icon!: string;
+  @Input({ required: true }) ariaLabel!: string;
   @Output() clicked = new EventEmitter<void>();
 
   onClick() {

@@ -1,29 +1,26 @@
-<main>
-  <header>
-    <p>{{ currentMonth }} - {{ currentYear }}</p>
+<main class="task-board">
+  <header class="task-board__header">
+    <p class="task-board__month">{{ currentMonth }} {{ currentYear }}</p>
 
-    <div class="toolbar">
-      <button type="button" (click)="previousWeek()">
-        <span class="material-icons">arrow_back_ios </span>
-      </button>
+    <div class="task-board__actions">
+      <app-icon-button
+        icon="arrow_back_ios"
+        ariaLabel="Ir para a semana anterior"
+        (clicked)="previousWeek()"
+      />
 
-      {{ currentDate }}
+      <app-icon-button
+        icon="arrow_forward_ios"
+        ariaLabel="Ir para a próxima semana"
+        (clicked)="nextWeek()"
+      />
 
-      <button type="button" (click)="nextWeek()">
-        <span class="material-icons"> arrow_forward_ios </span>
-      </button>
-
-      <button type="button">
-        <span class="material-icons"> person </span>
-      </button>
-
-      <button type="button">
-        <span class="material-icons"> logout </span>
-      </button>
-
-      <button type="button">
-        <span class="material-icons"> menu </span>
-      </button>
+      <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
+      <app-icon-button icon="logout" ariaLabel="Sair da conta" />
     </div>
+
+    <h1 class="task-board__day">
+      {{ currentDate }}
+    </h1>
   </header>
 </main>
