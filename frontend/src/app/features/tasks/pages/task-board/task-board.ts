@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { Router } from '@angular/router';
+import { SessionService } from '@core/services/session.service';
 import { IconButton } from "app/shared/components/icon-button/icon-button";
 import { capitalize } from 'app/shared/utils/string.utils';
 
@@ -9,6 +11,10 @@ import { capitalize } from 'app/shared/utils/string.utils';
   imports: [IconButton],
 })
 export class TaskBoard {
+  constructor(
+    private sessionService: SessionService,
+    private router: Router,
+  ) {}
 
   currentDate = new Date();
 
@@ -26,5 +32,10 @@ export class TaskBoard {
 
   previousWeek() {
     this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() - 7));
+  }
+
+  doLogout() {
+    this.sessionService.logout();
+    this.router.navigate(['/auth/login']);
   }
 }
