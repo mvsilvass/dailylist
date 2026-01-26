@@ -45,7 +45,7 @@ export class Login {
     this.authService.doLogin(request).subscribe({
       next: () => {
         this.loginForm.reset();
-        this.router.navigate(['/home']);
+        this.router.navigate(['/tasks']);
       },
       error: (loginResponse) => {
         this.loginForm.reset();
