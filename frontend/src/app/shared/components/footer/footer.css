@@ -27,18 +27,19 @@
   position: relative;
   color: var(--font-color);
   padding-bottom: 2px;
+  overflow: hidden;
 }
 
 .footer__author a {
   position: relative;
-  margin-bottom: 20px;
 }
 
 .footer__author a:hover{
   font-weight: bold;
+  overflow: hidden;
 }
 
-.footer__author a:hover::before{
+.footer__author a::before{
   content: "";
   position: absolute;
   bottom: 0;
@@ -47,8 +48,17 @@
   height: 1.5px;
   background-color: var(--font-color);
   border-radius: 2px;
+  opacity: 0;
+  transform: scale(0);
+  transition: transform 300ms;
 }
 
+.footer__author a:hover::before,
+.footer__authora:focus::before{
+  opacity: 1;
+  transform: scale(1);
+  transform-origin: left;
+}
 
 .footer__rights {
   opacity: 0.8;
