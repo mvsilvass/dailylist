@@ -1,4 +1,4 @@
-export interface task {
+export interface Task {
   title: string;
   description: string;
   link: string;
