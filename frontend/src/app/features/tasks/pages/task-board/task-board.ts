@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
-import { IconButton } from "app/shared/components/icon-button/icon-button";
+import { IconButton } from 'app/shared/components/icon-button/icon-button';
 import { capitalize } from 'app/shared/utils/string.utils';
 
 @Component({
@@ -16,22 +16,27 @@ export class TaskBoard {
     private router: Router,
   ) {}
 
-  currentDate = new Date();
+  private getMonday(date: Date = new Date()): Date {
+    const daysToSubtract = date.getDay() === 0 ? 6 : date.getDay() - 1;
+    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - daysToSubtract);
+  }
+
+  currentWeek = this.getMonday();
 
   get currentMonth(): string {
-    return capitalize(this.currentDate.toLocaleString('pt-BR', { month: 'long' }));
+    return capitalize(this.currentWeek.toLocaleString('pt-BR', { month: 'long' }));
   }
 
   get currentYear(): number {
-    return this.currentDate.getFullYear();
+    return this.currentWeek.getFullYear();
   }
 
   nextWeek() {
-    this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() + 7));
+    this.currentWeek = new Date(this.currentWeek.setDate(this.currentWeek.getDate() + 7));
   }
 
   previousWeek() {
-    this.currentDate = new Date(this.currentDate.setDate(this.currentDate.getDate() - 7));
+    this.currentWeek = new Date(this.currentWeek.setDate(this.currentWeek.getDate() - 7));
   }
 
   doLogout() {
