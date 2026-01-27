@@ -24,15 +24,14 @@ public class TaskController {
     
     public TaskController(TaskService taskService, UserRepository userRepository) {
         this.taskService = taskService;
-            this.userRepository = userRepository;
+        this.userRepository = userRepository;
     }
     
     @GetMapping()
     public ResponseEntity<List<TaskResponse>> getAllTasks(JwtAuthenticationToken token){
-        User user = userRepository.findByEmailIgnoreCase(token.getName())
-            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        Long userId = Long.parseLong(token.getName());
         
-        List<Task> tasks = taskService.getAllTasks(user.getUserId());
+        List<Task> tasks = taskService.getAllTasks(userId);
         List<TaskResponse> response = tasks.stream()
             .map(TaskResponse::from)
             .toList();
@@ -42,7 +41,9 @@ public class TaskController {
     
     @PostMapping()
     public ResponseEntity<TaskResponse> createTask(@Valid @RequestBody TaskRequest taskRequest, JwtAuthenticationToken token){
-        User user = userRepository.findByEmailIgnoreCase(token.getName())
+        Long userId = Long.parseLong(token.getName());
+        
+        User user = userRepository.findById(userId)
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.createTask(user, taskRequest);
@@ -53,7 +54,9 @@ public class TaskController {
     public ResponseEntity<TaskResponse> updateTaskById(@PathVariable Long id,
                                                        @Valid @RequestBody TaskRequest taskRequest,
                                                        JwtAuthenticationToken token){
-        User user = userRepository.findByEmailIgnoreCase(token.getName())
+        Long userId = Long.parseLong(token.getName());
+        
+        User user = userRepository.findById(userId)
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.updateTaskById(id, taskRequest, user);
@@ -62,7 +65,9 @@ public class TaskController {
     
     @GetMapping("/{id}")
     public ResponseEntity<TaskResponse> getTaskById(@PathVariable Long id, JwtAuthenticationToken token){
-        User user = userRepository.findByEmailIgnoreCase(token.getName())
+        Long userId = Long.parseLong(token.getName());
+        
+        User user = userRepository.findById(userId)
             .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
         
         Task task = taskService.getTaskById(id, user);
