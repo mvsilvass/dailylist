@@ -1,12 +1,11 @@
 package com.mvsilvass.dailylist.dto.response;
 
 import com.mvsilvass.dailylist.model.Task;
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotEmpty;
 
 import java.util.Date;
 
 public record TaskResponse(
+    Long id,
     String title,
     String description,
     String image,
@@ -16,6 +15,7 @@ public record TaskResponse(
     
     public static TaskResponse from(Task task) {
         return new TaskResponse(
+            task.getTaskId(),
             task.getTitle(),
             task.getDescription(),
             task.getImage(),
