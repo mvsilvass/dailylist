@@ -15,7 +15,7 @@
         (clicked)="nextWeek()"
       />
 
-      @for (task of tasks; track task.id) {
+      @for (task of tasks(); track task.id) {
         <p>{{task.id}}</p>
         <p>{{task.title}}</p>
         <p>{{task.description}}</p>

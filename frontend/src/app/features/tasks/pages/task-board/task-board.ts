@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
 import { IconButton } from 'app/shared/components/icon-button/icon-button';
@@ -19,12 +19,12 @@ export class TaskBoard {
     private router: Router,
   ) {}
 
-  tasks! : Task[];
+  tasks = signal<Task[]>([]);
 
   ngOnInit() {
     this.taskService.getUserTasks().subscribe({
-      next: (response : Task[]) => {
-        this.tasks = response;
+      next: (response: Task[]) => {
+        this.tasks.set(response);
       },
       error: (error) => {
         console.log(error);
