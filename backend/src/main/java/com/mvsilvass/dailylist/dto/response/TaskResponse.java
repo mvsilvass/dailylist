@@ -11,7 +11,7 @@ public record TaskResponse(
     String image,
     String link,
     Date createdAt,
-    Date updateAt) {
+    Date updatedAt) {
     
     public static TaskResponse from(Task task) {
         return new TaskResponse(
