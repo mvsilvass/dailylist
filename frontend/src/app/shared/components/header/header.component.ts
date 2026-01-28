@@ -1,15 +1,15 @@
 import { Component } from '@angular/core';
-import { Button } from "../button/button";
+import { ButtonComponent } from "../button/button.component";
 import { Router } from '@angular/router';
-import { HeaderNavLink } from './header-nav-link/header-nav-link';
+import { NavLinkComponent } from './components/nav-link/nav-link.component';
 
 @Component({
   selector: 'app-header',
-  imports: [Button, HeaderNavLink],
-  templateUrl: './header.html',
-  styleUrl: './header.css',
+  imports: [ButtonComponent, NavLinkComponent],
+  templateUrl: './header.component.html',
+  styleUrl: './header.component.css',
 })
-export class Header {
+export class HeaderComponent {
   constructor(private router: Router) {}
 
   navLinks = [

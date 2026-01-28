@@ -2,10 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
   selector: 'app-icon-button',
-  templateUrl: './icon-button.html',
-  styleUrl: './icon-button.css',
+  templateUrl: './icon-button.component..html',
+  styleUrl: './icon-button.component.css',
 })
-export class IconButton {
+export class IconButtonComponent {
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) ariaLabel!: string;
   @Output() clicked = new EventEmitter<void>();

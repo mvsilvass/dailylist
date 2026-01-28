@@ -7,10 +7,10 @@ import { Router } from '@angular/router';
 @Component({
   selector: 'app-login',
   imports: [ReactiveFormsModule],
-  templateUrl: './login.html',
+  templateUrl: './login-page.component.html',
   styleUrl: './../auth.css',
 })
-export class Login {
+export class LoginPageComponent {
   constructor(
     private authService: AuthService,
     private router: Router,

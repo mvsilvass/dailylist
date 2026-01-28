@@ -1,18 +1,18 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
-import { IconButton } from 'app/shared/components/icon-button/icon-button';
+import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component.';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
 import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-board',
-  templateUrl: './task-board.html',
-  styleUrl: './task-board.css',
-  imports: [IconButton, TitleCasePipe],
+  templateUrl: './task-board-page.component.html',
+  styleUrl: './task-board-page.component.css',
+  imports: [IconButtonComponent, TitleCasePipe],
 })
-export class TaskBoard {
+export class TaskBoardPageComponent {
   constructor(
     private sessionService: SessionService,
     private taskService: TaskService,

@@ -2,10 +2,10 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-feature-card',
-  templateUrl: './feature-card.html',
-  styleUrl: './feature-card.css',
+  templateUrl: './feature-card.component.html',
+  styleUrl: './feature-card.component.css',
 })
-export class FeatureCard {
+export class FeatureCardComponent {
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) alt!: string;
   @Input({ required: true }) title!: string;

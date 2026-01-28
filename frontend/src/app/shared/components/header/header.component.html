@@ -5,12 +5,12 @@
   </div>
 
   <div class="header__content">
-    
+
     <nav class="header__nav">
       <ul class="header__nav-list">
         <li class="header__nav-item">
           @for (link of navLinks; track $index) {
-            <app-header-nav-link [label]="link.label" [href]="link.href" />
+            <app-nav-link [label]="link.label" [href]="link.href" />
           }
         </li>
       </ul>

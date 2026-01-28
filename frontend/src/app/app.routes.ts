@@ -1,10 +1,10 @@
 import { Routes } from '@angular/router';
-import { Home } from './features/home/home';
-import { Login } from './auth/pages/login/login';
-import { Register } from './auth/pages/register/register';
+import { HomePageComponent } from './features/home/home-page.component';
 import { loginGuard } from '@core/guards/login-guard';
-import { TaskBoard } from './features/tasks/pages/task-board/task-board';
+import { TaskBoardPageComponent } from './features/tasks/pages/task-board-page/task-board-page.component';
 import { authGuard } from '@core/guards/auth-guard';
+import { LoginPageComponent } from './auth/pages/login/login-page.component';
+import { RegisterPageComponent } from './auth/pages/register/register-page.component';
 
 export const routes: Routes = [
   {
@@ -15,23 +15,23 @@ export const routes: Routes = [
   {
     title: 'DailyList - Home',
     path: 'home',
-    component: Home,
+    component: HomePageComponent,
   },
   {
     title: 'DailyList - Login',
     path: 'auth/login',
-    component: Login,
+    component: LoginPageComponent,
     canActivate: [loginGuard],
   },
   {
     title: 'DailyList - Register',
     path: 'auth/register',
-    component: Register,
+    component: RegisterPageComponent,
   },
   {
     title: 'DailyList - My Calendar',
     path: 'tasks',
-    component: TaskBoard,
+    component: TaskBoardPageComponent,
     canActivate: [authGuard],
   },
 ];

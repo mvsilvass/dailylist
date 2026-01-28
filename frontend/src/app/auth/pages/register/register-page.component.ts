@@ -7,10 +7,10 @@ import { AuthService } from 'app/auth/services/auth.service';
 @Component({
   selector: 'app-register',
   imports: [ReactiveFormsModule],
-  templateUrl: './register.html',
+  templateUrl: './register-page.component.html',
   styleUrl: './../auth.css',
 })
-export class Register {
+export class RegisterPageComponent {
   constructor(
     private authService: AuthService,
   ) {}

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
-import { Header } from 'app/shared/components/header/header';
-import { Footer } from 'app/shared/components/footer/footer';
-import { FeatureCard } from './feature-card/feature-card';
+import { HeaderComponent } from 'app/shared/components/header/header.component';
+import { FooterComponent } from 'app/shared/components/footer/footer.component';
+import { FeatureCardComponent } from './components/feature-card/feature-card.component';
 
 export interface Card {
   icon: string;
@@ -12,11 +12,11 @@ export interface Card {
 
 @Component({
   selector: 'app-home',
-  imports: [Header, Footer, FeatureCard],
-  templateUrl: './home.html',
-  styleUrl: './home.css',
+  imports: [HeaderComponent, FooterComponent, FeatureCardComponent],
+  templateUrl: './home-page.component.html',
+  styleUrl: './home-page.component.css',
 })
-export class Home {
+export class HomePageComponent {
   cards = [
     {
       icon: 'task-management.png',
