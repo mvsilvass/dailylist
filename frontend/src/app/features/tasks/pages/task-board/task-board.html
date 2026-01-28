@@ -15,6 +15,13 @@
         (clicked)="nextWeek()"
       />
 
+      @for (task of tasks; track $index) {
+        <p>{{task.title}}</p>
+        <p>{{task.description}}</p>
+        <p>{{task.link}}</p>
+        <p>{{task.image}}</p>
+      }
+
       <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
       <app-icon-button icon="logout" ariaLabel="Sair da conta" (clicked)="doLogout()" />
     </div>
@@ -22,3 +29,4 @@
 
   <div>{{currentWeek}}</div>
 </section>
+

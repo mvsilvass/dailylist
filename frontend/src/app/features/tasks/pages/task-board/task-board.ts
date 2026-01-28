@@ -3,6 +3,8 @@ import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
 import { IconButton } from 'app/shared/components/icon-button/icon-button';
 import { capitalize } from 'app/shared/utils/string.utils';
+import { TaskService } from '../../services/task.service';
+import { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-board',
@@ -13,8 +15,22 @@ import { capitalize } from 'app/shared/utils/string.utils';
 export class TaskBoard {
   constructor(
     private sessionService: SessionService,
+    private taskService: TaskService,
     private router: Router,
   ) {}
+
+  tasks! : Task[];
+
+  ngOnInit() {
+    this.taskService.getUserTasks().subscribe({
+      next: (response : Task[]) => {
+        this.tasks = response;
+      },
+      error: (error) => {
+        console.log(error);
+      },
+    });
+  }
 
   private getMonday(date: Date = new Date()): Date {
     const daysToSubtract = date.getDay() === 0 ? 6 : date.getDay() - 1;
