@@ -46,6 +46,6 @@ public class Task {
     
     @Column(name = "updated_at")
     @UpdateTimestamp
-    private Date UpdateAt;
+    private Date UpdatedAt;
     
 }
