@@ -21,7 +21,7 @@ public record TaskResponse(
             task.getImage(),
             task.getLink(),
             task.getCreatedAt(),
-            task.getUpdateAt()
+            task.getUpdatedAt()
         );
     }
 }
