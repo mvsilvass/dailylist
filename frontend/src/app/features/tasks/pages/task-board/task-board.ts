@@ -2,15 +2,15 @@ import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
 import { IconButton } from 'app/shared/components/icon-button/icon-button';
-import { capitalize } from 'app/shared/utils/string.utils';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
+import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-board',
   templateUrl: './task-board.html',
   styleUrl: './task-board.css',
-  imports: [IconButton],
+  imports: [IconButton, TitleCasePipe],
 })
 export class TaskBoard {
   constructor(
@@ -40,7 +40,7 @@ export class TaskBoard {
   currentWeek = this.getMonday();
 
   get currentMonth(): string {
-    return capitalize(this.currentWeek.toLocaleString('pt-BR', { month: 'long' }));
+    return this.currentWeek.toLocaleString('pt-BR', { month: 'long' });
   }
 
   get currentYear(): number {
