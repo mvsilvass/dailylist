@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
-import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component.';
+import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TaskService } from '../../services/task.service';
 import { Task } from '../../models/task.model';
 import { TitleCasePipe } from '@angular/common';
