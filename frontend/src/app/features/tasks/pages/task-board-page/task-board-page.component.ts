@@ -3,15 +3,16 @@ import { Router } from '@angular/router';
 import { SessionService } from '@core/services/session.service';
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TaskService } from '../../services/task.service';
-import { Task } from '../../models/task.model';
-import { TitleCasePipe } from '@angular/common';
+import { type Task } from '../../models/task.model';
+import { DatePipe, TitleCasePipe } from '@angular/common';
+import { TaskItemComponent } from "../../components/task-item/task-item.component";
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
-  imports: [IconButtonComponent, TitleCasePipe],
+  imports: [IconButtonComponent, TitleCasePipe, TaskItemComponent, DatePipe],
 })
 export class TaskBoardPageComponent {
   constructor(
@@ -59,5 +60,9 @@ export class TaskBoardPageComponent {
   doLogout() {
     this.sessionService.logout();
     this.router.navigate(['/auth/login']);
+  }
+
+  onNewTask(newTask: Task) {
+    this.tasks.update((prevTasks) => [...prevTasks, newTask]);
   }
 }

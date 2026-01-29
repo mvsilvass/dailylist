@@ -1,6 +1,6 @@
 <section class="task-board">
   <header class="task-board__header">
-    <p class="task-board__month">{{ currentMonth | titlecase}} {{ currentYear }}</p>
+    <p class="task-board__month">{{ currentMonth | titlecase }} {{ currentYear }}</p>
 
     <div class="task-board__actions">
       <app-icon-button
@@ -15,21 +15,21 @@
         (clicked)="nextWeek()"
       />
 
-      @for (task of tasks(); track task.id) {
-        <p>{{task.id}}</p>
-        <p>{{task.title}}</p>
-        <p>{{task.description}}</p>
-        <p>{{task.link}}</p>
-        <p>{{task.image}}</p>
-        <p>{{task.createdAt}}</p>
-        <p>{{task.updatedAt}}</p>
-      }
-
       <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
       <app-icon-button icon="logout" ariaLabel="Sair da conta" (clicked)="doLogout()" />
     </div>
   </header>
 
-  <div>{{currentWeek}}</div>
-</section>
+  <app-task-item (taskAdded)="onNewTask($event)"/>
+  <div>{{ currentWeek | date: 'fullDate' }}</div>
 
+  @for (task of tasks(); track task.id) {
+    <p>{{ task.id }}</p>
+    <p>{{ task.title }}</p>
+    <p>{{ task.description }}</p>
+    <p>{{ task.link }}</p>
+    <p>{{ task.image }}</p>
+    <p>{{ task.createdAt | date: 'fullDate' }}</p>
+    <p>{{ task.updatedAt | date: 'fullDate' }}</p>
+  }
+</section>
