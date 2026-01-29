@@ -24,7 +24,7 @@
   <div>{{ currentWeek | date: 'fullDate' }}</div>
 
   @for (task of tasks(); track task.id) {
-    <p>{{ task.title }}</p>
+    <app-task-item [task]="task"/>
   }
 
   <app-task-input (taskAdded)="onNewTask($event)"/>

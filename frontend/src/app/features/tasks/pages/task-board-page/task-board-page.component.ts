@@ -6,13 +6,14 @@ import { TaskService } from '../../services/task.service';
 import { type Task } from '../../models/task.model';
 import { DatePipe, TitleCasePipe } from '@angular/common';
 import { TaskInputComponent } from '../../components/task-input/task-input.component';
+import { TaskItemComponent } from "../../components/task-item/task-item.component";
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
-  imports: [IconButtonComponent, TitleCasePipe, TaskInputComponent, DatePipe],
+  imports: [IconButtonComponent, TitleCasePipe, TaskInputComponent, DatePipe, TaskItemComponent],
 })
 export class TaskBoardPageComponent {
   constructor(
