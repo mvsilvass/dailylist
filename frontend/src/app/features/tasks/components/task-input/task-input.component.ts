@@ -6,13 +6,13 @@ import { type NewTask } from '../../models/new-task.model';
 import { type Task } from '../../models/task.model';
 
 @Component({
-  selector: 'app-task-item',
+  selector: 'app-task-input',
   standalone: true,
   imports: [FormsModule],
-  templateUrl: './task-item.component.html',
-  styleUrl: './task-item.component.css',
+  templateUrl: './task-input.component.html',
+  styleUrl: './task-input.component.css',
 })
-export class TaskItemComponent {
+export class TaskInputComponent {
   @Output() taskAdded = new EventEmitter<Task>();
   private taskService = inject(TaskService);
 

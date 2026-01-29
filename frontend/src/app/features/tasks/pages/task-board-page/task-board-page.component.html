@@ -20,16 +20,13 @@
     </div>
   </header>
 
-  <app-task-item (taskAdded)="onNewTask($event)"/>
+
   <div>{{ currentWeek | date: 'fullDate' }}</div>
 
   @for (task of tasks(); track task.id) {
-    <p>{{ task.id }}</p>
     <p>{{ task.title }}</p>
-    <p>{{ task.description }}</p>
-    <p>{{ task.link }}</p>
-    <p>{{ task.image }}</p>
-    <p>{{ task.createdAt | date: 'fullDate' }}</p>
-    <p>{{ task.updatedAt | date: 'fullDate' }}</p>
   }
+
+  <app-task-input (taskAdded)="onNewTask($event)"/>
+
 </section>

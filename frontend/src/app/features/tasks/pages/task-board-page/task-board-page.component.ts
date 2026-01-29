@@ -5,14 +5,14 @@ import { IconButtonComponent } from 'app/shared/components/icon-button/icon-butt
 import { TaskService } from '../../services/task.service';
 import { type Task } from '../../models/task.model';
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { TaskItemComponent } from "../../components/task-item/task-item.component";
+import { TaskInputComponent } from '../../components/task-input/task-input.component';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
-  imports: [IconButtonComponent, TitleCasePipe, TaskItemComponent, DatePipe],
+  imports: [IconButtonComponent, TitleCasePipe, TaskInputComponent, DatePipe],
 })
 export class TaskBoardPageComponent {
   constructor(
