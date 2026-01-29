@@ -8,6 +8,7 @@ import { ButtonComponent } from "app/shared/components/button/button.component";
 
 @Component({
   selector: 'app-login',
+  standalone: true,
   imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
   templateUrl: './login-page.component.html',
   styleUrl: './login-page.component.css',

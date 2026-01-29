@@ -10,7 +10,7 @@
       <ul class="header__nav-list">
         <li class="header__nav-item">
           @for (link of navLinks; track $index) {
-            <app-nav-link [label]="link.label" [href]="link.href" />
+            <app-nav-link [label]="link.label" [path]="link.path" />
           }
         </li>
       </ul>

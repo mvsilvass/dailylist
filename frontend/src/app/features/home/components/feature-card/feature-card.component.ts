@@ -2,6 +2,7 @@ import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-feature-card',
+  standalone: true,
   templateUrl: './feature-card.component.html',
   styleUrl: './feature-card.component.css',
 })

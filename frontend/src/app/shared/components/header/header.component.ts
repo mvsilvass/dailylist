@@ -5,6 +5,7 @@ import { NavLinkComponent } from './components/nav-link/nav-link.component';
 
 @Component({
   selector: 'app-header',
+  standalone: true,
   imports: [ButtonComponent, NavLinkComponent],
   templateUrl: './header.component.html',
   styleUrl: './header.component.css',
@@ -13,9 +14,9 @@ export class HeaderComponent {
   constructor(private router: Router) {}
 
   navLinks = [
-    { label: 'Recursos', href: '#' },
-    { label: 'Preços', href: '#' },
-    { label: 'Contato', href: '#' },
+    { label: 'Recursos', path: '/home' },
+    { label: 'Preços', path: '/home' },
+    { label: 'Contato', path: '/home' },
   ];
 
   public navigateToLogin() {

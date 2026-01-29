@@ -8,6 +8,7 @@ import { TitleCasePipe } from '@angular/common';
 
 @Component({
   selector: 'app-task-board',
+  standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
   imports: [IconButtonComponent, TitleCasePipe],

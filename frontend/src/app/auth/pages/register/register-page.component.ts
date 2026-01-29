@@ -8,6 +8,7 @@ import { ButtonComponent } from "app/shared/components/button/button.component";
 
 @Component({
   selector: 'app-register',
+  standalone: true,
   imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
   templateUrl: './register-page.component.html',
   styleUrl: './register-page.component.css',
