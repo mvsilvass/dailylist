@@ -3,17 +3,17 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { RegisterRequest } from 'app/auth/dtos/register/register-request';
 import { RegisterResponse } from 'app/auth/dtos/register/register-response';
 import { AuthService } from 'app/auth/services/auth.service';
+import { AuthLayoutComponent } from "app/auth/components/auth-layout/auth-layout.component";
+import { ButtonComponent } from "app/shared/components/button/button.component";
 
 @Component({
   selector: 'app-register',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
   templateUrl: './register-page.component.html',
-  styleUrl: './../auth.css',
+  styleUrl: './register-page.component.css',
 })
 export class RegisterPageComponent {
-  constructor(
-    private authService: AuthService,
-  ) {}
+  constructor(private authService: AuthService) {}
 
   successMessage: string | null = null;
   errorMessage: string | null = null;
@@ -69,6 +69,5 @@ export class RegisterPageComponent {
         this.errorMessage = error.error.message;
       },
     });
-
   }
 }

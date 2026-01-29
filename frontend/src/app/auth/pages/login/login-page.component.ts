@@ -3,12 +3,14 @@ import { LoginRequest } from '../../dtos/login/login-request';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { Router } from '@angular/router';
+import { AuthLayoutComponent } from "app/auth/components/auth-layout/auth-layout.component";
+import { ButtonComponent } from "app/shared/components/button/button.component";
 
 @Component({
   selector: 'app-login',
-  imports: [ReactiveFormsModule],
+  imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
   templateUrl: './login-page.component.html',
-  styleUrl: './../auth.css',
+  styleUrl: './login-page.component.css',
 })
 export class LoginPageComponent {
   constructor(
