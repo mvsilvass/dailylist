@@ -19,6 +19,8 @@ export class TaskItemComponent {
   taskTitle = signal('');
 
   createTask(): void {
+    if (!this.taskTitle().trim()) return;
+
     const newTask: NewTask = {
       title: this.taskTitle(),
       description: null,
