@@ -1,9 +1,9 @@
 import { Component, EventEmitter, inject, Output, signal } from '@angular/core';
-import { FormsModule } from '@angular/forms';
 import { TaskService } from '../../services/task.service';
+import { FormsModule } from '@angular/forms';
 
-import { type NewTask } from '../../models/new-task.model';
 import { type Task } from '../../models/task.model';
+import { type NewTask } from '../../models/new-task.model';
 
 @Component({
   selector: 'app-task-input',
