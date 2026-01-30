@@ -1,9 +1,5 @@
-<!-- <div>
-  <h3>{{ date | date: 'dd MMM' }}</h3>
-
-  @for (task of tasks; track task.id) {
-    <app-task-item [task]="task" />
-  }
-
-  <app-task-input [columnDate]="date" (taskAdded)="onNewTask($event)" />
-</div> -->
+<div>
+  <p>
+    {{ date | date: 'fullDate' }}
+  </p>
+</div>

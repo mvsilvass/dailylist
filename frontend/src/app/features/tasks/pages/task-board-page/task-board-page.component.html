@@ -6,13 +6,13 @@
       <app-icon-button
         icon="arrow_back_ios_new"
         ariaLabel="Ir para a semana anterior"
-        (clicked)="previousWeek()"
+        (clicked)="goTopreviousWeek()"
       />
 
       <app-icon-button
         icon="arrow_forward_ios"
         ariaLabel="Ir para a próxima semana"
-        (clicked)="nextWeek()"
+        (clicked)="goToNextWeek()"
       />
 
       <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
@@ -20,13 +20,18 @@
     </div>
   </header>
 
+  @for (date of weekDays(); track date) {
+    <!-- <app-task-column [date]="day" [tasks]="getTasksForDate(day)" /> -->
+    <app-task-column [date]="date"/>
+  }
 
   <div>{{ currentWeek | date: 'fullDate' }}</div>
 
   @for (task of tasks(); track task.id) {
-    <app-task-item [task]="task"/>
+    <p>{{task.title}}</p>
+    <!-- <app-task-item [task]="task"/> -->
   }
 
-  <app-task-input (taskAdded)="onNewTask($event)"/>
+  <!-- <app-task-input (taskAdded)="onNewTask($event)"/> -->
 
 </section>
