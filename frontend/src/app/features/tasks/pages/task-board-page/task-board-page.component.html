@@ -20,18 +20,10 @@
     </div>
   </header>
 
-  @for (date of weekDays(); track date) {
-    <!-- <app-task-column [date]="day" [tasks]="getTasksForDate(day)" /> -->
-    <app-task-column [date]="date"/>
-  }
-
-  <div>{{ currentWeek | date: 'fullDate' }}</div>
-
-  @for (task of tasks(); track task.id) {
-    <p>{{task.title}}</p>
-    <!-- <app-task-item [task]="task"/> -->
-  }
-
-  <!-- <app-task-input (taskAdded)="onNewTask($event)"/> -->
+  <main>
+    @for (date of weekDays(); track date) {
+      <app-task-column [date]="date" [tasks]="getTasksForDate(date)" />
+    }
+  </main>
 
 </section>

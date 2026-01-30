@@ -4,9 +4,7 @@ import { SessionService } from '@core/services/session.service';
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TaskService } from '../../services/task.service';
 import { type Task } from '../../models/task.model';
-import { DatePipe, TitleCasePipe } from '@angular/common';
-import { TaskInputComponent } from '../../components/task-input/task-input.component';
-import { TaskItemComponent } from "../../components/task-item/task-item.component";
+import { TitleCasePipe } from '@angular/common';
 import { TaskColumnComponent } from '../../components/task-column/task-column.component';
 
 @Component({
@@ -14,14 +12,7 @@ import { TaskColumnComponent } from '../../components/task-column/task-column.co
   standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
-  imports: [
-    IconButtonComponent,
-    TitleCasePipe,
-    // TaskInputComponent,
-    DatePipe,
-    // TaskItemComponent,
-    TaskColumnComponent,
-  ],
+  imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent],
 })
 export class TaskBoardPageComponent {
   constructor(
@@ -31,7 +22,7 @@ export class TaskBoardPageComponent {
   ) {}
 
   private referenceDate = signal(new Date());
-  tasks = signal<Task[]>([]);
+  private tasks = signal<Task[]>([]);
 
   ngOnInit() {
     this.loadTasks();
@@ -59,21 +50,27 @@ export class TaskBoardPageComponent {
     });
   }
 
-  weekDays = computed<Date[]>(() => this.generateWeek(this.referenceDate()));
+  public weekDays = computed<Date[]>(() => this.generateWeek(this.referenceDate()));
 
-  get currentWeek(): Date {
+  public getTasksForDate(date: Date): Task[] {
+    return this.tasks().filter((task) => {
+      return new Date(task.createdAt).getDate() === date.getDate();
+    });
+  }
+
+  public get currentWeek(): Date {
     return this.referenceDate();
   }
 
-  get currentMonth(): string {
+  public get currentMonth(): string {
     return this.referenceDate().toLocaleString('pt-BR', { month: 'long' });
   }
 
-  get currentYear(): number {
+  public get currentYear(): number {
     return this.referenceDate().getFullYear();
   }
 
-  goToNextWeek() {
+  public goToNextWeek() {
     this.referenceDate.update((currentWeek) => {
       const nextWeek = new Date(currentWeek);
       nextWeek.setDate(currentWeek.getDate() + 7);
@@ -81,7 +78,7 @@ export class TaskBoardPageComponent {
     });
   }
 
-  goTopreviousWeek() {
+  public goTopreviousWeek() {
     this.referenceDate.update((currentWeek) => {
       const previousWeek = new Date(currentWeek);
       previousWeek.setDate(currentWeek.getDate() - 7);
@@ -89,12 +86,8 @@ export class TaskBoardPageComponent {
     });
   }
 
-  doLogout() {
+  public doLogout() {
     this.sessionService.logout();
     this.router.navigate(['/auth/login']);
-  }
-
-  onNewTask(newTask: Task) {
-    this.tasks.update((prevTasks) => [...prevTasks, newTask]);
   }
 }

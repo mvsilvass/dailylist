@@ -2,4 +2,10 @@
   <p>
     {{ date | date: 'fullDate' }}
   </p>
+
+  @for (task of tasks; track task.id) {
+    <app-task-item [task]="task" />
+  }
+
+  <app-task-input (taskAdded)="onNewTask($event)" />
 </div>
