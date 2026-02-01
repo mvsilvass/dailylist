@@ -1,5 +1,5 @@
 import { DatePipe } from '@angular/common';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
 import { TaskInputComponent } from "../task-input/task-input.component";
 import { TaskItemComponent } from "../task-item/task-item.component";
@@ -15,7 +15,4 @@ export class TaskColumnComponent {
   @Input({ required: true }) date!: Date;
   @Input({ required: true }) tasks!: Task[];
 
-  onNewTask(newTask: Task) {
-    // to do
-  }
 }
