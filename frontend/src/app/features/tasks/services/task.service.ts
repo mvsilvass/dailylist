@@ -32,10 +32,16 @@ export class TaskService {
 
   public getTasksForDate(date: Date): Task[] {
     return this.tasks().filter((task) => {
-      return new Date(task.createdAt).getDate() === date.getDate();
+      const taskDate = new Date(task.targetDate);
+
+      return (
+        taskDate.getFullYear() === date.getFullYear() &&
+        taskDate.getMonth() === date.getMonth() &&
+        taskDate.getDate() === date.getDate()
+      );
     });
   }
-  
+
   public setTasks(tasks: Task[]) {
     this.tasks.set(tasks);
   }

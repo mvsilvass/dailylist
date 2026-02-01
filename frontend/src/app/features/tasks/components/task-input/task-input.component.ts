@@ -1,4 +1,4 @@
-import { Component, inject, signal } from '@angular/core';
+import { Component, inject, Input, signal } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
 
@@ -13,6 +13,8 @@ import { type NewTask } from '../../models/new-task.model';
   styleUrl: './task-input.component.css',
 })
 export class TaskInputComponent {
+  @Input() date! : Date;
+
   private taskService = inject(TaskService);
   public taskTitle = signal('');
 
@@ -21,6 +23,7 @@ export class TaskInputComponent {
 
     const newTask: NewTask = {
       title: this.taskTitle(),
+      targetDate: this.date.getTime(),
       description: null,
       link: null,
       image: null,

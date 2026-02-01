@@ -4,6 +4,8 @@ export interface Task {
   description: string | null;
   link: string | null;
   image: string | null;
+  isDone: boolean | null;
+  targetDate: number;
   createdAt: number;
   updatedAt: number;
 }

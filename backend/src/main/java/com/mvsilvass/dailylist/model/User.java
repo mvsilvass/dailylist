@@ -13,6 +13,7 @@ import java.util.Set;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "users")
 public class User {
@@ -21,17 +22,14 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "user_id")
     private Long userId;
-
-    @Setter
+    
     @Column(unique = true, nullable = false)
     private String email;
     
-    @Setter
     @JsonIgnore
     @Column(nullable = false)
     private String password;
     
-    @Setter
     private boolean enabled = true;
     
     @Column(name = "created_at")
@@ -41,7 +39,6 @@ public class User {
     @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Task> tasks;
     
-    @Setter
     @Column(nullable = false)
     @ManyToMany
     @JoinTable(

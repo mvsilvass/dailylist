@@ -12,6 +12,7 @@ import java.util.Date;
 
 @Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @Table(name = "tasks")
 public class Task {
@@ -20,32 +21,33 @@ public class Task {
     @Column(name = "task_id")
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long taskId;
-
-    @Setter
+    
     @Column(nullable = false)
     private String title;
     
-    @Setter
     private String description;
     
-    @Setter
     private String image;
-
-    @Setter
+    
     private String link;
     
-    @Setter
+    @Column(nullable = false)
+    private Date targetDate;
+    
+    @Column(nullable = false)
+    private boolean isDone;
+    
     @JsonIgnore
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
-
+    
     @Column(name = "created_at")
     @CreationTimestamp
     private Date createdAt;
     
     @Column(name = "updated_at")
     @UpdateTimestamp
-    private Date UpdatedAt;
+    private Date updatedAt;
     
 }

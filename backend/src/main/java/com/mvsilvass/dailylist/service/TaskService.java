@@ -28,7 +28,9 @@ public class TaskService {
         task.setTitle(taskRequest.title());
         task.setDescription(taskRequest.description());
         task.setImage(taskRequest.image());
+        task.setTargetDate(taskRequest.targetDate());
         task.setLink(taskRequest.link());
+        task.setDone(false);
         task.setUser(user);
         
         return taskRepository.save(task);
@@ -55,8 +57,10 @@ public class TaskService {
         
         task.setTitle(updatedTask.title());
         task.setDescription(updatedTask.description());
+        task.setTargetDate(updatedTask.targetDate());
         task.setImage(updatedTask.image());
         task.setLink(updatedTask.link());
+        task.setDone(updatedTask.isDone());
         taskRepository.save(task);
         
         return task;

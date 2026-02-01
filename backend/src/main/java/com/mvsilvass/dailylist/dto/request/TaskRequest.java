@@ -1,8 +1,12 @@
 package com.mvsilvass.dailylist.dto.request;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import org.hibernate.validator.constraints.URL;
+
+import java.util.Date;
 
 public record TaskRequest(
     @NotBlank(message = "Título é obrigatória")
@@ -14,7 +18,12 @@ public record TaskRequest(
     @URL
     String link,
     
+    @NotNull(message = "A data da tarefa é obrigatória")
+    Date targetDate,
+    
     @URL
-    String image
+    String image,
+    
+    boolean isDone
     ) {
 }
