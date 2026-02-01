@@ -22,16 +22,18 @@ export class TaskBoardPageComponent {
   ) {}
 
   private referenceDate = signal(new Date());
-  private tasks = signal<Task[]>([]);
+
+  public weekDays = computed(() => this.generateWeek(this.referenceDate()));
+
+  public currentMonth = computed(() =>
+    this.referenceDate().toLocaleString('pt-BR', { month: 'long' }),
+  );
+  
+  public currentYear = computed(() => this.referenceDate().getFullYear());
 
   ngOnInit() {
-    this.loadTasks();
-  }
-
-  private loadTasks() {
     this.taskService.getUserTasks().subscribe({
-      next: (response: Task[]) => this.tasks.set(response),
-      error: (error) => console.error(error),
+      next: (response) => this.taskService.setTasks(response),
     });
   }
 
@@ -48,42 +50,26 @@ export class TaskBoardPageComponent {
       day.setDate(monday.getDate() + i);
       return day;
     });
-  }
-
-  public weekDays = computed<Date[]>(() => this.generateWeek(this.referenceDate()));
+  };
 
   public getTasksForDate(date: Date): Task[] {
-    return this.tasks().filter((task) => {
-      return new Date(task.createdAt).getDate() === date.getDate();
-    });
+    return this.taskService.getTasksForDate(date);
   }
 
-  public get currentWeek(): Date {
-    return this.referenceDate();
-  }
-
-  public get currentMonth(): string {
-    return this.referenceDate().toLocaleString('pt-BR', { month: 'long' });
-  }
-
-  public get currentYear(): number {
-    return this.referenceDate().getFullYear();
-  }
-
-  public goToNextWeek() {
-    this.referenceDate.update((currentWeek) => {
-      const nextWeek = new Date(currentWeek);
-      nextWeek.setDate(currentWeek.getDate() + 7);
+  public updateWeek(days: number) {
+    this.referenceDate.update((current) => {
+      const nextWeek = new Date(current);
+      nextWeek.setDate(current.getDate() + days);
       return nextWeek;
     });
   }
 
+  public goToNextWeek() {
+    this.updateWeek(7);
+  }
+
   public goTopreviousWeek() {
-    this.referenceDate.update((currentWeek) => {
-      const previousWeek = new Date(currentWeek);
-      previousWeek.setDate(currentWeek.getDate() - 7);
-      return previousWeek;
-    });
+    this.updateWeek(-7);
   }
 
   public doLogout() {

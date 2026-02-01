@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable } from '@angular/core';
+import { Injectable, signal } from '@angular/core';
 import { catchError, Observable, throwError } from 'rxjs';
 import { environment } from '@env/environment';
 
@@ -12,7 +12,9 @@ import { type NewTask } from '../models/new-task.model';
 export class TaskService {
   constructor(private http: HttpClient) {}
 
-  getUserTasks(): Observable<Task[]> {
+  private tasks = signal<Task[]>([]);
+
+  public getUserTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(`${environment.apiUrl}/tasks`).pipe(
       catchError((error) => {
         return throwError(() => error);
@@ -20,11 +22,25 @@ export class TaskService {
     );
   }
 
-  createTask(newTask: NewTask): Observable<Task> {
+  public createTask(newTask: NewTask): Observable<Task> {
     return this.http.post<Task>(`${environment.apiUrl}/tasks`, newTask).pipe(
       catchError((error) => {
         return throwError(() => error);
       }),
     );
+  }
+
+  public getTasksForDate(date: Date): Task[] {
+    return this.tasks().filter((task) => {
+      return new Date(task.createdAt).getDate() === date.getDate();
+    });
+  }
+  
+  public setTasks(tasks: Task[]) {
+    this.tasks.set(tasks);
+  }
+
+  public addTask(newTask: Task) {
+    this.tasks.update((oldTasks) => [...oldTasks, newTask]);
   }
 }

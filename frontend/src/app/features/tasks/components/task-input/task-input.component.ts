@@ -13,12 +13,10 @@ import { type NewTask } from '../../models/new-task.model';
   styleUrl: './task-input.component.css',
 })
 export class TaskInputComponent {
-  @Output() taskAdded = new EventEmitter<Task>();
   private taskService = inject(TaskService);
+  public taskTitle = signal('');
 
-  taskTitle = signal('');
-
-  createTask(): void {
+  public createTask(): void {
     if (!this.taskTitle().trim()) return;
 
     const newTask: NewTask = {
@@ -30,7 +28,7 @@ export class TaskInputComponent {
 
     this.taskService.createTask(newTask).subscribe({
       next: (response: Task) => {
-        this.taskAdded.emit(response);
+        this.taskService.addTask(response),
         this.taskTitle.set('');
       },
       error: (error) => {

@@ -1,6 +1,6 @@
 <section class="task-board">
   <header class="task-board__header">
-    <p class="task-board__month">{{ currentMonth | titlecase }} {{ currentYear }}</p>
+    <p class="task-board__month">{{ currentMonth() | titlecase }} {{ currentYear() }}</p>
 
     <div class="task-board__actions">
       <app-icon-button
