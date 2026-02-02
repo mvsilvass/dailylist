@@ -1,11 +1,22 @@
-<div>
-  <p>
-    {{ date | date: 'fullDate' }}
-  </p>
+<div class="task-column">
+  <header class="task-column__header">
+    <div class="date-group">
+      <span class="date-day">{{ date | date: 'd' }}</span>
+      <span class="date-month">{{ date | date: 'MMM' }}</span>
+    </div>
 
-  @for (task of tasks; track task.id) {
-    <app-task-item [task]="task" />
-  }
+    <p class="date-weekday">{{ ( (date | date: 'EEEE') || '' ).split('-')[0] | titlecase }}</p>
+  </header>
 
-  <app-task-input [date]="date"/>
+  <div class="task-column__content-wrapper">
+    <div class="task-column__list">
+      @for (task of tasks; track task.id) {
+        <app-task-item class="task-column__item" [task]="task" />
+      }
+    </div>
+
+    <footer class="task-column__footer">
+      <app-task-input class="task-column__input" [date]="date" />
+    </footer>
+  </div>
 </div>

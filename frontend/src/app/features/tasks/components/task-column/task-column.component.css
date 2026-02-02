@@ -1,4 +1,32 @@
-div{
-  background-color: red;
-  margin: 5px;
+.task-column {
+  background-color: var(--primary-color);
+  border-radius: 15px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+  padding: 5px;
+}
+.task-column__header {
+  font-size: clamp(0.5rem, calc(1vw + 0.5rem), 2rem);
+  display: flex;
+  justify-content: space-between;
+  padding: 10px;
+  font-weight: bold;
+  letter-spacing: 1px;
+  border-bottom: 2px solid white;
+}
+
+.date-group {
+  display: flex;
+  gap: 5px;
+}
+
+.task-column__list {
+  display: flex;
+  flex-direction: column;
+}
+
+.task-column__content-wrapper {
+  flex-direction: column;
+  flex: 1;
 }

@@ -1,26 +1,59 @@
-.task-board{
+.task-board {
   background-color: var(--background-color);
   color: var(--font-color);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
-  padding: 16px 32px;
+  padding: 16px 32px 0px;
 }
 
-.task-board__header{
+.task-board__header {
   display: flex;
   justify-content: space-between;
   align-items: center;
 }
 
-.task-board__actions{
+.task-board__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 10px;
 }
 
-.task-board__month{
-  font-size: 2rem;
+.task-board__month {
+  font-size: clamp(0.5rem, calc(1vw + 1.5rem), 2rem);
   font-weight: bold;
+}
+
+.task-board__content {
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  grid-template-rows: 1fr 1fr;
+  gap: 12px;
+  margin: 32px 0;
+  flex: 1;
+}
+
+.task-column:not(.weekend) {
+  grid-row: span 2;
+}
+
+.weekend {
+  grid-column: 6;
+}
+
+@media (max-width: 1024px) {
+  .task-board__content {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+    gap: 20px;
+  }
+
+  .task-column:not(.weekend) {
+    grid-row: auto;
+  }
+
+  .weekend {
+    grid-column: auto;
+  }
 }

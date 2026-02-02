@@ -1,0 +1,12 @@
+.task-item{
+  display: flex;
+  align-items: center;
+  height: 50px;
+  padding: 0 15px;
+  background: transparent;
+}
+
+.task-item__title{
+  font-size: 1.25rem;
+}
+

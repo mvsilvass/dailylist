@@ -20,10 +20,14 @@
     </div>
   </header>
 
-  <main>
+  <main class="task-board__content">
     @for (date of weekDays(); track date) {
-      <app-task-column [date]="date" [tasks]="getTasksForDate(date)" />
+      <app-task-column
+        [date]="date"
+        [tasks]="getTasksForDate(date)"
+        [class.weekend]="date.getDay() === 0 || date.getDay() === 6"
+        class="task-column"
+      />
     }
   </main>
-
 </section>
