@@ -13,6 +13,7 @@ export class TaskService {
   constructor(private http: HttpClient) {}
 
   private tasks = signal<Task[]>([]);
+  private taskInTransit = signal<Task | null>(null);
 
   public getUserTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(`${environment.apiUrl}/tasks`).pipe(
@@ -29,6 +30,11 @@ export class TaskService {
       }),
     );
   }
+
+  public updateTask(task: Task): Observable<Task> {
+    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task);
+  }
+
   public createTask(newTask: NewTask): Observable<Task> {
     return this.http.post<Task>(`${environment.apiUrl}/tasks`, newTask).pipe(
       catchError((error) => {
@@ -55,5 +61,13 @@ export class TaskService {
 
   public addTask(newTask: Task) {
     this.tasks.update((oldTasks) => [...oldTasks, newTask]);
+  }
+
+  public setTaskInTransit(task: Task | null) {
+    this.taskInTransit.set(task);
+  }
+
+  public getTaskInTransit() {
+    return this.taskInTransit();
   }
 }
