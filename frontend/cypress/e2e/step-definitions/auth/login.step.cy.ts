@@ -51,8 +51,8 @@ When('envia o formulário de login', () => {
   LoginPage.clickLoginButton();
 });
 
-Then('o sistema redireciona o usuário para a página inicial', () => {
-  cy.url({ timeout: 10000 }).should('include', '/home');
+Then('o sistema redireciona o usuário para a página de tarefas', () => {
+  cy.url({ timeout: 10000 }).should('include', '/tasks');
 });
 
 Then('o sistema exibe uma mensagem de erro de autenticação', () => {

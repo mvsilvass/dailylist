@@ -8,7 +8,7 @@ Funcionalidade: Login
   Cenário: Login realizado com sucesso
     Quando o usuário preenche o formulário com um e-mail e senha cadastrados
     E envia o formulário de login
-    Então o sistema redireciona o usuário para a página inicial
+    Então o sistema redireciona o usuário para a página de tarefas
 
   Cenário: Login não realizado com usuário não cadastrado
     Quando o usuário preenche o formulário com um e-mail e senha não cadastrados
