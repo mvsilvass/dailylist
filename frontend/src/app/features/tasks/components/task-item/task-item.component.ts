@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { type Task } from '../../models/task.model';
 
 @Component({
@@ -9,4 +9,10 @@ import { type Task } from '../../models/task.model';
 })
 export class TaskItemComponent {
   @Input({ required: true }) task!: Task;
+  @Output() taskDragStarted = new EventEmitter<Task>();
+
+  public handleDragStart() {
+    this.taskDragStarted.emit(this.task);
+  }
+
 }

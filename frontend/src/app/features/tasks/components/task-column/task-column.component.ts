@@ -1,8 +1,9 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { Component, Input } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 import { Task } from '../../models/task.model';
-import { TaskInputComponent } from "../task-input/task-input.component";
-import { TaskItemComponent } from "../task-item/task-item.component";
+import { TaskInputComponent } from '../task-input/task-input.component';
+import { TaskItemComponent } from '../task-item/task-item.component';
+import { TaskService } from '../../services/task.service';
 
 @Component({
   selector: 'app-task-column',
@@ -14,4 +15,20 @@ import { TaskItemComponent } from "../task-item/task-item.component";
 export class TaskColumnComponent {
   @Input({ required: true }) date!: Date;
   @Input({ required: true }) tasks!: Task[];
+
+  private taskService = inject(TaskService);
+
+  public handleTaskDrag(task: Task) {
+    this.taskService.setTaskInTransit(task);
+  }
+
+  public handleTaskDrop() {
+    const task = this.taskService.getTaskInTransit();
+
+    if (task) {
+      task.targetDate = this.date.getTime();
+      this.taskService.updateTask(task);
+      this.taskService.setTaskInTransit(null);
+    }
+  }
 }

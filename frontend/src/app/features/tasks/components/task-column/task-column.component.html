@@ -1,17 +1,21 @@
-<div class="task-column">
+<div class="task-column" (drop)="handleTaskDrop()" (dragover)="$event.preventDefault()">
   <header class="task-column__header">
     <div class="date-group">
       <span class="date-day">{{ date | date: 'd' }}</span>
       <span class="date-month">{{ date | date: 'MMM' }}</span>
     </div>
 
-    <p class="date-weekday">{{ ( (date | date: 'EEEE') || '' ).split('-')[0] | titlecase }}</p>
+    <p class="date-weekday">{{ ((date | date: 'EEEE') || '').split('-')[0] | titlecase }}</p>
   </header>
 
   <div class="task-column__content-wrapper">
     <div class="task-column__list">
       @for (task of tasks; track task.id) {
-        <app-task-item class="task-column__item" [task]="task" />
+        <app-task-item
+          (taskDragStarted)="handleTaskDrag($event)"
+          class="task-column__item"
+          [task]="task"
+        />
       }
     </div>
 

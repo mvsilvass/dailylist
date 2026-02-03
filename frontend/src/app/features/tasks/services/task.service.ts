@@ -22,6 +22,13 @@ export class TaskService {
     );
   }
 
+  public getTaskById(id: string): Observable<Task> {
+    return this.http.get<Task>(`${environment.apiUrl}/tasks/${id}`).pipe(
+      catchError((error) => {
+        return throwError(() => error);
+      }),
+    );
+  }
   public createTask(newTask: NewTask): Observable<Task> {
     return this.http.post<Task>(`${environment.apiUrl}/tasks`, newTask).pipe(
       catchError((error) => {
