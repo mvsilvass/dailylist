@@ -27,8 +27,11 @@ export class TaskColumnComponent {
 
     if (task) {
       task.targetDate = this.date.getTime();
-      this.taskService.updateTask(task);
-      this.taskService.setTaskInTransit(null);
+      this.taskService.updateTask(task).subscribe({
+        next: (response) => {
+          this.taskService.setTaskInTransit(null);
+        },
+      });
     }
   }
 }
