@@ -13,6 +13,7 @@
 .task-item__title{
   font-size: 1.25rem;
   overflow: hidden;
+  white-space: nowrap;
   text-overflow: ellipsis;
 }
 
