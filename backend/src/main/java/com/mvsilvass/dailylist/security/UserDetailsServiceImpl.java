@@ -1,6 +1,5 @@
 package com.mvsilvass.dailylist.security;
 
-import com.mvsilvass.dailylist.excepiton.UserNotFoundException;
 import com.mvsilvass.dailylist.repository.UserRepository;
 
 import org.springframework.security.core.userdetails.UserDetails;
