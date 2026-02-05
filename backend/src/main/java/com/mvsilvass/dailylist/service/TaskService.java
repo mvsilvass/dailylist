@@ -8,6 +8,7 @@ import com.mvsilvass.dailylist.model.User;
 import com.mvsilvass.dailylist.repository.TaskRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 
 @Service
@@ -30,7 +31,7 @@ public class TaskService {
         task.setImage(taskRequest.image());
         task.setTargetDate(taskRequest.targetDate());
         task.setLink(taskRequest.link());
-        task.setPriority(0);
+        task.setPriority(1);
         task.setDone(false);
         task.setUser(user);
         
