@@ -1,5 +1,6 @@
 package com.mvsilvass.dailylist.controller;
 
+import com.mvsilvass.dailylist.dto.request.TaskPositionRequest;
 import com.mvsilvass.dailylist.dto.request.TaskRequest;
 import com.mvsilvass.dailylist.dto.response.TaskResponse;
 import com.mvsilvass.dailylist.excepiton.UserNotFoundException;
@@ -74,4 +75,15 @@ public class TaskController {
         return ResponseEntity.status(HttpStatus.OK).body(TaskResponse.from(task));
     }
     
+    @PutMapping("/reorder")
+    public ResponseEntity<Void> reorderTasks(@RequestBody List<TaskPositionRequest> updateTasks, JwtAuthenticationToken token) {
+        Long userId = Long.parseLong(token.getName());
+        
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        taskService.reorderTasks(updateTasks, user);
+        
+        return ResponseEntity.status(HttpStatus.OK).build();
+    }
 }
