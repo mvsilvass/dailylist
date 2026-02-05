@@ -24,6 +24,8 @@ public record TaskRequest(
     @URL
     String image,
     
+    int priority,
+    
     boolean isDone
     ) {
 }

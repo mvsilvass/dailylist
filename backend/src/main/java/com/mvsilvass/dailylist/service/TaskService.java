@@ -30,6 +30,7 @@ public class TaskService {
         task.setImage(taskRequest.image());
         task.setTargetDate(taskRequest.targetDate());
         task.setLink(taskRequest.link());
+        task.setPriority(0);
         task.setDone(false);
         task.setUser(user);
         
@@ -60,6 +61,7 @@ public class TaskService {
         task.setTargetDate(updatedTask.targetDate());
         task.setImage(updatedTask.image());
         task.setLink(updatedTask.link());
+        task.setPriority(updatedTask.priority());
         task.setDone(updatedTask.isDone());
         taskRepository.save(task);
         

@@ -10,9 +10,11 @@ public record TaskResponse(
     String description,
     String image,
     String link,
+    int priority,
     Date targetDate,
     Date createdAt,
-    Date updatedAt) {
+    Date updatedAt
+) {
     
     public static TaskResponse from(Task task) {
         return new TaskResponse(
@@ -21,6 +23,7 @@ public record TaskResponse(
             task.getDescription(),
             task.getImage(),
             task.getLink(),
+            task.getPriority(),
             task.getTargetDate(),
             task.getCreatedAt(),
             task.getUpdatedAt()
