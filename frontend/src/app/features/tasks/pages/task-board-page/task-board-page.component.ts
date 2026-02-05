@@ -28,7 +28,7 @@ export class TaskBoardPageComponent {
   public currentMonth = computed(() =>
     this.referenceDate().toLocaleString('pt-BR', { month: 'long' }),
   );
-  
+
   public currentYear = computed(() => this.referenceDate().getFullYear());
 
   ngOnInit() {
@@ -54,6 +54,10 @@ export class TaskBoardPageComponent {
 
   public getTasksForDate(date: Date): Task[] {
     return this.taskService.getTasksForDate(date);
+  }
+
+  public isWeekend(date: Date) : boolean{
+    return date.getDay() === 0 || date.getDay() === 6;
   }
 
   public updateWeek(days: number) {
