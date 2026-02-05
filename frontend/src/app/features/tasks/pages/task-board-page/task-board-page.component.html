@@ -20,7 +20,7 @@
     </div>
   </header>
 
-  <main class="task-board__content">
+  <main class="task-board__content" cdkDropListGroup>
     @for (date of weekDays(); track date.getTime()) {
       <app-task-column
         [date]="date"
