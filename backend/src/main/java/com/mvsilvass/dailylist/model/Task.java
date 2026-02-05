@@ -31,6 +31,8 @@ public class Task {
     
     private String link;
     
+    private int priority;
+    
     @Column(nullable = false)
     private Date targetDate;
     

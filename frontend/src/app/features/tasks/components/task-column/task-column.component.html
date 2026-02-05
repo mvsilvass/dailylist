@@ -1,4 +1,4 @@
-<div class="task-column" (drop)="handleTaskDrop()" (dragover)="$event.preventDefault()">
+<div class="task-column">
   <header class="task-column__header">
     <div class="date-group">
       <span class="date-day">{{ date | date: 'd' }}</span>
@@ -9,18 +9,17 @@
   </header>
 
   <div class="task-column__content-wrapper">
-    <div class="task-column__list">
+    <div
+      class="task-column__list"
+      cdkDropList
+      [cdkDropListData]="tasks"
+      (cdkDropListDropped)="drop($event)"
+    >
       @for (task of tasks; track task.id) {
-        <app-task-item
-          (taskDragStarted)="handleTaskDrag($event)"
-          class="task-column__item"
-          [task]="task"
-        />
+        <app-task-item class="task-column__item" [task]="task" cdkDrag />
       }
-    </div>
 
-    <footer class="task-column__footer">
       <app-task-input class="task-column__input" [date]="date" />
-    </footer>
+    </div>
   </div>
 </div>

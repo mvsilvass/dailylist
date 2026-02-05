@@ -6,13 +6,14 @@ import { TaskService } from '../../services/task.service';
 import { type Task } from '../../models/task.model';
 import { TitleCasePipe } from '@angular/common';
 import { TaskColumnComponent } from '../../components/task-column/task-column.component';
+import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
   templateUrl: './task-board-page.component.html',
   styleUrl: './task-board-page.component.css',
-  imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent],
+  imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
 export class TaskBoardPageComponent {
   constructor(
@@ -28,7 +29,7 @@ export class TaskBoardPageComponent {
   public currentMonth = computed(() =>
     this.referenceDate().toLocaleString('pt-BR', { month: 'long' }),
   );
-  
+
   public currentYear = computed(() => this.referenceDate().getFullYear());
 
   ngOnInit() {
@@ -50,10 +51,14 @@ export class TaskBoardPageComponent {
       day.setDate(monday.getDate() + i);
       return day;
     });
-  };
+  }
 
   public getTasksForDate(date: Date): Task[] {
     return this.taskService.getTasksForDate(date);
+  }
+
+  public isWeekend(date: Date): boolean {
+    return date.getDay() === 0 || date.getDay() === 6;
   }
 
   public updateWeek(days: number) {

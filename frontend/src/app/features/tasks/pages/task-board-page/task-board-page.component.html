@@ -17,15 +17,15 @@
 
       <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
       <app-icon-button icon="logout" ariaLabel="Sair da conta" (clicked)="doLogout()" />
-    </div>  
+    </div>
   </header>
 
-  <main class="task-board__content">
-    @for (date of weekDays(); track date) {
+  <main class="task-board__content" cdkDropListGroup>
+    @for (date of weekDays(); track date.getTime()) {
       <app-task-column
         [date]="date"
         [tasks]="getTasksForDate(date)"
-        [class.weekend]="date.getDay() === 0 || date.getDay() === 6"
+        [class.weekend]="isWeekend(date)"
         class="task-column"
       />
     }

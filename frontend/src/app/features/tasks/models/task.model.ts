@@ -6,6 +6,7 @@ export interface Task {
   image: string | null;
   isDone: boolean | null;
   targetDate: number;
+  priority: number;
   createdAt: number;
   updatedAt: number;
 }

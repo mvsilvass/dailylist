@@ -6,6 +6,7 @@
   min-height: 100%;
   padding: 5px;
 }
+
 .task-column__header {
   font-size: clamp(0.5rem, calc(1vw + 0.5rem), 2rem);
   display: flex;
@@ -29,4 +30,29 @@
 .task-column__content-wrapper {
   flex-direction: column;
   flex: 1;
+}
+
+.cdk-drop-list-dragging .cdk-drag {
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  cursor: grabbing;
+}
+.cdk-drag-animating {
+  transition: transform 300ms cubic-bezier(0, 0, 0.2, 1);
+  cursor: grabbing;
+}
+
+.cdk-drag-placeholder {
+  border-radius: 5px;
+  border-bottom: 2px solid var(--white-color-opacity-50);
+  background: var(--white-color-opacity-50);
+  transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
+  order: -2;
+}
+
+.cdk-drag-preview {
+  cursor: grabbing;
+  background: var(--primary-color-opacity-50);
+  border-bottom: 2px solid var(--white-color-opacity-50);
+  border-radius: 5px;
+  overflow: hidden;
 }
