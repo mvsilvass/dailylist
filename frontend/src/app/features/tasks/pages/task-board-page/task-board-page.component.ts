@@ -25,15 +25,15 @@ export class TaskBoardPageComponent {
     private router: Router,
   ) {}
 
-  private selectedDate = signal(new Date());
+  protected selectedDate = signal(new Date());
 
-  public weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
+  protected weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
 
-  public selectedMonth = computed(() =>
+  protected selectedMonth = computed(() =>
     this.selectedDate().toLocaleString('pt-BR', { month: 'long' }),
   );
 
-  public selectedYear = computed(() => this.selectedDate().getFullYear());
+  protected selectedYear = computed(() => this.selectedDate().getFullYear());
 
   ngOnInit() {
     this.taskService.getUserTasks().subscribe({
@@ -64,7 +64,7 @@ export class TaskBoardPageComponent {
     return date.getDay() === 0 || date.getDay() === 6;
   }
 
-  public updateWeek(days: number) {
+  private updateWeek(days: number) {
     this.selectedDate.update((current) => {
       const nextWeek = new Date(current);
       nextWeek.setDate(current.getDate() + days);
