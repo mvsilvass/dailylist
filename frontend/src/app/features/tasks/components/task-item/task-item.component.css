@@ -3,7 +3,6 @@
   align-items: center;
   height: 50px;
   padding: 0 15px;
-  background: transparent;
 }
 
 .task-item:hover {
