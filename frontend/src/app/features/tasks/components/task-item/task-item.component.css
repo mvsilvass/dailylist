@@ -1,8 +1,8 @@
 .task-item {
   display: flex;
   align-items: center;
-  height: 50px;
-  padding: 0 15px;
+  height: 45px;
+  padding: 0 10px;
 }
 
 .task-item:hover {

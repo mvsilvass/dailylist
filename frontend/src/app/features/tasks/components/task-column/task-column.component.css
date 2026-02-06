@@ -48,7 +48,8 @@
   border-bottom: 2px solid var(--white-color-opacity-50);
   background: var(--white-color-opacity-50);
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
-  order: -2;
+  z-index: 10;
+  order: 1;
 }
 
 .cdk-drag-preview {
@@ -57,4 +58,14 @@
   border-bottom: 2px solid var(--white-color-opacity-50);
   border-radius: 5px;
   overflow: hidden;
+  z-index: 1000;
+}
+
+.task-column__item {
+  order: 1;
+}
+
+.task-column__input {
+  z-index: 1;
+  order: 10;
 }
