@@ -22,7 +22,13 @@
 
 .task-board__month {
   font-size: clamp(0.5rem, calc(1vw + 1.5rem), 2rem);
+  transition: opacity 0.2s ease-in-out;
   font-weight: bold;
+}
+
+.task-board__month:hover {
+  cursor: pointer;
+  opacity: 0.8;
 }
 
 .task-board__content {
