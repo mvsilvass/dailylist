@@ -29,6 +29,10 @@ export class TaskColumnComponent {
 
   private taskService = inject(TaskService);
 
+  protected updateTaskStatus(task: Task) {
+    this.taskService.updateTask(task).subscribe();
+  }
+
   private reorderTaskInSameColumn(event: CdkDragDrop<Task[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);
   }

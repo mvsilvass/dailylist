@@ -1,5 +1,7 @@
 <div class="task-item">
-  <p class="task-item__title">
+  <p class="task-item__title" [class.completed]="task.isDone">
     {{ task.title }}
   </p>
+
+  <mat-checkbox class="task-item__checkbox" [checked]="task.isDone" (change)="onChecked()" />
 </div>

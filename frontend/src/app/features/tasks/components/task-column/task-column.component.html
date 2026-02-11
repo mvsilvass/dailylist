@@ -16,7 +16,12 @@
       (cdkDropListDropped)="drop($event)"
     >
       @for (task of tasks; track task.id) {
-        <app-task-item class="task-column__item" [task]="task" cdkDrag />
+        <app-task-item
+          class="task-column__item"
+          [task]="task"
+          (statusChange)="updateTaskStatus($event)"
+          cdkDrag
+        />
       }
 
       <app-task-input class="task-column__input" [date]="date" />

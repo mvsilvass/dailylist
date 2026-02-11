@@ -1,5 +1,6 @@
 .task-item {
   display: flex;
+  justify-content: space-between;
   align-items: center;
   height: 45px;
   padding: 0 10px;
@@ -9,6 +10,7 @@
   border-bottom: 2px solid var(--white-color-opacity-50);
   border-radius: 5px;
   cursor: grab;
+  opacity: 1;
 }
 
 .task-item__title {
@@ -16,4 +18,20 @@
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+}
+
+.completed {
+  text-decoration: line-through;
+}
+
+.task-item__checkbox {
+  opacity: 0;
+}
+
+.task-item:hover .task-item__checkbox {
+  opacity: 1;
+}
+
+::ng-deep .mdc-checkbox__background {
+  border-radius: 25%;
 }

@@ -58,7 +58,13 @@ export class TaskService {
         );
       })
 
-      .sort((a, b) => a.priority - b.priority);
+      .sort((a, b) => {
+        if (a.isDone !== b.isDone) {
+          return a.isDone ? 1 : -1;
+        }
+
+        return a.priority - b.priority;
+      });
   }
 
   public setTasks(tasks: Task[]) {
