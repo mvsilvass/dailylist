@@ -13,7 +13,8 @@ public record TaskResponse(
     int priority,
     Date targetDate,
     Date createdAt,
-    Date updatedAt
+    Date updatedAt,
+    boolean isDone
 ) {
     
     public static TaskResponse from(Task task) {
@@ -26,7 +27,8 @@ public record TaskResponse(
             task.getPriority(),
             task.getTargetDate(),
             task.getCreatedAt(),
-            task.getUpdatedAt()
+            task.getUpdatedAt(),
+            task.isDone()
         );
     }
 }
