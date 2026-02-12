@@ -43,7 +43,6 @@ body::-webkit-scrollbar-track {
 body::-webkit-scrollbar-thumb {
   background: var(--sb-thumb-color);
   border-radius: 1px;
-
 }
 
 @supports not selector(::-webkit-scrollbar) {
