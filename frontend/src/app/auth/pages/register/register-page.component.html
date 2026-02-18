@@ -1,6 +1,7 @@
 <app-auth-layout mode="register">
-  <form [formGroup]="registerForm" (ngSubmit)="onSubmit()">
+  <form class="auth-form" [formGroup]="registerForm" (ngSubmit)="onSubmit()">
     <input
+      class="auth-input"
       data-cy="register-email"
       formControlName="email"
       type="email"
@@ -9,6 +10,7 @@
     />
 
     <input
+      class="auth-input"
       data-cy="register-password"
       formControlName="password"
       type="password"
@@ -17,6 +19,7 @@
     />
 
     <input
+      class="auth-input"
       data-cy="register-confirm-password"
       formControlName="confirmPassword"
       type="password"
@@ -24,7 +27,7 @@
       required
     />
 
-    <app-button data-cy="register-submit" label="Registrar" type="submit"/>
+    <app-button data-cy="register-submit" label="Registrar" type="submit" />
 
     @if (errorMessage) {
       <p data-cy="register-error-message" class="message error">{{ errorMessage }}</p>
