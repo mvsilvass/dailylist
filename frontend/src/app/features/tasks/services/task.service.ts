@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError, tap } from 'rxjs';
 import { environment } from '@env/environment';
 
 import type { Task } from '../models/task.model';
@@ -32,8 +32,14 @@ export class TaskService {
   }
 
   public updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task);
-  }
+  return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
+    tap((updatedTask : Task)  => {
+      this.tasks.update((allTasks) =>
+        allTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+      );
+    })
+  );
+}
 
   public reorderTasks(updateTasks: TaskPosition[]): Observable<void> {
     return this.http.put<void>(`${environment.apiUrl}/tasks/reorder`, updateTasks);

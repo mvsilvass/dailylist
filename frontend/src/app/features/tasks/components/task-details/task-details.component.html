@@ -1,1 +1,62 @@
-<p>task-details works!</p>
+<header class="task-details__header">
+  <h1 class="task-details__date">
+    {{ targetDate | date: 'EEEE, d MMM yyyy' }}
+  </h1>
+
+  <div class="task-details__toolbar">
+    <button type="button" class="task-details__button" aria-label="Excluir tarefa">
+      <mat-icon fontIcon="delete" />
+    </button>
+
+    <button type="button" class="task-details__button" aria-label="Mudar cor">
+      <mat-icon fontIcon="circle" />
+    </button>
+
+    <button type="button" class="task-details__button" aria-label="Atribuir pessoa">
+      <mat-icon fontIcon="person_add_alt" />
+    </button>
+
+    <button type="button" class="task-details__button" aria-label="Mais opções">
+      <mat-icon fontIcon="more_horiz" />
+    </button>
+  </div>
+</header>
+
+<main>
+  <input type="text" [(ngModel)]="taskTitle" />
+  <mat-checkbox [checked]="taskIsDone" (change)="onChecked()" />
+</main>
+
+<footer>
+  <div>
+    <button type="button" aria-label="Inserir link">
+      <mat-icon fontIcon="insert_link" />
+    </button>
+
+    <button type="button" aria-label="Negrito">
+      <mat-icon fontIcon="format_bold" />
+    </button>
+
+    <button type="button">
+      <mat-icon fontIcon="format_italic" aria-label="Itálico"/>
+    </button>
+
+    <button type="button">
+      <mat-icon fontIcon="format_clear" aria-label="Limpar formatação"/>
+    </button>
+
+    <button type="button" aria-label="Lista com marcadores">
+      <mat-icon fontIcon="format_list_bulleted"/>
+    </button>
+  </div>
+
+  <div>
+    <span>
+      <mat-icon fontIcon="sticky_note_2" />
+    </span>
+
+    <p>Adicione notas aqui</p>
+  </div>
+</footer>
+
+<button type="button" mat-dialog-close>Cancel</button>

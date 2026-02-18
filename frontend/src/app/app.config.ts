@@ -8,12 +8,15 @@ import { authInterceptor } from '@core/interceptors/auth-interceptor';
 import { registerLocaleData } from '@angular/common';
 import localePt from '@angular/common/locales/pt';
 
+import { provideNativeDateAdapter } from '@angular/material/core';
+
 registerLocaleData(localePt);
 
 export const appConfig: ApplicationConfig = {
   providers: [
     provideHttpClient(withInterceptors([authInterceptor])),
     provideBrowserGlobalErrorListeners(),
+    provideNativeDateAdapter(),
     provideRouter(routes),
 
     { provide: LOCALE_ID, useValue: 'pt-BR' },
