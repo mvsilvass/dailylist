@@ -14,8 +14,8 @@ import type { Task } from '../../models/task.model';
   styleUrl: './task-item.component.css',
 })
 export class TaskItemComponent {
-  @Input({ required: true }) protected task!: Task;
-  @Output() protected statusChange = new EventEmitter<Task>();
+  @Input({ required: true }) task!: Task;
+  @Output() statusChange = new EventEmitter<Task>();
 
   private taskService = inject(TaskService);
   private dialog = inject(MatDialog);
