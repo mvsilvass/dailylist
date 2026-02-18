@@ -22,39 +22,46 @@
   </div>
 </header>
 
-<main>
-  <input type="text" [(ngModel)]="taskTitle" />
-  <mat-checkbox [checked]="taskIsDone" (change)="onChecked()" />
+<main class="task-details__content">
+  <input
+    type="text"
+    class="task-details__title-input"
+    [(ngModel)]="taskTitle"
+    placeholder="Título da tarefa"
+  />
+  <mat-checkbox class="task-details__checkbox" [checked]="taskIsDone" (change)="onChecked()" />
 </main>
 
-<footer>
-  <div>
-    <button type="button" aria-label="Inserir link">
-      <mat-icon fontIcon="insert_link" />
+<footer class="task-details__footer">
+  <div class="task-details__format-bar">
+    <button
+      type="button"
+      class="task-details__format-button"
+      [aria-label]="!taskLink() ? 'Editar link' : 'Inserir link'">
+      <mat-icon [fontIcon]="!taskLink() ? 'add_link' : 'insert_link'" />
     </button>
 
-    <button type="button" aria-label="Negrito">
+    <button type="button" class="task-details__format-button" aria-label="Negrito">
       <mat-icon fontIcon="format_bold" />
     </button>
 
-    <button type="button">
-      <mat-icon fontIcon="format_italic" aria-label="Itálico"/>
+    <button type="button" class="task-details__format-button" aria-label="Itálico">
+      <mat-icon fontIcon="format_italic" />
     </button>
 
-    <button type="button">
-      <mat-icon fontIcon="format_clear" aria-label="Limpar formatação"/>
+    <button type="button" class="task-details__format-button" aria-label="Limpar formatação">
+      <mat-icon fontIcon="format_clear" />
     </button>
 
-    <button type="button" aria-label="Lista com marcadores">
-      <mat-icon fontIcon="format_list_bulleted"/>
+    <button type="button" class="task-details__format-button" aria-label="Lista com marcadores">
+      <mat-icon fontIcon="format_list_bulleted" />
     </button>
   </div>
 
-  <div>
-    <span>
-      <mat-icon fontIcon="sticky_note_2" />
-    </span>
-
-    <p>Adicione notas aqui</p>
-  </div>
+  <textarea
+    class="task-details__textarea"
+    placeholder="Adicione notas aqui..."
+    [(ngModel)]="taskDescription"
+  >
+  </textarea>
 </footer>
