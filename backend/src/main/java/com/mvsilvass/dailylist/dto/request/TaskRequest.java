@@ -20,9 +20,6 @@ public record TaskRequest(
     @NotNull(message = "A data da tarefa é obrigatória")
     Date targetDate,
     
-    @URL
-    String image,
-    
     int priority,
     
     boolean isDone

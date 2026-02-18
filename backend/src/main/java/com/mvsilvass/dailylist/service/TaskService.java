@@ -32,7 +32,6 @@ public class TaskService {
         Task task = new Task();
         task.setTitle(taskRequest.title());
         task.setDescription(taskRequest.description());
-        task.setImage(taskRequest.image());
         task.setTargetDate(taskRequest.targetDate());
         task.setLink(taskRequest.link());
         task.setPriority(1);
@@ -64,7 +63,6 @@ public class TaskService {
         task.setTitle(updatedTask.title());
         task.setDescription(updatedTask.description());
         task.setTargetDate(updatedTask.targetDate());
-        task.setImage(updatedTask.image());
         task.setLink(updatedTask.link());
         task.setPriority(updatedTask.priority());
         task.setDone(updatedTask.isDone());

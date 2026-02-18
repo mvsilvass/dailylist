@@ -27,8 +27,6 @@ public class Task {
     
     private String description;
     
-    private String image;
-    
     private String link;
     
     private int priority;
