@@ -1,5 +1,5 @@
 .task-column {
-  background-color: var(--primary-color);
+  background-color: var(--gray-color-50);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -12,9 +12,9 @@
   display: flex;
   justify-content: space-between;
   padding: 10px;
-  font-weight: bold;
+  font-weight: 400;
   letter-spacing: 1px;
-  border-bottom: 2px solid white;
+  border-bottom: 2px solid var(--font-color);
   margin-bottom: 5px;
 }
 

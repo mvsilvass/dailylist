@@ -1,16 +1,15 @@
-.task-input{
-  background-color: var(--primary-color);
+.task-input {
+  background-color: var(--gray-color-50);
   width: 100%;
   padding: 10px;
-  font-size: 1.25rem;
+  font-size: 1.30rem;
   margin-top: 2.5%;
   border-radius: 5px;
 }
 
-.task-input:hover{
-  border-bottom: 2px solid var(--white-color-opacity-50);
+.task-input:hover,
+.task-input:focus {
+  border-bottom: 1.5px solid var(--primary-color);
+  background-color: white;
 }
 
-.task-input:focus{
-  background-color: var(--background-color);
-}

@@ -1,5 +1,5 @@
-.icon-button{
-  background-color: var(--primary-color);
+.icon-button {
+  background-color: var(--font-color);
   align-items: center;
   display: flex;
   align-items: center;
@@ -7,16 +7,16 @@
   padding: 5px;
 }
 
-.icon-button:hover{
+.icon-button:hover {
+  background-color: var(--font-color-opacity-50);
   cursor: pointer;
-  background-color:  hsl(from var(--primary-color) h s l / 0.5);
 }
 
-.material-icons{
-  color: var(--font-color);
+.material-icons {
+  color: var(--primary-color);
   font-size: 2rem;
 }
 
-.material-icons:hover{
+.material-icons:hover {
   opacity: 0.85;
 }
