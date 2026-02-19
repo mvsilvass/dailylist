@@ -5,30 +5,23 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
-import { TextFieldModule } from '@angular/cdk/text-field';
 
+import { TaskService } from '../../services/task.service';
 import type { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [
-    MatDialogModule,
-    FormsModule,
-    DatePipe,
-    MatIconModule,
-    MatCheckboxModule
-  ],
+  imports: [MatDialogModule, FormsModule, DatePipe, MatIconModule, MatCheckboxModule],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
 })
 export class TaskDetailsComponent {
   protected task = inject(MAT_DIALOG_DATA);
-  private datePipe = inject(DatePipe);
-  private dialog = inject(MatDialogRef);
+  private taskService = inject(TaskService);
 
-  protected targetDate = this.datePipe.transform(this.task.targetDate, 'yyyy-MM-dd');
+  private dialog = inject(MatDialogRef);
 
   protected taskTargetDate = signal(this.task.targetDate);
   protected taskDescription = signal(this.task.description);
@@ -72,5 +65,13 @@ export class TaskDetailsComponent {
 
   protected onChecked() {
     this.taskIsDone.update((current) => !current);
+  }
+
+  protected onDelete() {
+    this.taskService.deleteTask(this.task).subscribe({
+      error: (error) => {
+        console.log(error);
+      },
+    });
   }
 }

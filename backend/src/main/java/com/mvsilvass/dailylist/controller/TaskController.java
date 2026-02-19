@@ -86,4 +86,16 @@ public class TaskController {
         
         return ResponseEntity.status(HttpStatus.OK).build();
     }
+    
+    @DeleteMapping("/{id}")
+    public ResponseEntity<String> deleteTaskById(@PathVariable Long id, JwtAuthenticationToken token) {
+        Long userId = Long.parseLong(token.getName());
+        
+        User user = userRepository.findById(userId)
+            .orElseThrow(() -> new UserNotFoundException("Usuário não encontrado"));
+        
+        taskService.deleteTaskById(id, user);
+        
+        return ResponseEntity.ok("Tarefa deletada com sucesso");
+    }
 }

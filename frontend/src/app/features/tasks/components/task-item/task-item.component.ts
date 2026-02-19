@@ -34,7 +34,7 @@ export class TaskItemComponent {
     });
 
     dialogRef.afterClosed().subscribe((result: Task) => {
-      if (result !== undefined) {
+      if (result && this.task.id) {
         this.taskService.updateTask(result).subscribe({
           error(error) {
             console.error(error);

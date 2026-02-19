@@ -1,5 +1,6 @@
 package com.mvsilvass.dailylist.service;
 
+import com.mvsilvass.dailylist.excepiton.UserNotFoundException;
 import org.springframework.stereotype.Service;
 
 import com.mvsilvass.dailylist.excepiton.ForbiddenException;
@@ -87,4 +88,16 @@ public class TaskService {
             taskRepository.save(task);
         });
     }
+    
+    public void deleteTaskById(Long taskId, User user) {
+        Task task = taskRepository.findById(taskId)
+            .orElseThrow(() -> new TaskNotFoundException("Tarefa com id "+ taskId + " não encontrada"));
+        
+        if(!task.getUser().getUserId().equals(user.getUserId())){
+            throw new ForbiddenException("Você não tem permissão para acessar essa tarefa");
+        }
+        
+        taskRepository.deleteById(taskId);
+    }
+    
 }

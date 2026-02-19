@@ -17,6 +17,7 @@ export class TaskService {
 
   public getUserTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(`${environment.apiUrl}/tasks`).pipe(
+      tap((tasks) => this.tasks.set(tasks)),
       catchError((error) => {
         return throwError(() => error);
       }),
@@ -32,14 +33,23 @@ export class TaskService {
   }
 
   public updateTask(task: Task): Observable<Task> {
-  return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
-    tap((updatedTask : Task)  => {
-      this.tasks.update((allTasks) =>
-        allTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
+      tap((updatedTask: Task) => {
+        this.tasks.update((allTasks) =>
+          allTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+        );
+      }),
+    );
+  }
+
+  public deleteTask(task: Task): Observable<string> {
+    return this.http
+      .delete(`${environment.apiUrl}/tasks/${task.id}`, { responseType: 'text' }).pipe(
+        tap(() => {
+          this.tasks.update((tasks) => tasks.filter((t) => t.id !== task.id));
+        }),
       );
-    })
-  );
-}
+  }
 
   public reorderTasks(updateTasks: TaskPosition[]): Observable<void> {
     return this.http.put<void>(`${environment.apiUrl}/tasks/reorder`, updateTasks);
@@ -71,10 +81,6 @@ export class TaskService {
 
         return a.priority - b.priority;
       });
-  }
-
-  public setTasks(tasks: Task[]) {
-    this.tasks.set(tasks);
   }
 
   public addTask(newTask: Task) {
