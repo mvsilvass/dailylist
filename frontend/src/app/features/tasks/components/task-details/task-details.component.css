@@ -1,3 +1,16 @@
+::ng-deep .mat-mdc-dialog-surface {
+  overflow: hidden;
+  width: 75vw;
+  height: 50dvh;
+  height: 50vh;
+  box-shadow: 2px 2px 10px var(--black-color-opacity-50);
+  background-color: var(--background-color);
+  padding: 25px 20px;
+  border-radius: 10px;
+  display: flex;
+  gap: 32px;
+}
+
 .task-details__header {
   display: flex;
   justify-content: space-between;
@@ -10,7 +23,62 @@
   text-transform: uppercase;
 }
 
-.task-details__toolbar{
+.task-details__toolbar {
+  display: flex;
+  gap: 10px;
+}
+
+.task-details__content {
+  display: flex;
+  border-bottom: 2px solid;
+  justify-content: center;
+  align-items: center;
+}
+
+.task-details__input {
+  background-color: var(--background-color);
+  width: 100%;
+  padding: 10px 0px;
+  font-size: 1.75rem;
+}
+
+::ng-deep .mat-mdc-checkbox {
+  transform: scale(1.25);
+}
+
+::ng-deep .mdc-checkbox__background {
+  border-radius: 25%;
+}
+
+.completed,
+.completed .task-details__input,
+.completed ::ng-deep .mdc-checkbox__background {
+  color: var(--black-color-opacity-50);
+}
+
+.task-details__footer {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  gap: 10px;
+}
+
+.task-details__textarea {
+  background: transparent;
+  overflow: auto;
+  resize: none;
+  padding: 10px 0px;
+  font-size: 1rem;
+  line-height: 1.2;
+  width: 100%;
+  flex: 1;
+}
+
+.task-details__textarea::-webkit-scrollbar {
+  width: 0px;
+}
+
+.task-details__format-bar {
   display: flex;
   gap: 10px;
 }

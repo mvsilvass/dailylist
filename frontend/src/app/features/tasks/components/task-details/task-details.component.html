@@ -22,14 +22,14 @@
   </div>
 </header>
 
-<main class="task-details__content">
+<main class="task-details__content" [class.completed]="taskIsDone()">
   <input
     type="text"
-    class="task-details__title-input"
+    class="task-details__input"
     [(ngModel)]="taskTitle"
     placeholder="Título da tarefa"
   />
-  <mat-checkbox class="task-details__checkbox" [checked]="taskIsDone" (change)="onChecked()" />
+  <mat-checkbox [checked]="taskIsDone()" (change)="onChecked()" />
 </main>
 
 <footer class="task-details__footer">

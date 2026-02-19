@@ -5,13 +5,20 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
+import { TextFieldModule } from '@angular/cdk/text-field';
 
 import type { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [MatDialogModule, FormsModule, DatePipe, MatIconModule, MatCheckboxModule],
+  imports: [
+    MatDialogModule,
+    FormsModule,
+    DatePipe,
+    MatIconModule,
+    MatCheckboxModule
+  ],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
