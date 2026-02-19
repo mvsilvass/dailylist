@@ -1,15 +1,17 @@
 import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
+import { MatIcon } from '@angular/material/icon';
 
 import { TaskDetailsComponent } from '../task-details/task-details.component';
 import { TaskService } from '../../services/task.service';
+
 import type { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-item',
   standalone: true,
-  imports: [MatCheckboxModule],
+  imports: [MatCheckboxModule, MatIcon],
   templateUrl: './task-item.component.html',
   styleUrl: './task-item.component.css',
 })
@@ -29,8 +31,6 @@ export class TaskItemComponent {
     const dialogRef = this.dialog.open(TaskDetailsComponent, {
       disableClose: true,
       data: this.task,
-      height: '25vw',
-      width: '30vw',
     });
 
     dialogRef.afterClosed().subscribe((result: Task) => {
