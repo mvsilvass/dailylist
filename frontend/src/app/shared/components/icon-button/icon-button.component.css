@@ -1,22 +1,19 @@
 .icon-button {
   background-color: var(--font-color);
   align-items: center;
+  justify-content: center;
   display: flex;
-  align-items: center;
   border-radius: 50%;
-  padding: 5px;
+  padding: 10px;
 }
 
-.icon-button:hover {
-  background-color: var(--font-color-opacity-50);
+.icon-button:hover,
+.material-icons:hover {
   cursor: pointer;
+  opacity: 0.85;
 }
 
 .material-icons {
   color: var(--primary-color);
   font-size: 2rem;
-}
-
-.material-icons:hover {
-  opacity: 0.85;
 }
