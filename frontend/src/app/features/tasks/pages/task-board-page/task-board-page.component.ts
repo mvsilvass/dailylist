@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { SessionService } from '@core/services/session.service';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TitleCasePipe } from '@angular/common';
@@ -18,7 +18,7 @@ import type { Task } from '../../models/task.model';
   styleUrl: './task-board-page.component.css',
   imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
-export class TaskBoardPageComponent {
+export class TaskBoardPageComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private taskService: TaskService,
