@@ -4,27 +4,18 @@
   </h1>
 
   <div class="task-details__toolbar">
-    <button
-      type="button"
+    <app-icon-button
       mat-dialog-close
-      class="task-details__button"
-      aria-label="Excluir tarefa"
-      (click)="onDelete()"
-    >
-      <mat-icon fontIcon="delete" />
-    </button>
+      icon="delete"
+      ariaLabel="Excluir tarefa"
+      (clicked)="onDelete()"
+    />
 
-    <button type="button" class="task-details__button" aria-label="Mudar cor">
-      <mat-icon fontIcon="circle" />
-    </button>
-
-    <button type="button" class="task-details__button" aria-label="Atribuir pessoa">
-      <mat-icon fontIcon="person_add_alt" />
-    </button>
-
-    <button type="button" class="task-details__button" aria-label="Mais opções">
-      <mat-icon fontIcon="more_horiz" />
-    </button>
+    <app-icon-button
+      mat-dialog-close
+      icon="more_horiz"
+      ariaLabel="Mais opções"
+    />
   </div>
 </header>
 
@@ -40,29 +31,9 @@
 
 <footer class="task-details__footer">
   <div class="task-details__format-bar">
-    <button
-      type="button"
-      class="task-details__format-button"
-      [aria-label]="!taskLink() ? 'Editar link' : 'Inserir link'"
-    >
-      <mat-icon [fontIcon]="!taskLink() ? 'add_link' : 'insert_link'" />
-    </button>
-
-    <button type="button" class="task-details__format-button" aria-label="Negrito">
-      <mat-icon fontIcon="format_bold" />
-    </button>
-
-    <button type="button" class="task-details__format-button" aria-label="Itálico">
-      <mat-icon fontIcon="format_italic" />
-    </button>
-
-    <button type="button" class="task-details__format-button" aria-label="Limpar formatação">
-      <mat-icon fontIcon="format_clear" />
-    </button>
-
-    <button type="button" class="task-details__format-button" aria-label="Lista com marcadores">
-      <mat-icon fontIcon="format_list_bulleted" />
-    </button>
+    <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="true" />
+    <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="true" />
+    <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" />
   </div>
 
   <textarea

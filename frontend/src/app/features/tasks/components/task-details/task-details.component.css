@@ -14,23 +14,28 @@
 .task-details__header {
   display: flex;
   justify-content: space-between;
+  align-items: center;
 }
 
 .task-details__date {
   font-size: 1.8rem;
 }
+
 .task-details__date::first-letter {
   text-transform: uppercase;
 }
 
 .task-details__toolbar {
+  --btn-icon-size: 1.25rem;
+  --btn-bg: transparent;
+  --btn-icon-color: var(--tertiary);
   display: flex;
   gap: 10px;
 }
 
 .task-details__content {
   display: flex;
-  border-bottom: 2px solid var(--primary);
+  border-bottom: 2px solid var(--tertiary);
   justify-content: center;
   align-items: center;
 }
@@ -46,12 +51,6 @@
   transform: scale(1.25);
 }
 
-::ng-deep .mdc-checkbox__checkmark-path,
-::ng-deep .mdc-checkbox__background {
-  color: var(--primary);
-
-}
-
 .completed,
 .completed .task-details__input,
 .completed ::ng-deep .mdc-checkbox__background,
@@ -59,7 +58,7 @@
   color: var(--tertiary-50);
 }
 
-.completed.task-details__content{
+.completed.task-details__content {
   border-bottom: 2px solid var(--tertiary-50);
 }
 
@@ -68,6 +67,15 @@
   flex-direction: column;
   height: 100%;
   gap: 10px;
+}
+.task-details__format-bar{
+  --btn-icon-color: var(--tertiary);
+  --btn-active-icon: var(--tertiary);
+  --btn-active-bg: var(--secondary);
+  --btn-icon-size: 1.25rem;
+  --btn-bg: transparent;
+  --btn-padding: 5px;
+  --btn-radius: 25%;
 }
 
 .task-details__textarea {

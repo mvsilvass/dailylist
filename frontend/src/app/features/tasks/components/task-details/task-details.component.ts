@@ -3,16 +3,16 @@ import { DatePipe } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
-import { MatIconModule } from '@angular/material/icon';
 import { FormsModule } from '@angular/forms';
 
+import { IconButtonComponent } from "app/shared/components/icon-button/icon-button.component";
 import { TaskService } from '../../services/task.service';
 import type { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [MatDialogModule, FormsModule, DatePipe, MatIconModule, MatCheckboxModule],
+  imports: [MatDialogModule, FormsModule, DatePipe, MatCheckboxModule, IconButtonComponent],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',

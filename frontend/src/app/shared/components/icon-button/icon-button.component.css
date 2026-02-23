@@ -1,19 +1,29 @@
 .icon-button {
-  background-color: var(--tertiary);
+  background-color: var(--btn-bg, var(--tertiary));
+  padding: var(--btn-padding, 10px);
+  border-radius: var(--btn-radius, 50%);
   align-items: center;
   justify-content: center;
   display: flex;
-  border-radius: 50%;
-  padding: 10px;
+  transition: all 0.2s ease;
 }
 
-.icon-button:hover,
-mat-icon :hover {
+.icon-button:hover {
   cursor: pointer;
   opacity: 0.85;
 }
 
 mat-icon {
-  color: var(--primary);
-  font-size: 1.5rem;
+  color: var(--btn-icon-color, var(--primary));
+  width: var(--btn-icon-size, 24px);
+  height: var(--btn-icon-size, 24px);
+  font-size: var(--btn-icon-size, 1.5rem);
+}
+
+.icon-button.active {
+  background-color: var(--btn-active-bg, var(--primary));
+}
+
+.icon-button.active mat-icon {
+  color: var(--btn-active-icon, white);
 }

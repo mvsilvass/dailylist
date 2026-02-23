@@ -11,6 +11,8 @@ import { MatIconModule } from '@angular/material/icon';
 export class IconButtonComponent {
   @Input({ required: true }) icon!: string;
   @Input({ required: true }) ariaLabel!: string;
+  @Input() isActive!: boolean;
+
   @Output() clicked = new EventEmitter<void>();
 
   protected onClick() {
