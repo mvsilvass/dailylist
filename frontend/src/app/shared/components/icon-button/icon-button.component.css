@@ -8,12 +8,12 @@
 }
 
 .icon-button:hover,
-.material-icons:hover {
+mat-icon :hover {
   cursor: pointer;
   opacity: 0.85;
 }
 
-.material-icons {
+mat-icon {
   color: var(--primary-color);
-  font-size: 2rem;
+  font-size: 1.5rem;
 }
