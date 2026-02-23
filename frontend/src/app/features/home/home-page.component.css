@@ -1,12 +1,12 @@
 .home {
-  color: var(--font-color);
+  color: var(--tertiary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 .home__main {
-  background-color: var(--background-color);
+  background-color: var(--secondary);
   justify-content: space-around;
   flex-direction: column;
   align-items: center;

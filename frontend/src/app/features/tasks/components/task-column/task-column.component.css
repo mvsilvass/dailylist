@@ -1,5 +1,5 @@
 .task-column {
-  background-color: var(--gray-color-50);
+  background-color: var(--gray-1);
   border-radius: 15px;
   display: flex;
   flex-direction: column;
@@ -14,7 +14,7 @@
   padding: 10px;
   font-weight: 400;
   letter-spacing: 1px;
-  border-bottom: 2px solid var(--font-color);
+  border-bottom: 2px solid var(--tertiary);
   margin-bottom: 5px;
 }
 
@@ -46,7 +46,8 @@
 }
 
 .cdk-drag-placeholder {
-  border-bottom: 1.5px solid var(--primary-color);
+  background-color: var(--gray-2-50);
+  border-bottom: 1.5px solid var(--primary);
   transition: transform 250ms cubic-bezier(0, 0, 0.2, 1);
   border-radius: 5px;
   z-index: 10;
@@ -54,8 +55,8 @@
 }
 
 .cdk-drag-preview {
-  background: var(--white-color-opacity-50);
-  border-bottom: 1.5px solid var(--primary-color);
+  background-color: var(--gray-2-50);
+  border-bottom: 1.5px solid var(--primary);
   border-radius: 5px;
   overflow: hidden;
   z-index: 1000;

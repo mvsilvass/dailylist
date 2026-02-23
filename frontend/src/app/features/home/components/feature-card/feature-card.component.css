@@ -21,7 +21,7 @@
 
 .title {
   font-size: 1.5rem;
-  color: var(--font-color);
+  color: var(--tertiary);
   margin-bottom: 15px;
   font-weight: bold;
 }

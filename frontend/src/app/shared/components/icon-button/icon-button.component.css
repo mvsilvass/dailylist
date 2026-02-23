@@ -1,5 +1,5 @@
 .icon-button {
-  background-color: var(--font-color);
+  background-color: var(--tertiary);
   align-items: center;
   justify-content: center;
   display: flex;
@@ -14,6 +14,6 @@ mat-icon :hover {
 }
 
 mat-icon {
-  color: var(--primary-color);
+  color: var(--primary);
   font-size: 1.5rem;
 }

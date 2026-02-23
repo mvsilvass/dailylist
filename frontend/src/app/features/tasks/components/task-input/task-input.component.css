@@ -1,5 +1,5 @@
 .task-input {
-  background-color: var(--gray-color-50);
+  background-color: var(--gray-1);
   width: 100%;
   padding: 10px;
   font-size: 1.30rem;
@@ -9,7 +9,7 @@
 
 .task-input:hover,
 .task-input:focus {
-  border-bottom: 1.5px solid var(--primary-color);
-  background-color: white;
+  border-bottom: 1.5px solid var(--primary);
+  background-color: var(--gray-2-50);
 }
 

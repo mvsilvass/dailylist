@@ -4,13 +4,13 @@ button {
   font-size: 1.15em;
   border: none;
   border-radius: 5px;
-  color: var(--font-color);
-  background-color: var(--primary-color);
+  color: var(--tertiary);
+  background-color: var(--primary);
   font-weight: bold;
   cursor: pointer;
   width: 100%;
 }
 
 button:hover {
-  background-color: hsl(from var(--primary-color) h s l / 0.8);
+  background-color: hsl(from var(--primary) h s l / 0.8);
 }

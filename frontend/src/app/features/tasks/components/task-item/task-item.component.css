@@ -9,7 +9,7 @@
 }
 
 .task-item:hover {
-  border-bottom: 2px solid var(--white-color-opacity-50);
+  background-color: var(--gray-2-50);
   border-radius: 5px;
   cursor: grab;
   opacity: 1;
@@ -53,8 +53,9 @@
 
 .completed,
 .completed .task-item__title,
+::ng-deep .mdc-checkbox__checkmark-path,
 .completed ::ng-deep .mdc-checkbox__background {
-  color: var(--font-color-opacity-50);
+  color: var(--tertiary-50);
 }
 
 .completed .task-item__title{
