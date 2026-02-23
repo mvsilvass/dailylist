@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { HomePageComponent } from './features/home/home-page.component';
 import { loginGuard } from '@core/guards/login-guard';
 import { TaskBoardPageComponent } from './features/tasks/pages/task-board-page/task-board-page.component';
 import { authGuard } from '@core/guards/auth-guard';
@@ -9,13 +8,8 @@ import { RegisterPageComponent } from './auth/pages/register/register-page.compo
 export const routes: Routes = [
   {
     path: '',
-    redirectTo: 'home',
+    redirectTo: 'auth/login',
     pathMatch: 'full',
-  },
-  {
-    title: 'DailyList - Home',
-    path: 'home',
-    component: HomePageComponent,
   },
   {
     title: 'DailyList - Login',

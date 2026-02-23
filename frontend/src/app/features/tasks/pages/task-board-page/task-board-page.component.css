@@ -1,6 +1,5 @@
 .task-board {
-  background-color: var(--background-color);
-  color: var(--font-color);
+  background-color: var(--secondary);
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -20,9 +19,10 @@
   gap: 10px;
 }
 
-.task-board__month {
-  font-size: clamp(0.5rem, calc(1vw + 1.5rem), 2rem);
+.task-board__tile {
+  font-size: 3.0rem;
   transition: opacity 0.2s ease-in-out;
+  letter-spacing: 1.3px;
   font-weight: bold;
 }
 

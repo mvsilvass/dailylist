@@ -1,27 +1,27 @@
 <app-auth-layout mode="login">
+  <form class="auth-form" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <input
+      class="auth-input"
+      data-cy="login-email"
+      formControlName="email"
+      type="email"
+      placeholder="Email"
+      required
+    />
 
-    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-      <input
-        data-cy="login-email"
-        formControlName="email"
-        type="email"
-        placeholder="Email"
-        required
-      />
+    <input
+      class="auth-input"
+      data-cy="login-password"
+      formControlName="password"
+      type="password"
+      placeholder="Senha"
+      required
+    />
 
-      <input
-        data-cy="login-password"
-        formControlName="password"
-        type="password"
-        placeholder="Senha"
-        required
-      />
+    <app-button data-cy="login-submit" label="Entrar" type="submit" />
 
-      <app-button data-cy="login-submit" label="Entrar" type="submit"/>
-
-      @if (errorMessage) {
-        <p data-cy="login-error-message" class="message error">{{ errorMessage }}</p>
-      }
-    </form>
-
+    @if (errorMessage) {
+      <p data-cy="login-error-message" class="message error">{{ errorMessage }}</p>
+    }
+  </form>
 </app-auth-layout>

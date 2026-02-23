@@ -1,6 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable, signal } from '@angular/core';
-import { catchError, Observable, throwError } from 'rxjs';
+import { catchError, Observable, throwError, tap } from 'rxjs';
 import { environment } from '@env/environment';
 
 import type { Task } from '../models/task.model';
@@ -17,6 +17,7 @@ export class TaskService {
 
   public getUserTasks(): Observable<Task[]> {
     return this.http.get<Task[]>(`${environment.apiUrl}/tasks`).pipe(
+      tap((tasks) => this.tasks.set(tasks)),
       catchError((error) => {
         return throwError(() => error);
       }),
@@ -32,7 +33,22 @@ export class TaskService {
   }
 
   public updateTask(task: Task): Observable<Task> {
-    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task);
+    return this.http.put<Task>(`${environment.apiUrl}/tasks/${task.id}`, task).pipe(
+      tap((updatedTask: Task) => {
+        this.tasks.update((allTasks) =>
+          allTasks.map((task) => (task.id === updatedTask.id ? updatedTask : task)),
+        );
+      }),
+    );
+  }
+
+  public deleteTask(task: Task): Observable<string> {
+    return this.http
+      .delete(`${environment.apiUrl}/tasks/${task.id}`, { responseType: 'text' }).pipe(
+        tap(() => {
+          this.tasks.update((tasks) => tasks.filter((t) => t.id !== task.id));
+        }),
+      );
   }
 
   public reorderTasks(updateTasks: TaskPosition[]): Observable<void> {
@@ -58,11 +74,13 @@ export class TaskService {
         );
       })
 
-      .sort((a, b) => a.priority - b.priority);
-  }
+      .sort((a, b) => {
+        if (a.isDone !== b.isDone) {
+          return a.isDone ? 1 : -1;
+        }
 
-  public setTasks(tasks: Task[]) {
-    this.tasks.set(tasks);
+        return a.priority - b.priority;
+      });
   }
 
   public addTask(newTask: Task) {

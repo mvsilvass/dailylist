@@ -8,25 +8,24 @@ public record TaskResponse(
     Long id,
     String title,
     String description,
-    String image,
     String link,
     int priority,
     Date targetDate,
     Date createdAt,
-    Date updatedAt
+    Date updatedAt,
+    boolean isDone
 ) {
-    
     public static TaskResponse from(Task task) {
         return new TaskResponse(
             task.getTaskId(),
             task.getTitle(),
             task.getDescription(),
-            task.getImage(),
             task.getLink(),
             task.getPriority(),
             task.getTargetDate(),
             task.getCreatedAt(),
-            task.getUpdatedAt()
+            task.getUpdatedAt(),
+            task.isDone()
         );
     }
 }

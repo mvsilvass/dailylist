@@ -1,5 +1,13 @@
-<div class="task-item">
-  <p class="task-item__title">
-    {{ task.title }}
-  </p>
+<div class="task-item" [class.completed]="task.isDone">
+  <div class="task-item__content" (click)="openDialog()">
+    @if (task.description) {
+      <mat-icon class="task-item__icon" fontIcon="sticky_note_2" />
+    }
+
+    <p class="task-item__title">
+      {{ task.title }}
+    </p>
+  </div>
+
+  <mat-checkbox class="task-item__checkbox" [checked]="task.isDone" (change)="onChecked()" />
 </div>

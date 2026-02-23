@@ -1,4 +1,4 @@
-import { Component, computed, signal } from '@angular/core';
+import { Component, computed, OnInit, signal } from '@angular/core';
 import { SessionService } from '@core/services/session.service';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TitleCasePipe } from '@angular/common';
@@ -18,27 +18,25 @@ import type { Task } from '../../models/task.model';
   styleUrl: './task-board-page.component.css',
   imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
-export class TaskBoardPageComponent {
+export class TaskBoardPageComponent implements OnInit {
   constructor(
     private sessionService: SessionService,
     private taskService: TaskService,
     private router: Router,
   ) {}
 
-  private selectedDate = signal(new Date());
+  protected selectedDate = signal(new Date());
 
-  public weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
+  protected weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
 
-  public selectedMonth = computed(() =>
+  protected selectedMonth = computed(() =>
     this.selectedDate().toLocaleString('pt-BR', { month: 'long' }),
   );
 
-  public selectedYear = computed(() => this.selectedDate().getFullYear());
+  protected selectedYear = computed(() => this.selectedDate().getFullYear());
 
   ngOnInit() {
-    this.taskService.getUserTasks().subscribe({
-      next: (response) => this.taskService.setTasks(response),
-    });
+    this.taskService.getUserTasks().subscribe();
   }
 
   private getFirstDayOfWeek(date: Date): Date {
@@ -64,7 +62,7 @@ export class TaskBoardPageComponent {
     return date.getDay() === 0 || date.getDay() === 6;
   }
 
-  public updateWeek(days: number) {
+  private updateWeek(days: number) {
     this.selectedDate.update((current) => {
       const nextWeek = new Date(current);
       nextWeek.setDate(current.getDate() + days);

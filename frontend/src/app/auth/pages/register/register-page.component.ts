@@ -1,17 +1,18 @@
-import { Component } from '@angular/core';
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { Component } from '@angular/core';
+
+import { AuthLayoutComponent } from 'app/auth/components/auth-layout/auth-layout.component';
+import { ButtonComponent } from 'app/shared/components/button/button.component';
+import { AuthService } from 'app/auth/services/auth.service';
+
 import { RegisterRequest } from 'app/auth/dtos/register/register-request';
 import { RegisterResponse } from 'app/auth/dtos/register/register-response';
-import { AuthService } from 'app/auth/services/auth.service';
-import { AuthLayoutComponent } from "app/auth/components/auth-layout/auth-layout.component";
-import { ButtonComponent } from "app/shared/components/button/button.component";
 
 @Component({
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
   templateUrl: './register-page.component.html',
-  styleUrl: './register-page.component.css',
 })
 export class RegisterPageComponent {
   constructor(private authService: AuthService) {}

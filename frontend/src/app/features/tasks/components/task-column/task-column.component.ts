@@ -1,5 +1,5 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, inject, Input } from '@angular/core';
 
 import {
   CdkDrag,
@@ -28,6 +28,10 @@ export class TaskColumnComponent {
   @Input({ required: true }) tasks!: Task[];
 
   private taskService = inject(TaskService);
+
+  protected updateTaskStatus(task: Task) {
+    this.taskService.updateTask(task).subscribe();
+  }
 
   private reorderTaskInSameColumn(event: CdkDragDrop<Task[]>) {
     moveItemInArray(event.container.data, event.previousIndex, event.currentIndex);

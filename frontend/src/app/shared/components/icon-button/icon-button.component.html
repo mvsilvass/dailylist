@@ -1,3 +1,9 @@
-<button class="icon-button" type="button" [attr.aria-label]="ariaLabel" (click)="onClick()">
-  <span class="material-icons"> {{icon}} </span>
+<button
+  type="button"
+  class="icon-button"
+  [class.active]="isActive"
+  [attr.aria-label]="ariaLabel"
+  (click)="onClick()"
+>
+  <mat-icon [fontIcon]="icon" />
 </button>
