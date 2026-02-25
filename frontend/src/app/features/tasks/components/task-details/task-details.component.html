@@ -12,9 +12,9 @@
     />
 
     <app-icon-button
-      mat-dialog-close
+      [matMenuTriggerFor]="actionsMenu"
+      ariaLabel="Abrir menu de ações"
       icon="more_horiz"
-      ariaLabel="Mais opções"
     />
   </div>
 </header>
@@ -43,3 +43,18 @@
   >
   </textarea>
 </footer>
+
+<mat-menu #actionsMenu="matMenu" xPosition="before">
+  <button type="button" mat-menu-item>
+    <mat-icon>arrow_right_alt</mat-icon>
+    <span>Amanhã</span>
+  </button>
+  <button type="button" mat-menu-item>
+    <mat-icon>event_upcoming</mat-icon>
+    <span>Próx. semana</span>
+  </button>
+  <button type="button" mat-menu-item>
+    <span>Duplicar</span>
+    <mat-icon>content_copy</mat-icon>
+  </button>
+</mat-menu>

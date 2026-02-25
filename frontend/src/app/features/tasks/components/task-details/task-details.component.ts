@@ -5,14 +5,25 @@ import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/materia
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { FormsModule } from '@angular/forms';
 
-import { IconButtonComponent } from "app/shared/components/icon-button/icon-button.component";
+import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TaskService } from '../../services/task.service';
 import type { Task } from '../../models/task.model';
+
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
-  imports: [MatDialogModule, FormsModule, DatePipe, MatCheckboxModule, IconButtonComponent],
+  imports: [
+    MatDialogModule,
+    FormsModule,
+    DatePipe,
+    MatCheckboxModule,
+    IconButtonComponent,
+    MatMenuModule,
+    MatIconModule,
+],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
