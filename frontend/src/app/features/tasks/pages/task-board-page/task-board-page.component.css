@@ -19,14 +19,14 @@
   gap: 10px;
 }
 
-.task-board__tile {
+.task-board__title {
   font-size: 3.0rem;
   transition: opacity 0.2s ease-in-out;
   letter-spacing: 1.3px;
   font-weight: bold;
 }
 
-.task-board__month:hover {
+.task-board__title:hover {
   cursor: pointer;
   opacity: 0.8;
 }
