@@ -23,7 +23,7 @@ import { MatMenuModule } from '@angular/material/menu';
     IconButtonComponent,
     MatMenuModule,
     MatIconModule,
-],
+  ],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
@@ -34,11 +34,11 @@ export class TaskDetailsComponent {
 
   private dialog = inject(MatDialogRef);
 
-  protected taskTargetDate = signal(this.task.targetDate);
-  protected taskDescription = signal(this.task.description);
-  protected taskTitle = signal(this.task.title);
-  protected taskIsDone = signal(this.task.isDone);
-  protected taskLink = signal(this.task.link);
+  protected taskTargetDate = signal<Date>(this.task.targetDate);
+  protected taskDescription = signal<string>(this.task.description);
+  protected taskTitle = signal<string>(this.task.title);
+  protected taskIsDone = signal<boolean>(this.task.isDone);
+  protected taskLink = signal<string>(this.task.link);
 
   constructor() {
     this.dialog.backdropClick().subscribe(() => {
@@ -84,5 +84,32 @@ export class TaskDetailsComponent {
         console.log(error);
       },
     });
+  }
+
+  private updateTaskDate(days: number) {
+    const newDate = new Date(this.taskTargetDate());
+    newDate.setDate(newDate.getDate() + days);
+    return newDate;
+  }
+
+  protected get tomorrow() {
+    return this.updateTaskDate(1);
+  }
+
+  protected get nextWeek() {
+    return this.updateTaskDate(7);
+  }
+
+  protected rescheduleTask(newDate: Date) {
+    const updateTask: Task = {
+      ...this.task,
+      title: this.taskTitle(),
+      targetDate: newDate,
+      isDone: this.taskIsDone(),
+      description: this.taskDescription(),
+      link: this.taskLink(),
+    };
+
+    this.dialog.close(updateTask);
   }
 }

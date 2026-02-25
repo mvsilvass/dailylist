@@ -45,11 +45,11 @@
 </footer>
 
 <mat-menu #actionsMenu="matMenu" xPosition="before">
-  <button type="button" mat-menu-item>
+  <button type="button" mat-menu-item (click)="rescheduleTask(tomorrow)">
     <mat-icon>arrow_right_alt</mat-icon>
     <span>Amanhã</span>
   </button>
-  <button type="button" mat-menu-item>
+  <button type="button" mat-menu-item (click)="rescheduleTask(nextWeek)">
     <mat-icon>event_upcoming</mat-icon>
     <span>Próx. semana</span>
   </button>
