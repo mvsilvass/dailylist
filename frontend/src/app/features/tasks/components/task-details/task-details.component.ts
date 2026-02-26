@@ -1,4 +1,5 @@
 import { Component, computed, inject, signal } from '@angular/core';
+import { Clipboard } from '@angular/cdk/clipboard';
 import { DatePipe } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
@@ -32,14 +33,16 @@ import type { Task } from '../../models/task.model';
 export class TaskDetailsComponent {
   protected task = inject(MAT_DIALOG_DATA);
   private taskService = inject(TaskService);
-
   private dialog = inject(MatDialogRef);
+  private clipboard = inject(Clipboard);
 
   protected taskTargetDate = signal<Date>(this.task.targetDate);
   protected taskDescription = signal<string>(this.task.description);
   protected taskTitle = signal<string>(this.task.title);
   protected taskIsDone = signal<boolean>(this.task.isDone);
   protected taskLink = signal<string>(this.task.link);
+
+  protected isEditingLink = signal<boolean>(false);
 
   constructor() {
     this.dialog.backdropClick().subscribe(() => {
@@ -132,5 +135,13 @@ export class TaskDetailsComponent {
         console.error(error);
       },
     });
+  }
+
+  protected toggleLinkMode() {
+    this.isEditingLink.update((state) => !state);
+  }
+
+  protected copyTaskLink(){
+    this.clipboard.copy(this.taskLink());
   }
 }

@@ -27,8 +27,9 @@
 
 .task-details__toolbar {
   --btn-icon-size: 1.25rem;
-  --btn-bg: transparent;
+  --btn-bg: var(--gray-3);
   --btn-icon-color: var(--tertiary);
+  --btn-radius: 10px;
   display: flex;
   gap: 10px;
 }
@@ -40,19 +41,19 @@
   align-items: center;
 }
 
-.task-details__input {
+::ng-deep .mat-mdc-checkbox {
+  transform: scale(1.25);
+}
+
+.task-details__title-input {
   background-color: white;
   width: 100%;
   padding: 10px 0px;
   font-size: 1.75rem;
 }
 
-::ng-deep .mat-mdc-checkbox {
-  transform: scale(1.25);
-}
-
 .completed,
-.completed .task-details__input,
+.completed task-details__title-input,
 .completed ::ng-deep .mdc-checkbox__background,
 .completed ::ng-deep .mdc-checkbox__checkmark-path {
   color: var(--tertiary-50);
@@ -68,7 +69,8 @@
   height: 100%;
   gap: 10px;
 }
-.task-details__format-bar{
+
+.task-details__format-bar {
   --btn-icon-color: var(--tertiary);
   --btn-active-icon: var(--tertiary);
   --btn-active-bg: var(--secondary);
@@ -78,11 +80,45 @@
   --btn-radius: 25%;
 }
 
-.task-details__textarea {
+.task-details__link-wrapper {
+  background: var(--gray-1);
+  border: 2px solid var(--gray-2);
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 10px 5px;
+  justify-content: space-between;
+}
+
+.task-details__link-input {
   background: transparent;
+  line-height: 1.2;
+  margin-right: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  flex: 1;
+}
+
+.input-icon {
+  font-size: 16px;
+  width: 16px;
+  height: auto;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-right: 5px;
+}
+
+.input-icon:hover {
+  color: var(--tertiary-50);
+}
+
+.task-details__textarea {
+  background: var(--gray-1);
+  border: 2px solid var(--gray-2);
+  border-radius: 10px;
   overflow: auto;
   resize: none;
-  padding: 10px 0px;
+  padding: 10px 5px;
   font-size: 1.25rem;
   line-height: 1.2;
   width: 100%;
@@ -99,7 +135,7 @@
 }
 
 ::ng-deep .mat-mdc-menu-item:hover {
-  color: var(--tertiary-50);;
+  color: var(--tertiary-50);
 }
 
 ::ng-deep .mat-mdc-menu-panel {

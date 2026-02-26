@@ -22,7 +22,7 @@
 <main class="task-details__content" [class.completed]="taskIsDone()">
   <input
     type="text"
-    class="task-details__input"
+    class="task-details__title-input"
     [(ngModel)]="taskTitle"
     placeholder="Título da tarefa"
   />
@@ -31,17 +31,41 @@
 
 <footer class="task-details__footer">
   <div class="task-details__format-bar">
+    @if (taskLink() || isEditingLink()) {
+      <app-icon-button
+        icon="link"
+        ariaLabel="Mostrar link"
+        [isActive]="isEditingLink()"
+        (clicked)="toggleLinkMode()"
+      />
+    } @else {
+      <app-icon-button icon="add_link" ariaLabel="Adicionar link" (clicked)="toggleLinkMode()" />
+    }
+
     <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="true" />
     <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="true" />
     <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" />
   </div>
 
+  @if (isEditingLink()) {
+    <div class="task-details__link-wrapper">
+      <input
+        type="text"
+        [(ngModel)]="taskLink"
+        class="task-details__link-input"
+        placeholder="Digite o link aqui..."
+      />
+
+      <mat-icon class="input-icon" fontIcon="content_copy" (click)="copyTaskLink()" />
+    </div>
+  }
+
   <textarea
     class="task-details__textarea"
     placeholder="Adicione notas aqui..."
     [(ngModel)]="taskDescription"
-  >
-  </textarea>
+    maxlength="255"
+  ></textarea>
 </footer>
 
 <mat-menu #actionsMenu="matMenu" xPosition="before">
