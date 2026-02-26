@@ -3,14 +3,15 @@ import { DatePipe } from '@angular/common';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatIconModule } from '@angular/material/icon';
+import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TaskService } from '../../services/task.service';
-import type { Task } from '../../models/task.model';
 
-import { MatIconModule } from '@angular/material/icon';
-import { MatMenuModule } from '@angular/material/menu';
+import type { NewTask } from '../../models/new-task.model';
+import type { Task } from '../../models/task.model';
 
 @Component({
   selector: 'app-task-details',
@@ -111,5 +112,25 @@ export class TaskDetailsComponent {
     };
 
     this.dialog.close(updateTask);
+  }
+
+  protected duplicateTask() {
+    const targetDate = new Date(this.taskTargetDate());
+
+    const newTask: NewTask = {
+      title: this.taskTitle(),
+      description: this.taskDescription(),
+      link: this.taskLink(),
+      targetDate: targetDate.getTime(),
+    };
+
+    this.taskService.createTask(newTask).subscribe({
+      next: (response: Task) => {
+        this.taskService.addTask(response);
+      },
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 }
