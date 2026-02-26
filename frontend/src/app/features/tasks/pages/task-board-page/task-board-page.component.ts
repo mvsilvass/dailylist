@@ -36,7 +36,11 @@ export class TaskBoardPageComponent implements OnInit {
   protected selectedYear = computed(() => this.selectedDate().getFullYear());
 
   ngOnInit() {
-    this.taskService.getUserTasks().subscribe();
+    this.taskService.getUserTasks().subscribe({
+      error: (error) => {
+        console.error(error);
+      },
+    });
   }
 
   private getFirstDayOfWeek(date: Date): Date {

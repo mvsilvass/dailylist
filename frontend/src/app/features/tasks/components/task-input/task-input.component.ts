@@ -26,7 +26,6 @@ export class TaskInputComponent {
       targetDate: this.date.getTime(),
       description: null,
       link: null,
-      image: null,
     };
 
     this.taskService.createTask(newTask).subscribe({
