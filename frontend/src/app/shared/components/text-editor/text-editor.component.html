@@ -1,5 +1,5 @@
 <div class="editor-container">
-  @if (!text() && !isFocused) {
+  @if (!text().trim() && !isFocused) {
     <span class="placeholder">{{ placeholder() }}</span>
   }
 
@@ -9,6 +9,7 @@
     contenteditable="true"
     (focus)="onFocus()"
     (blur)="onBlur()"
+    (paste)="onPaste($event)"
     (input)="onTyping($event)"
   ></div>
 </div>

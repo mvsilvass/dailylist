@@ -24,26 +24,37 @@ export class TextEditorComponent implements AfterViewInit {
   constructor() {
     effect(() => {
       const signalValue = this.text();
-      const domValue = this.editorRef?.nativeElement.textContent ?? '';
+      const element = this.editorRef?.nativeElement;
 
-      if (this.editorRef && signalValue !== domValue) {
-        this.editorRef.nativeElement.textContent = signalValue;
+      if (element && signalValue !== element.innerText && !this.isFocused) {
+        element.innerText = signalValue;
       }
     });
   }
 
   ngAfterViewInit() {
     if (this.editorRef) {
-      this.editorRef.nativeElement.textContent = this.text();
+      this.editorRef.nativeElement.innerText = this.text();
     }
   }
 
   protected onTyping(event: Event) {
     const element = event.target as HTMLElement;
-    const content = element.textContent || '';
+    let content = element.innerText || '';
 
+    if (content === '\n') content = '';
     if (this.text() !== content) {
       this.text.set(content);
+    }
+  }
+
+  protected onPaste(event: ClipboardEvent) {
+    event.preventDefault();
+    const pastedText = event.clipboardData?.getData('text/plain') || '';
+    this.text.set(pastedText);
+
+    if (this.editorRef) {
+      this.editorRef.nativeElement.innerText = this.text();
     }
   }
 
@@ -53,5 +64,6 @@ export class TextEditorComponent implements AfterViewInit {
 
   protected onBlur() {
     this.isFocused = false;
+    this.text.set(this.editorRef.nativeElement.innerText);
   }
 }
