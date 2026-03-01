@@ -13,6 +13,7 @@ import { TaskService } from '../../services/task.service';
 
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
+import { TextEditorComponent } from "app/shared/components/text-editor/text-editor.component";
 
 @Component({
   selector: 'app-task-details',
@@ -25,7 +26,8 @@ import type { Task } from '../../models/task.model';
     IconButtonComponent,
     MatMenuModule,
     MatIconModule,
-  ],
+    TextEditorComponent
+],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',

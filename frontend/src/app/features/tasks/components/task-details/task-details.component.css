@@ -112,24 +112,6 @@
   color: var(--tertiary-50);
 }
 
-.task-details__textarea {
-  background: var(--gray-1);
-  border: 2px solid var(--gray-2);
-  border-radius: 10px;
-  overflow: auto;
-  resize: none;
-  padding: 10px 5px;
-  font-size: 1.25rem;
-  line-height: 1.2;
-  width: 100%;
-  flex-grow: 1;
-  flex: 1;
-}
-
-.task-details__textarea::-webkit-scrollbar {
-  width: 0px;
-}
-
 .task-details__format-bar {
   display: flex;
   gap: 10px;
@@ -143,4 +125,9 @@
   background-color: white !important;
   border: 1.5px solid var(--tertiary-50);
   border-radius: 10px !important;
+}
+
+.editable-area{
+  display: flex;
+  flex-grow: 1;
 }

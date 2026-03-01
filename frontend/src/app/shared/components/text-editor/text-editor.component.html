@@ -1,0 +1,14 @@
+<div class="editor-container">
+  @if (!text() && !isFocused) {
+    <span class="placeholder">{{ placeholder() }}</span>
+  }
+
+  <div
+    #editor
+    class="editable-area"
+    contenteditable="true"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
+    (input)="onTyping($event)"
+  ></div>
+</div>

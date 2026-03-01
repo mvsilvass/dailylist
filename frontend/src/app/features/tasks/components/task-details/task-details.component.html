@@ -60,12 +60,11 @@
     </div>
   }
 
-  <textarea
-    class="task-details__textarea"
-    placeholder="Adicione notas aqui..."
-    [(ngModel)]="taskDescription"
-    maxlength="255"
-  ></textarea>
+  <app-text-editor
+    class="editable-area"
+    [(text)]="taskDescription"
+    [placeholder]="'Adicione notas aqui...'"
+  />
 </footer>
 
 <mat-menu #actionsMenu="matMenu" xPosition="before">
