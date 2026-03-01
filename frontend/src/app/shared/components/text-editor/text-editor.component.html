@@ -1,5 +1,5 @@
 <div class="editor-container">
-  @if (!text().trim() && !isFocused) {
+  @if (!(text() || '').trim() && !isFocused) {
     <span class="placeholder">{{ placeholder() }}</span>
   }
 
