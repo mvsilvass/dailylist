@@ -1,8 +1,8 @@
 .editor-container {
   position: relative;
+  max-height: 35vh;
   display: flex;
   width: 100%;
-
 }
 
 .editable-area {
@@ -13,20 +13,21 @@
   font-size: 1.25rem;
   line-height: 1.2;
   color: var(--tertiary);
-overflow: visible;
+  overflow-y: auto;
+  overflow-x: hidden;
   max-height: 100%;
   max-width: 100%;
   display: block;
   flex: 1;
 }
 
-.editor-box::-webkit-scrollbar {
-  width: 8px;
+.editable-area::-webkit-scrollbar {
+  width: 5px;
 }
 
-.editor-box::-webkit-scrollbar-thumb {
-  background-color: #ccc;
-  border-radius: 4px;
+.editable-area::-webkit-scrollbar-thumb {
+  background: var(--gray-3);
+  border-radius: 20px;
 }
 
 .placeholder {
