@@ -2,18 +2,20 @@ import { Component, computed, inject, signal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DatePipe } from '@angular/common';
 
+import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
+import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
+import { TextEditorComponent } from 'app/shared/components/text-editor/text-editor.component';
 import { TaskService } from '../../services/task.service';
 
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
-import { TextEditorComponent } from "app/shared/components/text-editor/text-editor.component";
 
 @Component({
   selector: 'app-task-details',
@@ -26,8 +28,10 @@ import { TextEditorComponent } from "app/shared/components/text-editor/text-edit
     IconButtonComponent,
     MatMenuModule,
     MatIconModule,
-    TextEditorComponent
-],
+    TextEditorComponent,
+    MatInputModule,
+    MatDatepickerModule,
+  ],
   providers: [DatePipe],
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
@@ -38,13 +42,14 @@ export class TaskDetailsComponent {
   private dialog = inject(MatDialogRef);
   private clipboard = inject(Clipboard);
 
-  protected taskTargetDate = signal<Date>(this.task.targetDate);
+  protected taskTargetDate = signal<Date>(new Date(this.task.targetDate));
   protected taskDescription = signal<string>(this.task.description);
   protected taskTitle = signal<string>(this.task.title);
   protected taskIsDone = signal<boolean>(this.task.isDone);
   protected taskLink = signal<string>(this.task.link);
 
   protected isEditingLink = signal<boolean>(false);
+  protected isCalendarOpen = signal<boolean>(false);
 
   constructor() {
     this.dialog.backdropClick().subscribe(() => {
@@ -90,6 +95,14 @@ export class TaskDetailsComponent {
         console.log(error);
       },
     });
+  }
+
+  protected onDateChange(event: MatDatepickerInputEvent<Date>) {
+    const selectedDate = event.value;
+
+    if (selectedDate) {
+      this.taskTargetDate.set(selectedDate);
+    }
   }
 
   private updateTaskDate(days: number) {
@@ -143,7 +156,7 @@ export class TaskDetailsComponent {
     this.isEditingLink.update((state) => !state);
   }
 
-  protected copyTaskLink(){
+  protected copyTaskLink() {
     this.clipboard.copy(this.taskLink());
   }
 }

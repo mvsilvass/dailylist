@@ -1,7 +1,25 @@
 <header class="task-details__header">
-  <h1 class="task-details__date">
-    {{ taskTargetDate() | date: 'EEEE, d MMM yyyy' }}
-  </h1>
+  <div class="task-details__date-content">
+    <div class="task-details__date-picker">
+      <input
+        [matDatepicker]="picker"
+        [value]="taskTargetDate()"
+        (dateChange)="onDateChange($event)"
+      />
+
+      <mat-datepicker-toggle [for]="picker" [class.active]="isCalendarOpen()" />
+      <mat-datepicker
+        #picker
+        panelClass="task-details__datepicker-panel"
+        (opened)="isCalendarOpen.set(true)"
+        (closed)="isCalendarOpen.set(false)"
+      />
+    </div>
+
+    <h1 class="task-details__date">
+      {{ taskTargetDate() | date: 'EEEE, d MMM yyyy' }}
+    </h1>
+  </div>
 
   <div class="task-details__toolbar">
     <app-icon-button
