@@ -16,6 +16,7 @@ import { TaskService } from '../../services/task.service';
 
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
+import { CalendarService } from 'app/shared/services/calendar-service';
 
 @Component({
   selector: 'app-task-details',
@@ -37,8 +38,10 @@ import type { Task } from '../../models/task.model';
   styleUrl: './task-details.component.css',
 })
 export class TaskDetailsComponent {
-  protected task = inject(MAT_DIALOG_DATA);
+  private calendarService = inject(CalendarService);
   private taskService = inject(TaskService);
+
+  protected task = inject(MAT_DIALOG_DATA);
   private dialog = inject(MatDialogRef);
   private clipboard = inject(Clipboard);
   private destroyRef = inject(DestroyRef);
@@ -118,8 +121,8 @@ export class TaskDetailsComponent {
   }
 
   private updateTaskDate(days: number) {
-    const newDate = new Date(this.taskTargetDate());
-    newDate.setDate(newDate.getDate() + days);
+    const newDate = this.calendarService.addDays(this.taskTargetDate(), days);
+    this.taskTargetDate.set(newDate);
     return newDate;
   }
 

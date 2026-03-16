@@ -1,4 +1,4 @@
-import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
+import { Component, DestroyRef, inject, OnInit } from '@angular/core';
 import { SessionService } from '@core/services/session.service';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TitleCasePipe } from '@angular/common';
@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { TaskColumnComponent } from '../../components/task-column/task-column.component';
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 
+import { CalendarService } from 'app/shared/services/calendar-service';
 import { TaskService } from '../../services/task.service';
 
 import type { Task } from '../../models/task.model';
@@ -19,17 +20,16 @@ import type { Task } from '../../models/task.model';
   imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
 export class TaskBoardPageComponent implements OnInit {
-  private sessionService = inject(SessionService);
+  private calendarService = inject(CalendarService);
   private taskService = inject(TaskService);
+
+  private sessionService = inject(SessionService);
   private destroyRef = inject(DestroyRef);
   private router = inject(Router);
 
-  protected selectedDate = signal(new Date());
-  protected weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
-  protected selectedYear = computed(() => this.selectedDate().getFullYear());
-  protected selectedMonth = computed(() =>
-    this.selectedDate().toLocaleString('pt-BR', { month: 'long' }),
-  );
+  public weekDays = this.calendarService.selectedWeekDays;
+  public selectedMonth = this.calendarService.selectedMonth;
+  public selectedYear = this.calendarService.selectedYear;
 
   ngOnInit() {
     const subscription = this.taskService.getUserTasks().subscribe({
@@ -43,47 +43,24 @@ export class TaskBoardPageComponent implements OnInit {
     });
   }
 
-  private getFirstDayOfWeek(date: Date): Date {
-    const daysToSubtract = date.getDay() === 0 ? 6 : date.getDay() - 1;
-    return new Date(date.getFullYear(), date.getMonth(), date.getDate() - daysToSubtract);
+  public nextWeek() {
+    this.calendarService.updateReferenceToNextWeek();
   }
 
-  private generateWeekDays(date: Date): Date[] {
-    const monday = this.getFirstDayOfWeek(date);
+  public previousWeek() {
+    this.calendarService.updateReferenceToPreviousWeek();
+  }
 
-    return Array.from({ length: 7 }, (_, i) => {
-      const day = new Date(monday);
-      day.setDate(monday.getDate() + i);
-      return day;
-    });
+  public resetToToday() {
+    this.calendarService.updateReferenceToToday();
+  }
+
+  public isWeekend(date: Date): boolean {
+    return this.calendarService.isWeekend(date);
   }
 
   public getTasksForDate(date: Date): Task[] {
     return this.taskService.getTasksForDate(date);
-  }
-
-  public isWeekend(date: Date): boolean {
-    return date.getDay() === 0 || date.getDay() === 6;
-  }
-
-  private updateWeek(days: number) {
-    this.selectedDate.update((current) => {
-      const nextWeek = new Date(current);
-      nextWeek.setDate(current.getDate() + days);
-      return nextWeek;
-    });
-  }
-
-  public goToNextWeek() {
-    this.updateWeek(7);
-  }
-
-  public goTopreviousWeek() {
-    this.updateWeek(-7);
-  }
-
-  public goToCurrentWeek() {
-    this.selectedDate.set(new Date());
   }
 
   public logout() {

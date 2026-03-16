@@ -1,7 +1,6 @@
 <section class="task-board">
   <header class="task-board__header">
-
-    <p class="task-board__title" (click)="goToCurrentWeek()">
+    <p class="task-board__title" (click)="resetToToday()">
       {{ selectedMonth() | titlecase }} {{ selectedYear() }}
     </p>
 
@@ -9,13 +8,13 @@
       <app-icon-button
         icon="arrow_back_ios_new"
         ariaLabel="Ir para a semana anterior"
-        (clicked)="goTopreviousWeek()"
+        (clicked)="previousWeek()"
       />
 
       <app-icon-button
         icon="arrow_forward_ios"
         ariaLabel="Ir para a próxima semana"
-        (clicked)="goToNextWeek()"
+        (clicked)="nextWeek()"
       />
 
       <app-icon-button icon="person" ariaLabel="Abrir perfil do usuário" />
