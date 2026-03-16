@@ -1,6 +1,6 @@
 .editor-container {
   position: relative;
-  max-height: 35vh;
+  max-height: 100%;
   display: flex;
   width: 100%;
 }
