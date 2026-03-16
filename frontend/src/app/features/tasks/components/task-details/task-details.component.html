@@ -60,9 +60,9 @@
       <app-icon-button icon="add_link" ariaLabel="Adicionar link" (clicked)="toggleLinkMode()" />
     }
 
-    <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="true" />
-    <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="true" />
-    <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" />
+    <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="isBold()" (clicked)="toggleBold()" />
+    <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="isItalic()" (clicked)="toggleItalic()" />
+    <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" (clicked)="resetStyles()" />
   </div>
 
   @if (isEditingLink()) {
@@ -82,6 +82,8 @@
     class="editable-area"
     [(text)]="taskDescription"
     [placeholder]="'Adicione notas aqui...'"
+    [(boldActive)]="isBold"
+    [(italicActive)]="isItalic"
   />
 </footer>
 

@@ -52,6 +52,9 @@ export class TaskDetailsComponent {
   protected isEditingLink = signal<boolean>(false);
   protected isCalendarOpen = signal<boolean>(false);
 
+  protected isBold = signal(false);
+  protected isItalic = signal(false);
+
   constructor() {
     const subscription = this.dialog.backdropClick().subscribe(() => {
       this.closeDialog();
@@ -171,5 +174,18 @@ export class TaskDetailsComponent {
 
   protected copyTaskLink() {
     this.clipboard.copy(this.taskLink());
+  }
+
+  protected toggleBold() {
+    this.isBold.update((value) => !value);
+  }
+
+  protected toggleItalic() {
+    this.isItalic.update((value) => !value);
+  }
+
+  protected resetStyles() {
+    this.isBold.set(false);
+    this.isItalic.set(false);
   }
 }

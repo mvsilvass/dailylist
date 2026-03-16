@@ -17,6 +17,10 @@ import {
 export class TextEditorComponent implements AfterViewInit {
   public text = model.required<string>();
   public placeholder = input.required<string>();
+
+  public boldActive = model(false);
+  public italicActive = model(false);
+
   protected isFocused = false;
 
   @ViewChild('editor') editorRef!: ElementRef<HTMLDivElement>;

@@ -7,9 +7,11 @@
     #editor
     class="editable-area"
     contenteditable="true"
-    (focus)="onFocus()"
-    (blur)="onBlur()"
+    [class.bold]="boldActive()"
+    [class.italic]="italicActive()"
     (paste)="onPaste($event)"
     (input)="onTyping($event)"
+    (focus)="onFocus()"
+    (blur)="onBlur()"
   ></div>
 </div>
