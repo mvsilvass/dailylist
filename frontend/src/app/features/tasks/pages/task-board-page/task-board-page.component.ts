@@ -1,4 +1,4 @@
-import { Component, computed, OnInit, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, OnInit, signal } from '@angular/core';
 import { SessionService } from '@core/services/session.service';
 import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TitleCasePipe } from '@angular/common';
@@ -19,27 +19,27 @@ import type { Task } from '../../models/task.model';
   imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
 export class TaskBoardPageComponent implements OnInit {
-  constructor(
-    private sessionService: SessionService,
-    private taskService: TaskService,
-    private router: Router,
-  ) {}
+  private sessionService = inject(SessionService);
+  private taskService = inject(TaskService);
+  private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
 
   protected selectedDate = signal(new Date());
-
   protected weekDays = computed(() => this.generateWeekDays(this.selectedDate()));
-
+  protected selectedYear = computed(() => this.selectedDate().getFullYear());
   protected selectedMonth = computed(() =>
     this.selectedDate().toLocaleString('pt-BR', { month: 'long' }),
   );
 
-  protected selectedYear = computed(() => this.selectedDate().getFullYear());
-
   ngOnInit() {
-    this.taskService.getUserTasks().subscribe({
+    const subscription = this.taskService.getUserTasks().subscribe({
       error: (error) => {
         console.error(error);
       },
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 

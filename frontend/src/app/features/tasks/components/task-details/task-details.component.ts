@@ -1,4 +1,4 @@
-import { Component, computed, inject, signal } from '@angular/core';
+import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
 import { DatePipe } from '@angular/common';
 
@@ -41,6 +41,7 @@ export class TaskDetailsComponent {
   private taskService = inject(TaskService);
   private dialog = inject(MatDialogRef);
   private clipboard = inject(Clipboard);
+  private destroyRef = inject(DestroyRef);
 
   protected taskTargetDate = signal<Date>(new Date(this.task.targetDate));
   protected taskDescription = signal<string>(this.task.description);
@@ -52,8 +53,12 @@ export class TaskDetailsComponent {
   protected isCalendarOpen = signal<boolean>(false);
 
   constructor() {
-    this.dialog.backdropClick().subscribe(() => {
+    const subscription = this.dialog.backdropClick().subscribe(() => {
       this.closeDialog();
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 
@@ -90,10 +95,14 @@ export class TaskDetailsComponent {
   }
 
   protected onDelete() {
-    this.taskService.deleteTask(this.task).subscribe({
+    const subscription = this.taskService.deleteTask(this.task).subscribe({
       error: (error) => {
         console.log(error);
       },
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 
@@ -142,13 +151,17 @@ export class TaskDetailsComponent {
       targetDate: targetDate.getTime(),
     };
 
-    this.taskService.createTask(newTask).subscribe({
+    const subscription = this.taskService.createTask(newTask).subscribe({
       next: (response: Task) => {
         this.taskService.addTask(response);
       },
       error: (error) => {
         console.error(error);
       },
+    });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
     });
   }
 

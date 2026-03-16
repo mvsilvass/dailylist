@@ -1,5 +1,5 @@
 import { HttpClient } from '@angular/common/http';
-import { Injectable, signal } from '@angular/core';
+import { inject, Injectable, signal } from '@angular/core';
 import { catchError, Observable, throwError, tap } from 'rxjs';
 import { environment } from '@env/environment';
 
@@ -11,8 +11,7 @@ import type { TaskPosition } from '../models/task-reorder.model';
   providedIn: 'root',
 })
 export class TaskService {
-  constructor(private http: HttpClient) {}
-
+  private http = inject(HttpClient);
   private tasks = signal<Task[]>([]);
 
   public getUserTasks(): Observable<Task[]> {
@@ -44,7 +43,8 @@ export class TaskService {
 
   public deleteTask(task: Task): Observable<string> {
     return this.http
-      .delete(`${environment.apiUrl}/tasks/${task.id}`, { responseType: 'text' }).pipe(
+      .delete(`${environment.apiUrl}/tasks/${task.id}`, { responseType: 'text' })
+      .pipe(
         tap(() => {
           this.tasks.update((tasks) => tasks.filter((t) => t.id !== task.id));
         }),
@@ -73,7 +73,6 @@ export class TaskService {
           taskDate.getDate() === date.getDate()
         );
       })
-
       .sort((a, b) => {
         if (a.isDone !== b.isDone) {
           return a.isDone ? 1 : -1;

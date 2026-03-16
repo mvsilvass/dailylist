@@ -1,4 +1,4 @@
-import { Component, inject, Input, signal } from '@angular/core';
+import { Component, DestroyRef, inject, Input, signal } from '@angular/core';
 import { TaskService } from '../../services/task.service';
 import { FormsModule } from '@angular/forms';
 
@@ -16,6 +16,7 @@ export class TaskInputComponent {
   @Input() date!: Date;
 
   private taskService = inject(TaskService);
+  private destroyRef = inject(DestroyRef);
   protected taskTitle = signal('');
 
   protected createTask(): void {
@@ -28,7 +29,7 @@ export class TaskInputComponent {
       link: null,
     };
 
-    this.taskService.createTask(newTask).subscribe({
+    const subscription = this.taskService.createTask(newTask).subscribe({
       next: (response: Task) => {
         (this.taskService.addTask(response), this.taskTitle.set(''));
       },
@@ -36,5 +37,10 @@ export class TaskInputComponent {
         console.error(error);
       },
     });
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    })
+
   }
 }
