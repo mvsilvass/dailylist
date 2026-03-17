@@ -1,8 +1,6 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 import { Clipboard } from '@angular/cdk/clipboard';
-import { DatePipe } from '@angular/common';
 
-import { MatDatepickerInputEvent, MatDatepickerModule } from '@angular/material/datepicker';
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
@@ -12,30 +10,30 @@ import { FormsModule } from '@angular/forms';
 
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TextEditorComponent } from 'app/shared/components/text-editor/text-editor.component';
+import { DatePickerComponent } from 'app/shared/components/date-picker/date-picker.component';
+
+import { CalendarService } from 'app/shared/services/calendar-service';
 import { TaskService } from '../../services/task.service';
 
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
-import { CalendarService } from 'app/shared/services/calendar-service';
 
 @Component({
   selector: 'app-task-details',
   standalone: true,
+  templateUrl: './task-details.component.html',
+  styleUrl: './task-details.component.css',
   imports: [
     MatDialogModule,
     FormsModule,
-    DatePipe,
     MatCheckboxModule,
     IconButtonComponent,
     MatMenuModule,
     MatIconModule,
     TextEditorComponent,
     MatInputModule,
-    MatDatepickerModule,
-  ],
-  providers: [DatePipe],
-  templateUrl: './task-details.component.html',
-  styleUrl: './task-details.component.css',
+    DatePickerComponent
+],
 })
 export class TaskDetailsComponent {
   private calendarService = inject(CalendarService);
@@ -53,7 +51,6 @@ export class TaskDetailsComponent {
   protected taskLink = signal<string>(this.task.link);
 
   protected isEditingLink = signal<boolean>(false);
-  protected isCalendarOpen = signal<boolean>(false);
 
   protected isBold = signal(false);
   protected isItalic = signal(false);
@@ -110,14 +107,6 @@ export class TaskDetailsComponent {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
-  }
-
-  protected onDateChange(event: MatDatepickerInputEvent<Date>) {
-    const selectedDate = event.value;
-
-    if (selectedDate) {
-      this.taskTargetDate.set(selectedDate);
-    }
   }
 
   private updateTaskDate(days: number) {

@@ -16,83 +16,6 @@
   align-items: center;
 }
 
-.task-details__date {
-  font-size: 1.8rem;
-}
-
-.task-details__date::first-letter {
-  text-transform: uppercase;
-}
-
-.task-details__date-content {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-}
-
-.task-details__date-picker {
-  position: relative;
-  display: flex;
-}
-
-.task-details__date-picker input {
-  position: absolute;
-  opacity: 0;
-  bottom: -20px;
-  left: -4.5px;
-}
-
-.task-details__date-picker mat-datepicker-toggle {
-  transform: scale(1.15);
-  opacity: 1;
-  transition:
-    opacity 0.3s ease-in-out,
-    transform 0.2s ease;
-}
-
-.task-details__date-picker mat-datepicker-toggle:hover {
-  opacity: 0.8;
-  cursor: pointer;
-}
-
-::ng-deep .mat-calendar-header {
-  background-color: var(--tertiary);
-  border-bottom: none;
-  padding: 2px 0 !important;
-  border-radius: 10px 10px 0px 0px;
-}
-
-::ng-deep .mat-calendar-content {
-  box-shadow: 0px 10px 20px var(--tertiary-50) !important;
-  background-color: var(--gray-2);
-  border-radius: 0px 0px 10px 10px;
-  padding-top: 20px !important;
-}
-
-::ng-deep .mat-calendar-body-label {
-  display: none !important;
-}
-
-::ng-deep .mat-calendar-body-today {
-  border: none !important;
-}
-
-::ng-deep .mat-calendar-previous-button,
-::ng-deep .mat-calendar-next-button,
-::ng-deep .mat-calendar-arrow,
-::ng-deep .mat-calendar-period-button,
-::ng-deep .mat-calendar-period-button * {
-  font-weight: bold !important;
-  fill: white !important;
-  color: white !important;
-}
-
-::ng-deep .mat-calendar-body-selected {
-  background-color: var(--gray-3) !important;
-  border: 1px solid var(--gray-4) !important;
-  border-radius: 10px !important;
-}
-
 .active {
   background-color: var(--gray-3);
   border-radius: 10px;
@@ -122,7 +45,7 @@
 .task-details__title-input {
   background-color: white;
   width: 100%;
-  padding: 10px 0px;
+  padding: 15px 0px;
   font-size: 1.75rem;
 }
 
@@ -149,7 +72,7 @@
   --btn-icon-color: var(--tertiary);
   --btn-active-icon: var(--tertiary);
   --btn-active-bg: var(--secondary);
-  --btn-icon-size: 1.25rem;
+  --btn-icon-size: 1.5rem;
   --btn-bg: transparent;
   --btn-padding: 5px;
   --btn-radius: 25%;
@@ -161,22 +84,26 @@
   display: flex;
   align-items: center;
   border-radius: 10px;
-  padding: 10px 5px;
+  padding: 20px 10px;
   justify-content: space-between;
 }
 
 .task-details__link-input {
   background: transparent;
-  line-height: 1.2;
   margin-right: 10px;
   white-space: nowrap;
   text-overflow: ellipsis;
+  font-size: 1rem;
   flex: 1;
 }
 
+.task-details__link-input::placeholder{
+  color: var(--tertiary-50);
+}
+
 .input-icon {
-  font-size: 16px;
-  width: 16px;
+  font-size: 20px;
+  width: 20px;
   height: auto;
   cursor: pointer;
   transition: color 0.2s;
@@ -200,9 +127,4 @@
   background-color: white !important;
   border: 1.5px solid var(--tertiary-50);
   border-radius: 10px !important;
-}
-
-.editable-area {
-  display: flex;
-  flex-grow: 1;
 }
