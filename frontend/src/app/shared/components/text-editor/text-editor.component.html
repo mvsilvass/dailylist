@@ -7,8 +7,8 @@
     #editor
     class="editable-area"
     contenteditable="true"
-    [class.bold]="boldActive()"
-    [class.italic]="italicActive()"
+    [class.bold]="bold()"
+    [class.italic]="italic()"
     (paste)="onPaste($event)"
     (input)="onTyping($event)"
     (focus)="onFocus()"
