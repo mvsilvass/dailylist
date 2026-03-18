@@ -1,0 +1,48 @@
+.format-bar {
+  --btn-icon-color: var(--tertiary);
+  --btn-active-icon: var(--tertiary);
+  --btn-active-bg: var(--secondary);
+  --btn-icon-size: 1.5rem;
+  --btn-bg: transparent;
+  --btn-padding: 5px;
+  --btn-radius: 25%;
+  display: flex;
+  gap: 10px;
+}
+
+.link-editor {
+  background: var(--gray-1);
+  border: 2px solid var(--gray-2);
+  display: flex;
+  align-items: center;
+  border-radius: 10px;
+  padding: 20px 10px;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+.link-editor__input {
+  background: transparent;
+  margin-right: 10px;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  font-size: 1rem;
+  flex: 1;
+}
+
+.link-editor__input::placeholder{
+  color: var(--tertiary-50);
+}
+
+.link-editor__icon {
+  font-size: 20px;
+  width: 20px;
+  height: auto;
+  cursor: pointer;
+  transition: color 0.2s;
+  margin-right: 5px;
+}
+
+.link-editor__icon:hover {
+  color: var(--tertiary-50);
+}

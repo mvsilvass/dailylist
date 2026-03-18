@@ -1,5 +1,4 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
-import { Clipboard } from '@angular/cdk/clipboard';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
 import { MatCheckboxModule } from '@angular/material/checkbox';
@@ -8,7 +7,6 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 import { FormsModule } from '@angular/forms';
 
-import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 import { TextEditorComponent } from 'app/shared/components/text-editor/text-editor.component';
 import { DatePickerComponent } from 'app/shared/components/date-picker/date-picker.component';
 
@@ -17,6 +15,8 @@ import { TaskService } from '../../services/task.service';
 
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
+import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
+import { FormatBarComponent } from "./components/format-bar/format-bar.component";
 
 @Component({
   selector: 'app-task-details',
@@ -32,16 +32,16 @@ import type { Task } from '../../models/task.model';
     MatIconModule,
     TextEditorComponent,
     MatInputModule,
-    DatePickerComponent
-],
+    DatePickerComponent,
+    FormatBarComponent,
+  ],
 })
 export class TaskDetailsComponent {
   private calendarService = inject(CalendarService);
   private taskService = inject(TaskService);
 
-  protected task = inject(MAT_DIALOG_DATA);
+  private task = inject(MAT_DIALOG_DATA);
   private dialog = inject(MatDialogRef);
-  private clipboard = inject(Clipboard);
   private destroyRef = inject(DestroyRef);
 
   protected taskTargetDate = signal<Date>(new Date(this.task.targetDate));
@@ -50,10 +50,8 @@ export class TaskDetailsComponent {
   protected taskIsDone = signal<boolean>(this.task.isDone);
   protected taskLink = signal<string>(this.task.link);
 
-  protected isEditingLink = signal<boolean>(false);
-
-  protected isBold = signal(false);
-  protected isItalic = signal(false);
+  protected isBold = signal<boolean>(false);
+  protected isItalic = signal<boolean>(false);
 
   constructor() {
     const subscription = this.dialog.backdropClick().subscribe(() => {
@@ -158,26 +156,5 @@ export class TaskDetailsComponent {
     this.destroyRef.onDestroy(() => {
       subscription.unsubscribe();
     });
-  }
-
-  protected toggleLinkMode() {
-    this.isEditingLink.update((state) => !state);
-  }
-
-  protected copyTaskLink() {
-    this.clipboard.copy(this.taskLink());
-  }
-
-  protected toggleBold() {
-    this.isBold.update((value) => !value);
-  }
-
-  protected toggleItalic() {
-    this.isItalic.update((value) => !value);
-  }
-
-  protected resetStyles() {
-    this.isBold.set(false);
-    this.isItalic.set(false);
   }
 }

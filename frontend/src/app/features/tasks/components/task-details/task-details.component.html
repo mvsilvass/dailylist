@@ -1,10 +1,10 @@
 <header class="task-details__header">
-  <app-date-picker [(date)]="taskTargetDate"/>
+  <app-date-picker [(date)]="taskTargetDate" />
 
   <div class="task-details__toolbar">
     <app-icon-button
-      mat-dialog-close
       icon="delete"
+      mat-dialog-close
       ariaLabel="Excluir tarefa"
       (clicked)="onDelete()"
     />
@@ -20,49 +20,25 @@
 <main class="task-details__content" [class.completed]="taskIsDone()">
   <input
     type="text"
-    class="task-details__title-input"
     [(ngModel)]="taskTitle"
+    class="task-details__title-input"
     placeholder="Título da tarefa"
   />
   <mat-checkbox [checked]="taskIsDone()" (change)="onChecked()" />
 </main>
 
 <footer class="task-details__footer">
-  <div class="task-details__format-bar">
-    @if (taskLink() || isEditingLink()) {
-      <app-icon-button
-        icon="link"
-        ariaLabel="Mostrar link"
-        [isActive]="isEditingLink()"
-        (clicked)="toggleLinkMode()"
-      />
-    } @else {
-      <app-icon-button icon="add_link" ariaLabel="Adicionar link" (clicked)="toggleLinkMode()" />
-    }
-
-    <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="isBold()" (clicked)="toggleBold()" />
-    <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="isItalic()" (clicked)="toggleItalic()" />
-    <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" (clicked)="resetStyles()" />
-  </div>
-
-  @if (isEditingLink()) {
-    <div class="task-details__link-wrapper">
-      <input
-        type="text"
-        [(ngModel)]="taskLink"
-        class="task-details__link-input"
-        placeholder="Digite o link aqui..."
-      />
-
-      <mat-icon class="input-icon" fontIcon="content_copy" (click)="copyTaskLink()" />
-    </div>
-  }
+  <app-format-bar
+    [(bold)]="isBold"
+    [(italic)]="isItalic"
+    [(link)]="taskLink"
+  />
 
   <app-text-editor
     [(text)]="taskDescription"
     [placeholder]="'Adicione notas aqui...'"
-    [(boldActive)]="isBold"
-    [(italicActive)]="isItalic"
+    [(bold)]="isBold"
+    [(italic)]="isItalic"
   />
 </footer>
 
