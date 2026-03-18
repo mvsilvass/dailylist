@@ -31,35 +31,6 @@
   gap: 10px;
 }
 
-.task-details__content {
-  display: flex;
-  border-bottom: 2px solid var(--tertiary);
-  justify-content: center;
-  align-items: center;
-}
-
-::ng-deep .mat-mdc-checkbox {
-  transform: scale(1.25);
-}
-
-.task-details__title-input {
-  background-color: white;
-  width: 100%;
-  padding: 15px 0px;
-  font-size: 1.75rem;
-}
-
-.completed,
-.completed .task-details__title-input,
-.completed ::ng-deep .mdc-checkbox__background,
-.completed ::ng-deep .mdc-checkbox__checkmark-path {
-  color: var(--tertiary-50);
-}
-
-.completed.task-details__content {
-  border-bottom: 2px solid var(--tertiary-50);
-}
-
 .task-details__footer {
   display: flex;
   flex-direction: column;

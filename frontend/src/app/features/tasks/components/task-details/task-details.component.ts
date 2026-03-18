@@ -1,11 +1,9 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
 
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatInputModule } from '@angular/material/input';
 import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
-import { FormsModule } from '@angular/forms';
 
 import { TextEditorComponent } from 'app/shared/components/text-editor/text-editor.component';
 import { DatePickerComponent } from 'app/shared/components/date-picker/date-picker.component';
@@ -13,10 +11,12 @@ import { DatePickerComponent } from 'app/shared/components/date-picker/date-pick
 import { CalendarService } from 'app/shared/services/calendar-service';
 import { TaskService } from '../../services/task.service';
 
+import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
+import { TitleInputComponent } from './components/title-input/title-input.component';
+import { FormatBarComponent } from './components/format-bar/format-bar.component';
+
 import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
-import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
-import { FormatBarComponent } from "./components/format-bar/format-bar.component";
 
 @Component({
   selector: 'app-task-details',
@@ -24,16 +24,15 @@ import { FormatBarComponent } from "./components/format-bar/format-bar.component
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
   imports: [
-    MatDialogModule,
-    FormsModule,
-    MatCheckboxModule,
     IconButtonComponent,
-    MatMenuModule,
-    MatIconModule,
     TextEditorComponent,
-    MatInputModule,
     DatePickerComponent,
     FormatBarComponent,
+    TitleInputComponent,
+    MatDialogModule,
+    MatMenuModule,
+    MatIconModule,
+    MatInputModule,
   ],
 })
 export class TaskDetailsComponent {
@@ -89,10 +88,6 @@ export class TaskDetailsComponent {
     };
 
     this.dialog.close(updateTask);
-  }
-
-  protected onChecked() {
-    this.taskIsDone.update((current) => !current);
   }
 
   protected onDelete() {
