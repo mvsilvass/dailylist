@@ -1,3 +1,5 @@
+<app-actions-menu #actions [task]="_task()" />
+
 <header class="task-details__header">
   <app-date-picker [(date)]="taskTargetDate" />
 
@@ -10,7 +12,7 @@
     />
 
     <app-icon-button
-      [matMenuTriggerFor]="actionsMenu"
+      [matMenuTriggerFor]="actions.instance"
       ariaLabel="Abrir menu de ações"
       icon="more_horiz"
     />
@@ -34,17 +36,3 @@
   />
 </footer>
 
-<mat-menu #actionsMenu="matMenu" xPosition="before">
-  <button type="button" mat-menu-item (click)="rescheduleTask(tomorrow)">
-    <mat-icon>arrow_right_alt</mat-icon>
-    <span>Amanhã</span>
-  </button>
-  <button type="button" mat-menu-item (click)="rescheduleTask(nextWeek)">
-    <mat-icon>event_upcoming</mat-icon>
-    <span>Próx. semana</span>
-  </button>
-  <button type="button" mat-dialog-close mat-menu-item (click)="duplicateTask()">
-    <span>Duplicar</span>
-    <mat-icon>content_copy</mat-icon>
-  </button>
-</mat-menu>

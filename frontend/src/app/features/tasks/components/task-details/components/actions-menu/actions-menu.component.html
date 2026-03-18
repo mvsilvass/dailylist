@@ -1,0 +1,16 @@
+<mat-menu #actions="matMenu" xPosition="before">
+  <button type="button" mat-menu-item (click)="onReschedule(tomorrow)">
+    <mat-icon>arrow_right_alt</mat-icon>
+    <span>Amanhã</span>
+  </button>
+
+  <button type="button" mat-menu-item (click)="onReschedule(nextWeek)">
+    <mat-icon>event_upcoming</mat-icon>
+    <span>Próx. semana</span>
+  </button>
+
+  <button type="button" mat-dialog-close mat-menu-item (click)="onDuplicate()">
+    <span>Duplicar</span>
+    <mat-icon>content_copy</mat-icon>
+  </button>
+</mat-menu>

@@ -1,21 +1,17 @@
 import { Component, computed, DestroyRef, inject, signal } from '@angular/core';
-
 import { MAT_DIALOG_DATA, MatDialogRef, MatDialogModule } from '@angular/material/dialog';
-import { MatInputModule } from '@angular/material/input';
-import { MatIconModule } from '@angular/material/icon';
 import { MatMenuModule } from '@angular/material/menu';
 
 import { TextEditorComponent } from 'app/shared/components/text-editor/text-editor.component';
 import { DatePickerComponent } from 'app/shared/components/date-picker/date-picker.component';
 
-import { CalendarService } from 'app/shared/services/calendar-service';
 import { TaskService } from '../../services/task.service';
 
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
+import { ActionsMenuComponent } from './components/actions-menu/actions-menu.component';
 import { TitleInputComponent } from './components/title-input/title-input.component';
 import { FormatBarComponent } from './components/format-bar/format-bar.component';
 
-import type { NewTask } from '../../models/new-task.model';
 import type { Task } from '../../models/task.model';
 
 @Component({
@@ -24,6 +20,7 @@ import type { Task } from '../../models/task.model';
   templateUrl: './task-details.component.html',
   styleUrl: './task-details.component.css',
   imports: [
+    ActionsMenuComponent,
     IconButtonComponent,
     TextEditorComponent,
     DatePickerComponent,
@@ -31,20 +28,18 @@ import type { Task } from '../../models/task.model';
     TitleInputComponent,
     MatDialogModule,
     MatMenuModule,
-    MatIconModule,
-    MatInputModule,
   ],
 })
 export class TaskDetailsComponent {
-  private calendarService = inject(CalendarService);
   private taskService = inject(TaskService);
-
-  private task = inject(MAT_DIALOG_DATA);
   private dialog = inject(MatDialogRef);
   private destroyRef = inject(DestroyRef);
 
-  protected taskTargetDate = signal<Date>(new Date(this.task.targetDate));
+  private task = inject(MAT_DIALOG_DATA);
+
+  protected _task = signal<Task>(this.task).asReadonly();
   protected taskDescription = signal<string>(this.task.description);
+  protected taskTargetDate = signal<Date>(new Date(this.task.targetDate));
   protected taskTitle = signal<string>(this.task.title);
   protected taskIsDone = signal<boolean>(this.task.isDone);
   protected taskLink = signal<string>(this.task.link);
@@ -94,57 +89,6 @@ export class TaskDetailsComponent {
     const subscription = this.taskService.deleteTask(this.task).subscribe({
       error: (error) => {
         console.log(error);
-      },
-    });
-
-    this.destroyRef.onDestroy(() => {
-      subscription.unsubscribe();
-    });
-  }
-
-  private updateTaskDate(days: number) {
-    const newDate = this.calendarService.addDays(this.taskTargetDate(), days);
-    this.taskTargetDate.set(newDate);
-    return newDate;
-  }
-
-  protected get tomorrow() {
-    return this.updateTaskDate(1);
-  }
-
-  protected get nextWeek() {
-    return this.updateTaskDate(7);
-  }
-
-  protected rescheduleTask(newDate: Date) {
-    const updateTask: Task = {
-      ...this.task,
-      title: this.taskTitle(),
-      targetDate: newDate,
-      isDone: this.taskIsDone(),
-      description: this.taskDescription(),
-      link: this.taskLink(),
-    };
-
-    this.dialog.close(updateTask);
-  }
-
-  protected duplicateTask() {
-    const targetDate = new Date(this.taskTargetDate());
-
-    const newTask: NewTask = {
-      title: this.taskTitle(),
-      description: this.taskDescription(),
-      link: this.taskLink(),
-      targetDate: targetDate.getTime(),
-    };
-
-    const subscription = this.taskService.createTask(newTask).subscribe({
-      next: (response: Task) => {
-        this.taskService.addTask(response);
-      },
-      error: (error) => {
-        console.error(error);
       },
     });
 
