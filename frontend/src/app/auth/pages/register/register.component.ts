@@ -12,9 +12,9 @@ import { RegisterResponse } from 'app/auth/dtos/register/register-response';
   selector: 'app-register',
   standalone: true,
   imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
-  templateUrl: './register-page.component.html',
+  templateUrl: './register.component.html',
 })
-export class RegisterPageComponent {
+export class RegisterComponent {
   constructor(private authService: AuthService) {}
 
   successMessage: string | null = null;

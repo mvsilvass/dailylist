@@ -4,22 +4,22 @@ import { CdkDropListGroup } from '@angular/cdk/drag-drop';
 import { TitleCasePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { TaskColumnComponent } from '../../components/task-column/task-column.component';
+import { TaskColumnComponent } from '../components/task-column/task-column.component';
 import { IconButtonComponent } from 'app/shared/components/icon-button/icon-button.component';
 
 import { CalendarService } from 'app/shared/services/calendar-service';
-import { TaskService } from '../../services/task.service';
+import { TaskService } from '../services/task.service';
 
-import type { Task } from '../../models/task.model';
+import type { Task } from '../models/task.model';
 
 @Component({
   selector: 'app-task-board',
   standalone: true,
-  templateUrl: './task-board-page.component.html',
-  styleUrl: './task-board-page.component.css',
+  templateUrl: './task-board.component.html',
+  styleUrl: './task-board.component.css',
   imports: [IconButtonComponent, TitleCasePipe, TaskColumnComponent, CdkDropListGroup],
 })
-export class TaskBoardPageComponent implements OnInit {
+export class TaskBoardComponent implements OnInit {
   private calendarService = inject(CalendarService);
   private taskService = inject(TaskService);
 

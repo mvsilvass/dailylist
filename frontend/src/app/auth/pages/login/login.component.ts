@@ -12,9 +12,9 @@ import { LoginRequest } from '../../dtos/login/login-request';
   selector: 'app-login',
   standalone: true,
   imports: [ReactiveFormsModule, AuthLayoutComponent, ButtonComponent],
-  templateUrl: './login-page.component.html',
+  templateUrl: './login.component.html',
 })
-export class LoginPageComponent {
+export class LoginComponent {
   constructor(
     private authService: AuthService,
     private router: Router,
