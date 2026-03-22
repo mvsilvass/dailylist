@@ -1,5 +1,5 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { AuthLayoutComponent } from 'app/auth/components/auth-layout/auth-layout.component';
@@ -15,14 +15,13 @@ import { LoginRequest } from '../../dtos/login/login-request';
   templateUrl: './login.component.html',
 })
 export class LoginComponent {
-  constructor(
-    private authService: AuthService,
-    private router: Router,
-  ) {}
+  private authService = inject(AuthService);
+  private destroyRef = inject(DestroyRef);
+  private router = inject(Router);
 
-  errorMessage: string | null = null;
+  protected errorMessage: string | null = null;
 
-  loginForm: FormGroup = new FormGroup({
+  protected loginForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
   });
@@ -31,30 +30,35 @@ export class LoginComponent {
     if (this.loginForm.invalid) {
       this.errorMessage = 'Preencha todos os campos corretamente';
       this.loginForm.markAllAsTouched();
-      return true;
+      return false;
     }
 
-    return false;
+    return true;
   }
 
-  onSubmit() {
-    if (this.validateForm()) return;
-    const formValue = this.loginForm.value;
+  protected onSubmit() {
+    if (this.validateForm()) {
+      const formValue = this.loginForm.value;
 
-    const request: LoginRequest = {
-      email: formValue.email,
-      password: formValue.password,
-    };
+      const request: LoginRequest = {
+        email: formValue.email,
+        password: formValue.password,
+      };
 
-    this.authService.doLogin(request).subscribe({
-      next: () => {
-        this.loginForm.reset();
-        this.router.navigate(['/tasks']);
-      },
-      error: (loginResponse) => {
-        this.loginForm.reset();
-        this.errorMessage = loginResponse.error.message;
-      },
-    });
+      const subscription = this.authService.doLogin(request).subscribe({
+        next: () => {
+          this.loginForm.reset();
+          this.router.navigate(['/tasks']);
+        },
+        error: (loginResponse) => {
+          this.loginForm.reset();
+          this.errorMessage = loginResponse.error.message;
+        },
+      });
+
+      this.destroyRef.onDestroy(() => {
+        subscription.unsubscribe();
+      });
+    }
   }
 }

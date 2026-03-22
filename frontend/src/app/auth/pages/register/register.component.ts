@@ -1,5 +1,5 @@
 import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
-import { Component } from '@angular/core';
+import { Component, DestroyRef, inject } from '@angular/core';
 
 import { AuthLayoutComponent } from 'app/auth/components/auth-layout/auth-layout.component';
 import { ButtonComponent } from 'app/shared/components/button/button.component';
@@ -15,12 +15,13 @@ import { RegisterResponse } from 'app/auth/dtos/register/register-response';
   templateUrl: './register.component.html',
 })
 export class RegisterComponent {
-  constructor(private authService: AuthService) {}
+  private authService = inject(AuthService);
+  private destroyRef = inject(DestroyRef);
 
-  successMessage: string | null = null;
-  errorMessage: string | null = null;
+  protected successMessage: string | null = null;
+  protected errorMessage: string | null = null;
 
-  registerForm: FormGroup = new FormGroup({
+  protected registerForm: FormGroup = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.email]),
     password: new FormControl('', [Validators.required]),
     confirmPassword: new FormControl('', [Validators.required]),
@@ -50,26 +51,31 @@ export class RegisterComponent {
     return true;
   }
 
-  onSubmit() {
+  protected onSubmit() {
     this.clearMessages();
-    if (!this.validateForm()) return;
-    const formValue = this.registerForm.value;
 
-    const request: RegisterRequest = {
-      username: formValue.username,
-      email: formValue.email,
-      password: formValue.password,
-    };
+    if (this.validateForm()) {
+      const formValue = this.registerForm.value;
 
-    this.authService.doRegister(request).subscribe({
-      next: (response: RegisterResponse) => {
-        this.registerForm.reset();
-        this.successMessage = response.message;
-      },
-      error: (error) => {
-        this.registerForm.reset();
-        this.errorMessage = error.error.message;
-      },
-    });
+      const request: RegisterRequest = {
+        username: formValue.username,
+        email: formValue.email,
+        password: formValue.password,
+      };
+
+      const subscription = this.authService.doRegister(request).subscribe({
+        next: (response: RegisterResponse) => {
+          this.successMessage = response.message;
+          this.registerForm.reset();
+        },
+        error: (error) => {
+          this.errorMessage = error.error.message;
+        },
+      });
+
+      this.destroyRef.onDestroy(() => {
+        subscription.unsubscribe();
+      });
+    }
   }
 }

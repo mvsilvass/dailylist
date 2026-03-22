@@ -1,4 +1,5 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
+
 import { LocalStorageService } from './local-storage.service';
 import { JwtDecoderService } from './jwt-decoder.service';
 import { JwtPayload } from './../models/jwt-payload';
@@ -7,10 +8,8 @@ import { JwtPayload } from './../models/jwt-payload';
   providedIn: 'root',
 })
 export class SessionService {
-  constructor(
-    private storage: LocalStorageService,
-    private jwtDecoderService: JwtDecoderService,
-  ) {}
+  private storage = inject(LocalStorageService);
+  private jwtDecoderService = inject(JwtDecoderService);
 
   private getPayload(): JwtPayload | null {
     return this.jwtDecoderService.decodeJwtPayload();
@@ -23,7 +22,7 @@ export class SessionService {
     return Date.now() > payload.exp * 1000;
   }
 
-  isAuthenticated(): boolean {
+  public isAuthenticated(): boolean {
     const payload = this.getPayload();
 
     if (!payload) return false;
@@ -36,14 +35,14 @@ export class SessionService {
     return true;
   }
 
-  hasRole(role: string): boolean {
+  public hasRole(role: string): boolean {
     const payload = this.getPayload();
     if (!payload?.scope) return false;
 
     return payload.scope.split(' ').includes(role);
   }
 
-  logout(): void {
+  public logout(): void {
     this.storage.remove('access_token');
   }
 }

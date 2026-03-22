@@ -1,13 +1,14 @@
-import { Injectable } from '@angular/core';
-import { jwtDecode } from 'jwt-decode';
+import { inject, Injectable } from '@angular/core';
+
 import { LocalStorageService } from './local-storage.service';
 import { JwtPayload } from './../models/jwt-payload';
+import { jwtDecode } from 'jwt-decode';
 
 @Injectable({
   providedIn: 'root',
 })
 export class JwtDecoderService {
-  constructor(private storage: LocalStorageService) {}
+  private storage = inject(LocalStorageService);
 
   public getToken(): string | null {
     return this.storage.get('access_token');
