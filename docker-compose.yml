@@ -8,6 +8,20 @@ services:
     volumes:
       - pgdata:/var/lib/postgresql/data
     ports:
-      - "${DB_PORT:-2812}:5432"
+      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}"
+  
+  backend:
+    build: ./backend
+    environment:
+      DB_NAME: ${DB_NAME}
+      DB_HOST: ${DB_HOST}
+      DB_USER: ${DB_USER}
+      DB_PORT: ${DB_PORT_INTERNAL}
+      DB_PASSWORD: ${DB_PASSWORD}
+      SERVER_PORT: ${BACKEND_PORT_INTERNAL}
+    depends_on:
+      - database
+    ports:
+      - "${BACKEND_PORT_EXTERNAL}:${BACKEND_PORT_INTERNAL}"
 volumes:
   pgdata:
