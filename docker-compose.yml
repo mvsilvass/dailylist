@@ -1,17 +1,28 @@
 services:
   database:
     image: postgres:17.6
+    container_name: dailylist-database
+    ports:
+      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}"
+    networks:
+      - backend-network
     environment:
       POSTGRES_USER: ${DB_USER:-postgres}
       POSTGRES_PASSWORD: ${DB_PASSWORD:-postgres}
       POSTGRES_DB: dailylist
     volumes:
       - pgdata:/var/lib/postgresql/data
-    ports:
-      - "${DB_PORT_EXTERNAL}:${DB_PORT_INTERNAL}"
-  
+
   backend:
     build: ./backend
+    container_name: dailylist-backend
+    depends_on:
+      - database
+    ports:
+      - "${BACKEND_PORT_EXTERNAL}:${BACKEND_PORT_INTERNAL}"
+    networks:
+      - backend-network
+      - frontend-network
     environment:
       DB_NAME: ${DB_NAME}
       DB_HOST: ${DB_HOST}
@@ -19,9 +30,17 @@ services:
       DB_PORT: ${DB_PORT_INTERNAL}
       DB_PASSWORD: ${DB_PASSWORD}
       SERVER_PORT: ${BACKEND_PORT_INTERNAL}
-    depends_on:
-      - database
-    ports:
-      - "${BACKEND_PORT_EXTERNAL}:${BACKEND_PORT_INTERNAL}"
+      ADMIN_EMAIL: ${ADMIN_EMAIL}
+      ADMIN_PASSWORD: ${ADMIN_PASSWORD}
+      JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
+      JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
+
+networks:
+  frontend-network:
+    driver: bridge
+  backend-network:
+    driver: bridge
+
 volumes:
   pgdata:
+
