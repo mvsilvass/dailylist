@@ -1,11 +1,11 @@
 server:
-  port: ${SERVER_PORT:8080}
+  port: ${SERVER_PORT}
 
 spring:
   datasource:
-    url: jdbc:postgresql://${DB_HOST:localhost}:${DB_PORT:2812}/${DB_NAME:dailylist}
-    username: ${DB_USER:postgres}
-    password: ${DB_PASSWORD:postgres}
+    url: jdbc:postgresql://${DB_HOST}:${DB_PORT}/${DB_NAME}
+    username: ${DB_USER}
+    password: ${DB_PASSWORD}
     driver-class-name: org.postgresql.Driver
 
   jpa:
@@ -15,10 +15,10 @@ spring:
     show-sql: true
 
 jwt:
-  public-key: classpath:keys/app.pub
-  private-key: classpath:keys/app.key
+  public-key: ${JWT_PUBLIC_KEY}
+  private-key: ${JWT_PRIVATE_KEY}
 
 admin:
   default:
-    email: ${ADMIN_EMAIL:admin@teste.com}
-    password: ${ADMIN_PASSWORD:1234}
+    email: ${ADMIN_EMAIL}
+    password: ${ADMIN_PASSWORD}
