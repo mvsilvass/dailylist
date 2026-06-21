@@ -11,4 +11,13 @@ import { RouterLink } from '@angular/router';
 })
 export class AuthLayoutComponent {
   @Input({ required: true }) mode!: 'login' | 'register';
+  protected githubUrl = 'https://github.com/mvsilvass';
+
+  protected get targetRoute(): string {
+    return this.mode === 'login' ? '/auth/register' : '/auth/login';
+  }
+
+  protected get linkText(): string {
+    return this.mode === 'login' ? 'Cadastre-se' : 'Entrar';
+  }
 }

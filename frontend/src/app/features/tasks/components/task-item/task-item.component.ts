@@ -1,4 +1,4 @@
-import { Component, EventEmitter, inject, Input, Output } from '@angular/core';
+import { Component, DestroyRef, EventEmitter, inject, Input, Output } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { MatDialog } from '@angular/material/dialog';
 import { MatIcon } from '@angular/material/icon';
@@ -20,6 +20,7 @@ export class TaskItemComponent {
   @Output() statusChange = new EventEmitter<Task>();
 
   private taskService = inject(TaskService);
+  private destroyRef = inject(DestroyRef);
   private dialog = inject(MatDialog);
 
   protected onChecked() {
@@ -35,10 +36,14 @@ export class TaskItemComponent {
 
     dialogRef.afterClosed().subscribe((result: Task) => {
       if (result && this.task.id) {
-        this.taskService.updateTask(result).subscribe({
+        const subscription = this.taskService.updateTask(result).subscribe({
           error(error) {
             console.error(error);
           },
+        });
+
+        this.destroyRef.onDestroy(() => {
+          subscription.unsubscribe();
         });
       }
     });

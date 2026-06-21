@@ -3,29 +3,22 @@
     <header class="auth-header">
       <img class="auth-logo" src="assets/icons/logo.png" alt="Girassol" />
       <h1 class="auth-brand">Dailylist</h1>
-
-      @if (mode === 'login') {
-        <h2 class="auth-subtitle">Bem-vindo de volta!</h2>
-      } @else {
-        <h2 class="auth-subtitle">Crie sua conta e junte-se a nós!</h2>
-      }
+      <h2 class="auth-subtitle">
+        {{ mode === 'login' ? 'Bem-vindo de volta!' : 'Crie sua conta e junte-se a nós!' }}
+      </h2>
     </header>
 
     <ng-content />
 
     <footer class="auth-footer">
-      @if (mode === 'login') {
-        <p class="auth-footer-text">
-          Não tem uma conta?
-          <a class="auth-link" routerLink="/auth/register">Cadastre-se</a>
-        </p>
-        <a class="auth-link" routerLink="/home"> Esqueci minha senha </a>
-      } @else {
-        <p class="auth-footer-text">
-          Já tem uma conta?
-          <a class="auth-link" routerLink="/auth/login">Entrar</a>
-        </p>
-      }
+      <p class="auth-footer-text">
+        {{ mode === 'login' ? 'Não tem uma conta?' : 'Já tem uma conta?' }}
+        <a class="auth-link" [routerLink]="targetRoute">{{ linkText }}</a>
+      </p>
+
+      <p class="app-credits">
+        Feito com <3 por <a target="_blank" [href]="githubUrl">mvsilvass</a>
+      </p>
     </footer>
   </section>
 </main>

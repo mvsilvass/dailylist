@@ -58,6 +58,10 @@
   color: var(--tertiary-50);
 }
 
+.completed .task-item__icon{
+  opacity: 0.5;
+}
+
 .completed .task-item__title{
   text-decoration: line-through;
 }

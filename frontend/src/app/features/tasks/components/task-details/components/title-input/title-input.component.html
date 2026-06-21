@@ -1,0 +1,13 @@
+<div class="title-input-container" [class.completed]="completed()">
+  <input
+    type="text"
+    [(ngModel)]="title"
+    class="title-input__field"
+    placeholder="Título da tarefa"
+  />
+
+  <mat-checkbox
+    [checked]="completed()"
+    (change)="onChecked()"
+  />
+</div>

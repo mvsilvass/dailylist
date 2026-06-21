@@ -1,0 +1,45 @@
+<div class="format-bar">
+  <app-icon-button
+    [icon]="link() || isEditingLink() ? 'link' : 'add_link'"
+    ariaLabel="Mostrar link"
+    [isActive]="isEditingLink()"
+    (clicked)="toggleLinkMode()"
+  />
+
+  <app-icon-button
+    icon="format_bold"
+    ariaLabel="Negrito"
+    [isActive]="bold()"
+    (clicked)="toggleBold()"
+  />
+
+  <app-icon-button
+    icon="format_italic"
+    ariaLabel="Itálico"
+    [isActive]="italic()"
+    (clicked)="toggleItalic()"
+  />
+
+  <app-icon-button
+    icon="format_clear"
+    ariaLabel="Limpar formatação"
+    (clicked)="clearFormatting()"
+  />
+</div>
+
+@if (isEditingLink()) {
+  <div class="link-editor">
+    <input
+      type="text"
+      [(ngModel)]="link"
+      class="link-editor__input"
+      placeholder="Digite o link aqui..."
+    />
+
+    <mat-icon
+      class="link-editor__icon"
+      fontIcon="content_copy"
+      (click)="copyLink()"
+    />
+  </div>
+}

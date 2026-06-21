@@ -21,6 +21,7 @@
       {
         "button-name": "off"
       }
-    ]
+    ],
+    "button-type": "off"
   }
 }

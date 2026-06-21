@@ -1,45 +1,38 @@
+<app-actions-menu #actions [task]="_task()" />
+
 <header class="task-details__header">
-  <h1 class="task-details__date">
-    {{ taskTargetDate() | date: 'EEEE, d MMM yyyy' }}
-  </h1>
+  <app-date-picker [(date)]="taskTargetDate" />
 
   <div class="task-details__toolbar">
     <app-icon-button
-      mat-dialog-close
       icon="delete"
+      mat-dialog-close
       ariaLabel="Excluir tarefa"
       (clicked)="onDelete()"
     />
 
     <app-icon-button
-      mat-dialog-close
+      [matMenuTriggerFor]="actions.instance"
+      ariaLabel="Abrir menu de ações"
       icon="more_horiz"
-      ariaLabel="Mais opções"
     />
   </div>
 </header>
 
-<main class="task-details__content" [class.completed]="taskIsDone()">
-  <input
-    type="text"
-    class="task-details__input"
-    [(ngModel)]="taskTitle"
-    placeholder="Título da tarefa"
-  />
-  <mat-checkbox [checked]="taskIsDone()" (change)="onChecked()" />
-</main>
+<app-title-input [(title)]="taskTitle" [(completed)]="taskIsDone" />
 
 <footer class="task-details__footer">
-  <div class="task-details__format-bar">
-    <app-icon-button icon="format_bold" ariaLabel="Negrito" [isActive]="true" />
-    <app-icon-button icon="format_italic" ariaLabel="Itálico" [isActive]="true" />
-    <app-icon-button icon="format_clear" ariaLabel="Limpar formatação" />
-  </div>
+  <app-format-bar
+    [(bold)]="isBold"
+    [(italic)]="isItalic"
+    [(link)]="taskLink"
+  />
 
-  <textarea
-    class="task-details__textarea"
-    placeholder="Adicione notas aqui..."
-    [(ngModel)]="taskDescription"
-  >
-  </textarea>
+  <app-text-editor
+    [(text)]="taskDescription"
+    [placeholder]="'Adicione notas aqui...'"
+    [(bold)]="isBold"
+    [(italic)]="isItalic"
+  />
 </footer>
+

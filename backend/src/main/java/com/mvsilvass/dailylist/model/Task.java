@@ -24,7 +24,8 @@ public class Task {
     
     @Column(nullable = false)
     private String title;
-    
+
+    @Column(columnDefinition = "TEXT", length = 2000)
     private String description;
     
     private String link;

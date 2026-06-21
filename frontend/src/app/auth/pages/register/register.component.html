@@ -29,12 +29,12 @@
 
     <app-button data-cy="register-submit" label="Registrar" type="submit" />
 
-    @if (errorMessage) {
-      <p data-cy="register-error-message" class="message error">{{ errorMessage }}</p>
+    @if (errorMessage()) {
+      <p data-cy="register-error-message" class="message error">{{ errorMessage() }}</p>
     }
 
-    @if (successMessage) {
-      <p data-cy="register-success-message" class="message success">{{ successMessage }}</p>
+    @if (successMessage()) {
+      <p data-cy="register-success-message" class="message success">{{ successMessage()}}</p>
     }
   </form>
 </app-auth-layout>

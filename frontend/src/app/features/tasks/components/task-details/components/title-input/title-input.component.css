@@ -1,0 +1,28 @@
+.title-input-container{
+  display: flex;
+  border-bottom: 2px solid var(--tertiary);
+  justify-content: center;
+  align-items: center;
+}
+
+.title-input__field {
+  background-color: white;
+  width: 100%;
+  padding: 15px 0px;
+  font-size: 1.75rem;
+}
+
+::ng-deep .mat-mdc-checkbox {
+  transform: scale(1.25);
+}
+
+.completed,
+.completed .title-input__field,
+.completed ::ng-deep .mdc-checkbox__background,
+.completed ::ng-deep .mdc-checkbox__checkmark-path {
+  color: var(--tertiary-50);
+}
+
+.completed.title-input-container {
+  border-bottom: 2px solid var(--tertiary-50);
+}

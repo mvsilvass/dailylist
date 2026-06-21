@@ -1,0 +1,27 @@
+<div class="datepicker-container">
+  <div class="datepicker-trigger">
+    <input
+      class="datepicker-input"
+      [value]="date()"
+      [matDatepicker]="picker"
+      (dateChange)="onDateChange($event)"
+    />
+
+    <mat-datepicker-toggle
+      class="datepicker-toggle"
+      [for]="picker"
+      [class.active]="isCalendarOpen()"
+    />
+
+    <mat-datepicker
+      #picker
+      panelClass="datepicker-panel"
+      (opened)="openCalendar()"
+      (closed)="closeCalendar()"
+    />
+  </div>
+</div>
+
+<h1 class="datepicker-display-date">
+  {{ date() | date: 'EEEE, d MMM yyyy' }}
+</h1>

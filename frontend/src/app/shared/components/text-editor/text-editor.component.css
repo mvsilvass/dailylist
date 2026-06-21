@@ -1,0 +1,53 @@
+:host {
+  display: flex;
+  flex: 1;
+}
+
+.editor-container {
+  position: relative;
+  max-height: 100%;
+  display: flex;
+  width: 100%;
+}
+
+.editable-area {
+  background: var(--gray-1);
+  border: 2px solid var(--gray-2);
+  border-radius: 10px;
+  padding: 10px 5px;
+  font-size: 1.25rem;
+  line-height: 1.2;
+  color: var(--tertiary);
+  overflow-y: auto;
+  overflow-x: hidden;
+  max-height: 100%;
+  max-width: 100%;
+  display: block;
+  flex: 1;
+}
+
+.editable-area::-webkit-scrollbar {
+  width: 5px;
+}
+
+.editable-area::-webkit-scrollbar-thumb {
+  background: var(--gray-3);
+  border-radius: 20px;
+}
+
+.placeholder {
+  position: absolute;
+  top: 10px;
+  left: 12px;
+  color: var(--tertiary-50);
+  font-size: 1.25rem;
+  pointer-events: none;
+}
+
+.bold{
+  font-weight: bold;
+}
+
+.italic{
+  font-style: italic;
+}

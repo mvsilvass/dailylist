@@ -1,5 +1,5 @@
 import { DatePipe, TitleCasePipe } from '@angular/common';
-import { Component, inject, Input } from '@angular/core';
+import { Component, DestroyRef, inject, Input } from '@angular/core';
 
 import {
   CdkDrag,
@@ -28,6 +28,7 @@ export class TaskColumnComponent {
   @Input({ required: true }) tasks!: Task[];
 
   private taskService = inject(TaskService);
+  private destroyRef = inject(DestroyRef);
 
   protected updateTaskStatus(task: Task) {
     this.taskService.updateTask(task).subscribe();
@@ -61,7 +62,11 @@ export class TaskColumnComponent {
       };
     });
 
-    this.taskService.reorderTasks(updateTasks).subscribe();
+    const subscription = this.taskService.reorderTasks(updateTasks).subscribe();
+
+    this.destroyRef.onDestroy(() => {
+      subscription.unsubscribe();
+    });
   }
 
   protected drop(event: CdkDragDrop<Task[]>) {

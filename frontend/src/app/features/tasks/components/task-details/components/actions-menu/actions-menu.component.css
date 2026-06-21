@@ -1,0 +1,10 @@
+::ng-deep .mat-mdc-menu-item:hover {
+  color: var(--tertiary-50);
+}
+
+::ng-deep .mat-mdc-menu-panel {
+  background-color: white !important;
+  border: 1.5px solid var(--tertiary-50);
+  border-radius: 10px !important;
+  margin-top: 10px;
+}

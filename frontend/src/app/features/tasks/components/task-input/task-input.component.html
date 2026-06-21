@@ -1,1 +1,7 @@
-<input class="task-input" type="text" (keyup.enter)="createTask()" [(ngModel)]="taskTitle" />
+<input
+  type="text"
+  class="task-input"
+  [(ngModel)]="taskTitle"
+  (keyup.enter)="createTask()"
+  (blur)="createTask()"
+/>
