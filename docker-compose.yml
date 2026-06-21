@@ -35,6 +35,16 @@ services:
       JWT_PUBLIC_KEY: ${JWT_PUBLIC_KEY}
       JWT_PRIVATE_KEY: ${JWT_PRIVATE_KEY}
 
+  frontend:
+    build: ./frontend
+    container_name: dailylist-frontend
+    depends_on:
+      - backend
+    ports:
+      - "${FRONTEND_PORT_EXTERNAL}:${FRONTEND_PORT_INTERNAL}"
+    networks:
+      - frontend-network
+
 networks:
   frontend-network:
     driver: bridge
