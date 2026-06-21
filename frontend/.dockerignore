@@ -1,4 +1,5 @@
 node_modules
 cypress
+cypress.config.ts
 .angular
 dist
