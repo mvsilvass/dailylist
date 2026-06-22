@@ -1,4 +1,6 @@
 import { defineConfig } from 'cypress';
+import * as dotenv from 'dotenv';
+dotenv.config({ path: '../.env' });
 
 const webpack = require('@cypress/webpack-preprocessor');
 const preprocessor = require('@badeball/cypress-cucumber-preprocessor');
@@ -52,8 +54,8 @@ export default defineConfig({
     specPattern: ['**/e2e/**/*.feature'],
     excludeSpecPattern: '*.js',
     env: {
-      USER_EMAIL: process.env.ADMIN_EMAIL || 'admin@teste.com',
-      USER_PASSWORD: process.env.ADMIN_PASSWORD || '1234',
+      USER_EMAIL: process.env.ADMIN_EMAIL,
+      USER_PASSWORD: process.env.ADMIN_PASSWORD,
     },
     setupNodeEvents,
   },
